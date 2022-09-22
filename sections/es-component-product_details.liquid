@@ -1,6 +1,5 @@
-{{ 'es-component-product_details.css' | asset_url | stylesheet_tag }}
-{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
-
+<link rel="stylesheet" data-href="{{ 'es-component-product_details.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'es-utilities.css' | asset_url }}">
 
 <div class="es-in-section-infographic-way u-padding-rl-lg-1 u-padding-top-lg-4 {% if section.settings.classes %} {{ section.settings.classes }} {% endif %}" 
 {% if section.settings.section-color != blank %}style="background-color: {{ section.settings.section-color }};"{% endif %}>

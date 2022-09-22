@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'section-rich-text.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" data-href="{{ 'component-rte.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'section-rich-text.css' | asset_url }}">
 
 <noscript>{{ 'component-rte.css' | asset_url | stylesheet_tag }}</noscript>
 <noscript>{{ 'es-in-section-rich-text.css' | asset_url | stylesheet_tag }}</noscript>
@@ -36,9 +36,9 @@
             <div class="rich-text__image-box">
               <a href="{%if section.settings.link %}{{ section.settings.link }}{% else %} # {% endif %}" class="" style="cursor: pointer;">
                 {% if section.settings.image-width != blank %} 
-                	<img src="{{ section.settings.image | img_url: '600x', format: 'pjpg' }}" width="{{ section.settings.image-width }}" height="" alt="" class="">
+                	<img data-src="{{ section.settings.image | img_url: '600x', format: 'pjpg' }}" width="{{ section.settings.image-width }}" height="" alt="" class="lazy3 lazy2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
                 {% else %}
-                	<img src="{{ section.settings.image | img_url: '100x', format: 'pjpg' }}" width="" height="" alt="" class="">
+                	<img data-src="{{ section.settings.image | img_url: '100x', format: 'pjpg' }}" width="" height="" alt="" class="lazy3 lazy2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
                 {% endif %}
                 
                  

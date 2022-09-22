@@ -1,10 +1,6 @@
+<link rel="stylesheet" data-href="{{ 'es-component-hero-basic.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'es-utilities.css' | asset_url }}">
 
-
-{{ 'es-component-hero-basic.css' | asset_url | stylesheet_tag }}
-{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
-<style>
-
-</style>
 
 <div class="hero-basic">
     <div class="hero-basic__container {% if section.settings.classes %} {{ section.settings.classes }} {% endif %}" {% if section.settings.section-color != blank %}style="background-color: {{ section.settings.section-color }};"{% endif %}>
@@ -25,7 +21,7 @@
                    ">
               <div class="hero-basic__image-box">
                 {% if section.settings.image_desktop != blank or section.settings.video_link_desktop == blank %} 
-                  <img src="{{ section.settings.image_desktop | img_url: '1920x', format: 'pjpg' }}" alt="Hero Image">
+                  <img class="lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ section.settings.image_desktop | img_url: '1920x', format: 'pjpg' }}" alt="Hero Image">
                 {% endif %}
               </div>
               {% if section.settings.video_link_desktop != blank %}
@@ -36,7 +32,7 @@
                       <div class="hero-basic__videoplayer">
                         <div class="hero-basic__videoplayer-player" style="width:100%;height:100%;" >
                           <video  
-                            poster="{{ section.settings.video_poster_desktop | img_url: '1920x', format: 'pjpg' }}"
+                            data-poster="{{ section.settings.video_poster_desktop | img_url: '1920x', format: 'pjpg' }}"
                             style="width: 100%; height: 100%;" 
                             autoplay loop muted playsinline 
                             id="video_element_desktop" >
@@ -179,7 +175,7 @@
 
                     <div class="hero-basic__image-box">
                       {% if section.settings.image_mobile != blank or section.settings.video_link_mobile == blank %} 
-                        <img src="{{ section.settings.image_mobile | img_url: '1920x', format: 'pjpg' }}" alt="Hero Image">
+                        <img class="lazy2 lazy3" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ section.settings.image_mobile | img_url: '540x', format: 'pjpg' }}" alt="Hero Image">
                       {% endif %}
                     </div>
               {% if section.settings.video_link_mobile != blank %}
@@ -189,7 +185,7 @@
                     <div class="hero-basic__videoplayer-box-mobile">
                       <div class="hero-basic__videoplayer-player" style="width:100%;height:100%;" >
                         <video src="{{section.settings.video_link_mobile}}"
-                          poster="{{ section.settings.video_poster_mobile | img_url: '900x', format: 'pjpg' }}"
+                          data-poster="{{ section.settings.video_poster_mobile | img_url: '900x', format: 'pjpg' }}"
                           style="width: 100%; height: 100%;" 
                           autoplay loop muted playsinline  
                           webkit-playsinline x5-playsinline

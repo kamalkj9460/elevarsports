@@ -1015,11 +1015,11 @@ body.compensate-for-scrollbar {
 
 @font-face {
   font-family: 'icomoon';
-  src:  url(//cdn.shopify.com/s/files/1/0017/4227/4613/t/30/assets/icomoon.eot?kpmds9&v=109339258440947467711650958924);
-  src:  url(//cdn.shopify.com/s/files/1/0017/4227/4613/t/30/assets/icomoon.eot?kpmds9%23iefix&v=109339258440947467711650958924) format('embedded-opentype'),
-    url(//cdn.shopify.com/s/files/1/0017/4227/4613/t/30/assets/icomoon.ttf?kpmds9&v=119440120253717126871650958925) format('truetype'),
-    url(//cdn.shopify.com/s/files/1/0017/4227/4613/t/30/assets/icomoon.woff?kpmds9&v=105612363770901572331650958925) format('woff'),
-    url(//cdn.shopify.com/s/files/1/0017/4227/4613/t/30/assets/icomoon.svg?kpmds9%23icomoon&v=154491065286759112501650958924) format('svg');
+  src:  url(//cdn.shopify.com/s/files/1/0017/4227/4613/t/55/assets/icomoon.eot?kpmds9&v=109339258440947467711663665960);
+  src:  url(//cdn.shopify.com/s/files/1/0017/4227/4613/t/55/assets/icomoon.eot?kpmds9%23iefix&v=109339258440947467711663665960) format('embedded-opentype'),
+    url(//cdn.shopify.com/s/files/1/0017/4227/4613/t/55/assets/icomoon.ttf?kpmds9&v=119440120253717126871663665960) format('truetype'),
+    url(//cdn.shopify.com/s/files/1/0017/4227/4613/t/55/assets/icomoon.woff?kpmds9&v=105612363770901572331663665960) format('woff'),
+    url(//cdn.shopify.com/s/files/1/0017/4227/4613/t/55/assets/icomoon.svg?kpmds9%23icomoon&v=154491065286759112501663665960) format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;

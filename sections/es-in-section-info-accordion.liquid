@@ -2,9 +2,8 @@
 {% if enabled-handles contains handle or block.settings.enabled-handles == blank %}
 
 {% endif %} -->
-
-{{ 'es-in-component-info-accordion.css' | asset_url | stylesheet_tag }}
-{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" data-href="{{ 'es-in-component-info-accordion.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'es-utilities.css' | asset_url }}">
 <!-- color-{{ section.settings.color_scheme }} -->
 <div class="es-in-section-info-accordion info-accordion  
     {% if section.settings.enable-desktop == false %}hidden-md hidden-lg{% endif %} {% if section.settings.enable-mobile == false %}hidden-xs hidden-sm{% endif %} u-padding-bottom-lg-1 u-margin-bottom-lg-0 u-margin-top-lg-0"

@@ -1,14 +1,14 @@
 
 {% comment %}theme-check-disable TemplateLength{% endcomment %}
-{{ 'es-section-main-product.css' | asset_url | stylesheet_tag }}
-{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-rte.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'component-rating.css' | asset_url | stylesheet_tag }}
-{{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}
-{{ 'es-variant-selectors-product.css' | asset_url | stylesheet_tag }}
-<link rel="stylesheet" href="{{ 'component-deferred-media.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" data-href="{{ 'es-section-main-product.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-accordion.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-price.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-rte.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-slider.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-rating.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-loading-overlay.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'es-variant-selectors-product.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-deferred-media.css' | asset_url }}">
 
 <script src="{{ 'es-product-form.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'es-variant-selectors-product.js' | asset_url }}"></script>
@@ -909,9 +909,8 @@
               
               
               
-              
-              {{ 'component-pickup-availability.css' | asset_url | stylesheet_tag }}
-
+      
+                <link rel="stylesheet" data-href="{{ 'component-pickup-availability.css' | asset_url }}">
               {%- assign pick_up_availabilities = product.selected_or_first_available_variant.store_availabilities | where: 'pick_up_enabled', true -%}
 
               <pickup-availability class="product__pickup-availabilities no-js-hidden"

@@ -1,11 +1,11 @@
-{{ 'es-section-header.css' | asset_url | stylesheet_tag }}
-<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-menu-drawer.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" data-href="{{ 'es-section-header.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-list-menu.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-search.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-menu-drawer.css' | asset_url }}">
+<link rel="stylesheet" data-href="{{ 'component-cart-notification.css' | asset_url }}">
 {%- if settings.predictive_search_enabled -%}
-  <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
-  <link rel="stylesheet" href="{{ 'component-loading-overlay.css' | asset_url }}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" data-href="{{ 'component-price.css' | asset_url }}">
+    <link rel="stylesheet" data-href="{{ 'component-loading-overlay.css' | asset_url }}">
 {%- endif -%}
 
 <noscript>{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}</noscript>
@@ -259,7 +259,7 @@
             <a href="{{ childlink.url }}" 
               class=""
               onclick="ga('send', 'event', 'navigation_image_mobile', '{{ childlink.title }}', '{{ pathName2 }}')">
-              <img src="{{ imgURL | slice : 1 }}" alt="" class="">
+              <img class="lazy2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" data-src="{{ imgURL | slice : 1 }}" alt="">
             </a>
           </div>
             {%- endif -%}
@@ -275,7 +275,7 @@
             <a href="{{ childlink.url }}" 
               class=""
               onclick="ga('send', 'event', 'navigation_image_mobile', '{{ childlink.title }}', '{{ pathName3 }}')">
-            <img style="width:100%;" src="{{ imgURL | slice : 1 }}" alt="" class="">
+            <img style="width:100%;" data-src="{{ imgURL | slice : 1 }}" alt="" class="lazy2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
             </a>
           </div>
         {%- endif -%}
@@ -588,7 +588,7 @@
                                       <a href="{{ grandchildlink.url }}" 
                                         class="" 
                                         onclick="ga('send', 'event', 'navigation_images_desktop', '{{ imgName }}', '{{ pathName2 }}')">
-                                        <img src="{{ imgURL | slice : 1 }}" alt="" class="">
+                                        <img data-src="{{ imgURL | slice : 1 }}" alt="" class="lazy2" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=">
                                       </a>
 
                                     </div>
