@@ -1,0 +1,126 @@
+.info-accordion{
+    width: 100%;
+    position: relative;
+    padding: 0 2.4rem;
+}
+
+.info-accordion .info-accordion__container{
+    width: 100%;
+    margin: 0 auto;
+}
+
+.info-accordion .info-accordion__tabs{
+    overflow: hidden;
+    box-shadow: 0 .04rem .04rem -.2rem rgba(0,0,0,0.5);
+}
+
+
+@media only screen and (min-width: 768px){
+  .info-accordion .info-accordion__tabs{
+  	width:90%;
+    margin: 0 auto;
+  }
+}
+
+.info-accordion .info-accordion__tabs .info-accordion-tab{
+    width: 100%;
+    color: inherit;
+    overflow: hidden;
+    border-bottom: .1rem solid currentColor;
+/*     border: .1rem solid #212a2f47; */
+}
+
+.info-accordion__tabs .info-accordion-tab:first-child{
+    border-top: .1rem solid currentColor;
+/*     border: .1rem solid #212a2f47; */
+  
+}
+
+.info-accordion .info-accordion__tabs .info-accordion-tab 
+.info-accordion__tab-heading-box{
+
+}
+
+.info-accordion .info-accordion__tabs .info-accordion-tab 
+.info-accordion__tab-label{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em !important;
+    padding-bottom: 0;
+    background: transparent;
+    font-weight: 700;
+    cursor: pointer;
+    color: inherit;
+    text-transform: uppercase;
+    font-size: 1.6rem;
+    letter-spacing: 0.17rem;
+
+}
+
+.info-accordion__tab-label::after {
+    /* content: "\276F"; */
+    content: "\002B";
+/*     width: 3rem;
+    height: 3rem; */
+    text-align: center;
+    transition: all .35s;
+    font-size: 3rem;
+    line-height: 1;
+}
+
+@media only screen and (max-width: 768px){
+  .info-accordion .info-accordion__tabs .info-accordion-tab 
+  .info-accordion__tab-label{
+  	font-size: 1.2rem;
+  }
+  .info-accordion__tab-label::after {
+  		font-size: 1.8rem;
+    	line-height: 1;	
+  }
+}
+
+.info-accordion__tab-label:hover{
+    cursor: pointer;
+}
+
+.info-accordion__tab-content{
+    max-height: 0;
+    height: 0;
+    /* padding: .5em 1.5em 1em 1.5em; */
+    padding: 0 1em;
+    color: inherit;
+    background: transparent;
+    transition: all .35s;
+    /* margin: -1rem; */
+}
+
+.info-accordion__tab-content ul{
+    margin-top: 0;
+}
+
+
+.info-accordion__tab-content p,
+.info-accordion__tab-content li{
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: inherit;
+}
+
+.info-accordion input{
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+/* :checked */
+.info-accordion input:checked + .info-accordion__tab-label::after{
+    /* transform: rotate(90deg); */
+    content: "\2212";
+} 
+
+.info-accordion input:checked ~ .info-accordion__tab-content{
+    max-height: 100vh;  
+    height: auto;
+    padding: 1em;
+    padding-top: 0;
+}

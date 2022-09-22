@@ -1,0 +1,130 @@
+{{ 'es-cart-notification.css' | asset_url | stylesheet_tag }}
+{{ 'es-swiper.css' | asset_url | stylesheet_tag }}
+{{ 'es-cart-notification-button.js' | asset_url  | script_tag}}
+ {% comment %} {% endcomment %}
+<cart-notification>
+  <div class="cart-notification-wrapper page-width{% if color_scheme %} color-{{ color_scheme }}{% endif %}">
+    <div id="cart-notification" class="cart-notification focus-inset" aria-modal="true" aria-label="{{ 'general.cart.item_added' | t }}" role="dialog" tabindex="-1">
+      <div class="cart-notification__header">
+        <h2 class="cart-notification__heading caption-large"> {{ 'general.cart.item_added' | t }}</h2>
+        <button type="button" class="cart-notification__close modal__close-button link link--text focus-inset" aria-label="{{ 'accessibility.close' | t }}">
+          <svg class="icon icon-close" aria-hidden="true" focusable="false"><use href="#icon-close"></use></svg>
+        </button>
+      </div>
+      <div id="cart-notification-product" class="cart-notification-product"></div>
+      <div class="cart-notification__links">
+        <a href="{{ routes.cart_url }}" id="cart-notification-button" class="button button--secondary button--full-width"></a>
+        <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form">
+          <button class="button button--primary button--full-width" name="checkout">{{ 'sections.cart.checkout' | t }}</button>
+        </form>
+        <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button>
+      </div>
+    </div>
+  </div>
+</cart-notification>
+{% style %}
+  #cart-drawer form {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  .cart-notification {
+     display: none;
+  }
+
+  .set-bottom{
+	  position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 2.5rem;
+    padding: 0 2.4rem;
+    width:100%;
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+   }
+   .cart__highlights{
+		width: 100%;
+		text-align: left;
+	}
+    .cart__holder {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;	
+		padding-bottom: 1rem;
+	}
+   .cart__holder p{
+		font-size: 1.2rem;
+		font-weight: 400;
+		padding: 0;
+		margin: 0;
+		margin-left: 1rem;
+		line-height: 1.4;
+	}
+	p.green{
+		color: green;
+	}
+    p.red{
+		color: red;
+	}
+{% endstyle %}
+
+ 
+  <!--/  cart drawer start /-->
+  
+<div id="cart-drawer">
+
+  <div class="drawer-box">
+
+    <!--/ Drawer__header /-->
+    <div class="Drawer__header cart_section">
+    {%render 'es-cart-notification-header'%}
+      
+    </div> 
+
+    <!--/ Drawer__body /-->
+    <div class="Drawer__body cart_section {%if cart == empty%}cart_empty{%endif%}">
+      <div class="Drawer__body_in">
+      {%render 'es-cart-notification-product'%}
+      </div>
+      <div class="loader_spin">&nbsp;</div>
+      
+      
+      
+      
+              {%- for block in section.blocks -%}
+          {%- case block.type -%}
+          {%- when 'slide' -%}
+
+        
+        
+               <div class="demo-solution demo-solution--flexbox" style="display: flex;align-items: center;margin:auto;">
+                        {%- for item in cart.items -%}
+
+<!--           {{ item.product.title | escape }}<br/> -->
+              {%- endfor -%}
+          
+   <img style="margin-right: 10px;" width="30" height="30" src="{{ block.settings.cart_msg_icon | img_url: 'master' }}" alt="" />
+   <span>{{ block.settings.text }}</span>
+</div>
+ 
+        
+        
+        {%- endcase -%}
+        {%- endfor -%}
+
+      
+      
+      
+   
+    </div>
+    <!--/ Drawer__footer /-->
+    <div class="Drawer__footer set-bottom">
+    {%render 'es-cart-notification-button'%}
+    </div> 
+  <div class="loader_spin_drawer">&nbsp;</div>
+  </div>
+
+</div>
+
+<div class="backfrop-background"></div>
+  

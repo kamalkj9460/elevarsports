@@ -1,0 +1,217 @@
+{{ 'es-component-product_details.css' | asset_url | stylesheet_tag }}
+{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+
+
+<div class="es-in-section-infographic-way u-padding-rl-lg-1 u-padding-top-lg-4 {% if section.settings.classes %} {{ section.settings.classes }} {% endif %}" 
+{% if section.settings.section-color != blank %}style="background-color: {{ section.settings.section-color }};"{% endif %}>
+<div class="es-page-width-400" style="padding-bottom: 2rem;">
+
+  <!-- Section Heading  -->
+  {% if section.settings.heading != blank %}
+  <div class="infographic-text-box">
+    <h1>
+      {{section.settings.heading}}
+    </h1>
+  </div>
+  {% endif %}
+
+  <!--/ product image /-->
+  <div class="pro-related-img"> 
+    {%if section.settings.image != blank%}
+    <img src="{{section.settings.image | img_url: 'master'}}">
+    {%endif%}
+  </div>
+
+ {%for block in section.blocks%}
+  {%case block.type%}
+    {%when 'content'%}
+    <div class="boxy">
+      <div class="heading center"><h4>{%if block.settings.title != blank%}{{block.settings.title}}{%endif%}</h4></div>
+      <ul class="h-inline center">
+        {%if block.settings.text1 != blank%}<li {%if block.settings.check_text1%}class="is-active"{%endif%}><span>{{block.settings.text1}}</span></li>{%endif%}
+        {%if block.settings.text2 != blank%}<li {%if block.settings.check_text2%}class="is-active"{%endif%}><span>{{block.settings.text2}}</span></li>{%endif%}
+        {%if block.settings.text3 != blank%}<li {%if block.settings.check_text3%}class="is-active"{%endif%}><span>{{block.settings.text3}}</span></li>{%endif%}
+        {%if block.settings.text4 != blank%}<li {%if block.settings.check_text4%}class="is-active"{%endif%}><span>{{block.settings.text4}}</span></li>{%endif%}
+      </ul>  
+    </div>
+    {%when 'footer'%}
+    <div class="boxy">
+      <div class="heading center"><h4>{%if block.settings.f_title != blank%}{{block.settings.f_title}}{%endif%}</h4></div>
+      <div class="h-inline center">
+        <span>{%if block.settings.f_text1 != blank%}{{block.settings.f_text1}}{%endif%}</span>
+        <span>{%if block.settings.f_text2 != blank%}{{block.settings.f_text2}}{%endif%}</span>
+        <span>{%if block.settings.f_text3 != blank%}{{block.settings.f_text3}}{%endif%}</span>
+      </div>  
+    </div>
+    {%when 'numerical_content'%}
+    <div class="boxy">
+      <div class="heading center"><h4>{%if block.settings.n_title != blank%}{{block.settings.n_title}}{%endif%}</h4></div>
+      <div class="numerical-content center">
+        <h1 class="bigger-text u-margin-bottom-lg-0">{%if block.settings.n_text_big != blank%}{{block.settings.n_text_big}}{%endif%} <sup>{%if block.settings.Sup_text_big != blank%}{{block.settings.Sup_text_big}}{%endif%}</sup></h1>
+        <h5 class="small-text">{%if block.settings.n_text_small != blank%}{{block.settings.n_text_small}}{%endif%} <sup>{%if block.settings.Sup_text_small != blank%}{{block.settings.Sup_text_small}}{%endif%}</sup></h5>
+      </div>  
+    </div>
+  {%endcase%}
+  
+ {%endfor%}
+  </div>
+</div>
+  
+{% schema %}
+{
+  "name": "component product details",
+  "class": "es-component-product_details-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "image",
+	  "info": "200x200px"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading"
+    },
+    {
+      "type": "text",
+      "id": "classes",
+      "label": "Padding/Margin Classes",
+      "info": "Add utilities classes separated by space"
+    },
+    {
+      "type":"color",
+      "id":"section-color",
+      "label":"Section Bg Color",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "content",
+      "name": "Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "text1",
+          "label": "Text1"
+        },
+        {
+          "type": "checkbox",
+          "id": "check_text1",
+          "label": "Active1"
+        },
+        {
+          "type": "text",
+          "id": "text2",
+          "label": "Text2"
+        },
+        {
+          "type": "checkbox",
+          "id": "check_text2",
+          "label": "Active2"
+        },
+        {
+          "type": "text",
+          "id": "text3",
+          "label": "Text3"
+        },
+        {
+          "type": "checkbox",
+          "id": "check_text3",
+          "label": "Active3"
+        },
+	    {
+          "type": "text",
+          "id": "text4",
+          "label": "Text4"
+        },
+        {
+          "type": "checkbox",
+          "id": "check_text4",
+          "label": "Active4"
+        }
+      ]
+    },
+    {
+      "type": "footer",
+      "name": "Text Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "f_title",
+          "label": "Title"
+        },
+        {
+          "type": "richtext",
+          "id": "f_text1",
+          "label": "Text1"
+        },
+        {
+          "type": "richtext",
+          "id": "f_text2",
+          "label": "Text2"
+        },
+        {
+          "type": "richtext",
+          "id": "f_text3",
+          "label": "Text3"
+        }
+      ]
+     },
+    {
+      "type": "numerical_content",
+      "name": "Numerical Content",
+      "settings": [
+        {
+          "type": "text",
+          "id": "n_title",
+          "label": "Title"
+        },
+        {
+          "type": "text",
+          "id": "n_text_big",
+          "label": "Big numerical value"
+        },
+        {
+          "type": "text",
+          "id": "Sup_text_big",
+          "label": " Big sup value "
+        },
+        {
+          "type": "text",
+          "id": "n_text_small",
+          "label": "Small numerical value"
+        },
+        {
+          "type": "text",
+          "id": "Sup_text_small",
+          "label": "Small sup value "
+        }
+      ]
+     }
+
+  ],
+  "presets": [
+    {
+      "name": "component product details",
+      "blocks": [
+          {
+            "type": "content"
+          },
+          {
+            "type": "footer"
+          },
+          {
+            "type": "numerical_content"
+          }
+        ]
+    }
+  ]
+}
+{% endschema %}

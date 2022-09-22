@@ -1,0 +1,149 @@
+{% comment %}
+  Set the extension of your color files below. Use 'png', 'jpeg', 'jpg' or 'gif'.
+{% endcomment %}
+<style>
+
+.es-swatch-element .tooltip_text {
+  visibility: hidden;
+  width: 90%;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 3px;
+  padding: 3px;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -45%;
+  margin-bottom: 7px;
+  font-size: 1.1rem;
+  letter-spacing: .03em;
+  line-height: 1.5;
+}
+  
+   .es-swatch-element .tooltip_text::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
+
+.es-swatch-element:hover .tooltip_text {
+  visibility: visible;
+}
+</style>
+{% assign file_extension = 'png' %}
+{% if es-swatch-bat == blank %}
+<div class="es-swatch error">
+  <p>You must include the snippet es-swatch.liquid with the name of a product option.</p> 
+  <p>Use: <code>{% raw %}{% include 'es-swatch-bat' with 'name of your product option here' %}{% endraw %}</code></p>
+  <p>Example: <code>{% raw %}{% include 'es-swatch-bat' with 'Colour' %}{% endraw %}</code></p>
+</div>
+{% else %}
+
+{% assign found_option = false %}
+{% assign is_color = false %}
+{% assign option_index = 0 %}
+
+{% for option in product.options %}
+  {% if option == es-swatch-bat %}
+    {% assign found_option = true %}
+    {% assign option_index = forloop.index0 %}
+    <style>
+      label[for="product-select-option-{{ option_index }}"] { display: none; }
+      #product-select-option-{{ option_index }} { display: none; }
+      #product-select-option-{{ option_index }} + .custom-style-select-box { display: none !important; }
+    </style>
+    <script>$(window).on('load',function() { $('.selector-wrapper:eq({{ option_index }})').hide(); });</script>
+    {% assign downcased_option = es-swatch-bat | downcase %}
+    {% if downcased_option contains 'color' or downcased_option contains 'colour' %}
+      {% assign is_color = true %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% unless found_option %}
+<div class="es-swatch error">
+  <p>You included the snippet es-swatch-bat.liquid with the name of a product option — <code>'{{ es-swatch-bat }}'</code> — that does not belong to your product.</p>
+  <p>Use <code>{% raw %}{% include 'es-swatch-bat' with 'name of your product option here' %}{% endraw %}</code></p>
+  <p>Example: <code>{% raw %}{% include 'es-swatch-bat' with 'Color' %}{% endraw %}</code></p>
+  <p><strong>This is case-sensitive!</strong> Do not put in <code>'color'</code> if your product option name is <code>'Color'</code>.</p>
+</div>
+{% else %}
+            
+<div class="es-swatch es-swatch-bat clearfix  option-{{ option_index }} option_{%if downcased_option == 'colour'%}0{%else%}1{%endif%}" data-option-index="{{ option_index }}">
+  <div class="header">{{ es-swatch-bat }} : <span class="selected_val"></span></div>
+  
+  <div class="es-swatch-flex">
+  {% assign values = '' %}
+  {% for variant in product.variants %}
+    {% assign value = variant.options[option_index] %}
+    {% unless values contains value %}
+      {% assign values = values | join: ',' %}
+      {% assign values = values | append: ',' | append: value %} 
+      {% assign values = values | split: ',' %}
+      <div data-value="{{ value | escape }}" class="es-swatch-element {% if is_color %}color {% endif %}{{ value | handle }} {% if variant.available %}available{% else %}soldout{% endif %}">
+        {% if is_color %}
+        {%comment%}<div class="tooltip">{{ value }}</div> {%endcomment%}
+        {% endif %}
+        
+        
+        
+<!-- Suhail added tooltip here                                        -->
+                    {% if section.settings.tooltip_name_1 == value %}
+                      <div class="tooltip_text">{{ section.settings.tooltip_text_1 }}</div>
+                    {% elsif section.settings.tooltip_name_2 == value %}
+                        <div class="tooltip_text">{{ section.settings.tooltip_text_2 }}</div>
+                    {% elsif section.settings.tooltip_name_3 == value %}
+                        <div class="tooltip_text">{{ section.settings.tooltip_text_3 }}</div>
+                    {% elsif section.settings.tooltip_name_4 == value %}
+                        <div class="tooltip_text">{{ section.settings.tooltip_text_4 }}</div>
+                    {% elsif section.settings.tooltip_name_5 == value %}
+                        <div class="tooltip_text">{{ section.settings.tooltip_text_5 }}</div>        
+                    {% endif %}               
+<!-- End of Suhail added tooltip here                                        -->
+        
+        
+        
+        
+        <input id="es-swatch-{{ option_index }}-{{ value | handle }}" type="radio" name="option-{{ option_index }}" value="{{ value | escape }}"{% if forloop.first %} checked{% endif %} {% unless variant.available %}disabled1{% endunless %} />
+        {% if is_color %}
+        <label for="es-swatch-{{ option_index }}-{{ value | handle }}" style="{%comment%}background-color: {{ value | split: ' ' | last | handle }};{%endcomment%} background-image: url({{ value | handle |prepend:'-' | prepend:product.handle  | append: '.' | append: file_extension | file_url }})">
+         {% comment %}
+          <img class="crossed-out" style="opacity: 0.5" src="{{ 'soldout.png' | asset_url }}" />
+          {% endcomment %}
+          <span class="crossed-line"></span>
+          
+        </label>
+        {% else %}
+        <label for="es-swatch-{{ option_index }}-{{ value | handle }}">
+          {{ value }}
+          
+          <span class="crossed-line"></span>
+          
+          {% comment %}
+          <img class="crossed-out" style="opacity: 0.5"  src="{{ 'soldout.png' | asset_url }}" />
+          {% endcomment %}
+          
+        </label>
+        {% endif %}
+      </div>
+    {% endunless %}
+    {% if variant.available %}
+    <script>
+     //jQuery('.es-swatch[data-option-index="{{ option_index }}"] .{{ value | handle }}').removeClass('soldout').addClass('available').find(':radio').removeAttr('disabled');
+    </script>
+    {% endif %}
+  {% endfor %}
+</div>
+</div>
+
+{% endunless %}
+
+{% endif %}

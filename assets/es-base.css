@@ -1,0 +1,929 @@
+
+/* Typhography Starts Here */
+
+/* -----------------------------------
+All Headings Must Have
+Font-Weight     : 700
+Font-Family     : "Poppins", "fallback_font"
+Line-Height     : 1.3(Default may vary as per mobile screen)
+letter-spacing  : 0.02rem
+Font-Size       : 3.2rem(Desktop) 
+                : 2.5rem(Mobile)
+
+All Body Text | Paragraphs
+Font-Weight     : 400
+Font-Family     : "Poppins", "fallback_font"
+Line-Height     : 1.5(Default may vary as per mobile screen)
+Font-Size       : 1.6rem(Desktop + Mobile)
+
+All Sub-Headings | 
+Font-Weight     : 700
+Font-Family     : "Poppins", "fallback_font"
+Line-Height     : 1.5(Default may vary as per mobile screen)
+letter-spacing  : 0.2rem
+Font-Size       : 1.6rem(Desktop)
+                : 1.4rem(Mobile)
+
+1rem = 10px;
+------------------------------------ */
+:root{
+    --color-white        : rgb(var(--color-base-background-1));
+    --color-primary-dark : rgb(var(--color-base-accent-1)); 
+  }
+
+html {
+	scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+.h0,
+.h1,
+.h2,
+.h3{
+  font-family       : var(--font-heading-family);
+  font-style        : var(--font-heading-style);
+  font-size         : 3.2rem;
+  font-weight       : var(--font-heading-weight);
+  letter-spacing    : 0.02rem;
+  color             : rgb(var(--color-foreground));
+  line-height       : 1.3;
+  margin-top: 0 !important;
+  width: 100%;
+}
+
+h4,
+h5,
+.h4,
+.h5 {
+    font-family     : var(--font-heading-family);
+    font-style      : var(--font-heading-style);
+    font-size       : 1.6rem;
+    font-weight     : var(--font-heading-weight);
+    letter-spacing  : 0.2rem;
+    color           : rgb(var(--color-foreground));
+    text-transform  : uppercase;
+    line-height     : 1.5;
+    padding         : 0;
+    margin          : 0;
+    width: 100%;
+}
+
+p{
+    font-family     : var(--font-body-family);
+    font-style      : var(--font-body-style);
+    font-size       : 1.6rem;
+    font-weight     : var(--font-body-weight);
+    color           : rgb(var(--color-foreground));
+    line-height     : 1.5;
+    letter-spacing  : 0.07rem;
+    width: 100%;
+}
+
+@media only screen and (min-width:0px) and (max-width:767px) {
+    h1,
+    h2,
+    h3{
+        font-size: 2.5rem !important;
+    }
+    h4,
+    h5{
+        font-size: 1.4rem !important;
+    }
+}
+
+.card__heading{
+    font-size: 1.8rem;
+    letter-spacing: 0.05rem;
+    font-weight     : var(--font-heading-weight);
+    color: rgb(var(--color-foreground));
+    line-height: 1.32;
+    margin: 0;
+    padding: 0;
+}
+
+.card__sub-heading{
+    font-size       : 1.6rem;
+    font-weight     : var(--font-heading-weight);
+    letter-spacing  : 0.2rem;
+    color           : rgb(var(--color-foreground));
+    text-transform  : uppercase;
+    line-height     : 1.5;
+    padding         : 0;
+    margin          : 0;
+}
+
+.card__body{
+    font-weight: var(--font-body-weight);
+    color: rgb(var(--color-foreground));
+    line-height: 1.5;
+    font-size: 1.6rem;
+    letter-spacing: 0.08rem;
+    margin: 0 0 1.8rem;
+    padding: 0;
+}
+  
+.card__button--primary-1{
+    font-size: 1.4rem;
+    border: medium none;
+    padding: 1.5rem;
+}
+
+.card__button--primary-2{
+    font-size: 1.2rem !important;
+    padding: 1.2rem;
+    margin: .9rem 0;
+}
+
+.card__button--primary-1{
+    font-size: 1.4rem;
+    border: medium none;
+    padding: 1.5rem;
+}
+
+.card__button--primary-2{
+    font-size: 1.2rem !important;
+    padding: 1.2rem;
+    margin: .9rem 0;
+}
+
+@media only screen and (min-width:992px) {
+    .card__heading{
+        font-size: 2.2rem;
+        letter-spacing: 0.05rem;
+    }
+    
+    .card__sub-heading{
+        font-size: 1.4rem;
+    }
+    
+    .card__body{
+        margin: 0.6rem 0 0;
+    }
+}
+
+
+/* Typhography Ends Here */
+
+
+/* Primary Button   */
+
+.button{
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  font: inherit;
+  /* font-size: 1.4rem; */
+  font-weight: 700;
+  text-transform: uppercase;
+  /* padding: 1.3rem 1.8rem; */
+  text-decoration: none;
+  letter-spacing: 0.2rem;
+  line-height: normal;
+  border: 0.2rem solid currentColor;
+  border-radius: 0;
+  /* background-color: rgba(var(--color-button), var(--alpha-button-background));
+  box-shadow: 0 0 0 0.1rem rgba(var(--color-button), var(--alpha-button-border));
+  color: rgb(var(--color-button-text)); */
+  box-shadow: none;
+  min-width: 12rem;
+  min-height: 4.5rem;
+  transition: all var(--duration-short) ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+  
+
+.button:focus-visible{
+    box-shadow: none !important;
+}
+
+.button:focus{
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.button:focus:not(:focus-visible){
+    box-shadow: none !important;
+}
+
+.button:not([disabled]):hover{
+    box-shadow: none;
+}
+
+.button--primary-1{
+    font-size: 1.25rem !important;
+    padding: 1.2rem 1.8rem !important;
+}
+
+.button--primary-2{
+    font-size: 1.2rem !important;
+    padding: 1.2rem !important;
+}
+
+.button--white{
+    background-color: var(--color-white);
+    border: 0.2rem solid var(--color-white);
+    color: var(--color-primary-dark);
+    transition: all var(--duration-short) ease;
+}
+
+.button--white:not(.button--disabled):hover{
+    background-color: var(--color-primary-dark);
+    color:var(--color-white);
+    border: 0.2rem solid var(--color-primary-dark);
+}
+
+.button--white:focus{
+    box-shadow: none;
+}
+
+.button--yellow{
+    background-color: #c0ff00;
+    border: 0.2rem solid #c0ff00;
+    color: #000;
+    transition: all var(--duration-short) ease;
+}
+
+.button--yellow:not(.button--disabled):hover{
+    background-color: #c0ff00;
+    border: 0.2rem solid #c0ff00;
+    color: #000;
+}
+
+.button--yellow:focus{
+    box-shadow: none;
+}
+
+.button--dark{
+    background-color: var(--color-primary-dark);
+    border: 0.2rem solid var(--color-primary-dark);
+    color:var(--color-white);
+    transition: all var(--duration-short) ease;
+}
+
+.button--dark:not(.button--disabled):hover{
+    background-color: var(--color-white);
+    color:var(--color-primary-dark);
+}
+
+.button--white-black{
+    background-color: var(--color-white);
+    border: 0.2rem solid var(--color-white);
+    color: #000;
+    transition: all var(--duration-short) ease;
+}
+
+.button--white-black:not(.button--disabled):hover{
+    background-color: color: #000;
+    color:var(--color-white);
+    border: 0.2rem solid #000;
+}
+
+.button--white-black:focus{
+    box-shadow: none;
+}
+
+.button--width-full{
+    width: 100%;
+}
+
+.button--width-auto{
+    width: auto;
+}
+
+
+/* Primary Button Ends Here  */
+
+
+/* Animation Starts Here  */
+
+    @-webkit-keyframes slide-from-top{
+        0%{
+            transform: translateY(-30%);
+            -webkit-transform: translateY(-30%);
+            opacity: 1;
+        }
+        100%{
+            transform: translateY(0);
+            -webkit-transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slide-from-top{
+        0%{
+            transform: translateY(-30%);
+            -webkit-transform: translateY(-30%);
+        }
+        100%{
+            transform: translateY(0);
+            -webkit-transform: translateY(0);
+        }
+    }
+
+    @-webkit-keyframes line-hover-out{
+        0%{
+            right:0
+        }
+        100%{
+            right:-100%
+        }
+    }
+    @keyframes line-hover-out{
+        0%{
+            right:0
+        }
+        100%{
+            right:-100%
+        }
+    }
+
+    @-webkit-keyframes line-hover{
+        0%{
+            right:100%
+        }
+        100%{
+            right:0
+        }
+    }
+    @keyframes line-hover{
+        0%{
+            right:100%
+        }
+        100%{
+            right:0
+        }
+    }
+
+/* Animation Ends Here  */
+
+.announcement-bar{
+    display: none;
+}
+
+.header__heading, .header__heading-link{
+    text-align: left;
+}
+
+  .hide{
+   display: none !important;
+  }
+    slider-component .hide{
+  		display: block !important;
+  }
+  form.form.fixed .shopify-payment-button {
+    display: none;
+}
+
+form.form.fixed p.es-mobile-text {
+    font-size: 12px;
+    text-align: center;
+    margin: 0;
+}
+
+img[data-src] {
+    background: transparent;
+    opacity: 0;
+}
+
+img[src] {
+    opacity: 1;
+}
+@media screen and (max-width: 768px) {
+    .header{
+        padding-top: .5rem;
+        height: 5rem;
+    }
+    .header__heading, .header__heading-link{
+        text-align: center;
+    }
+}
+  @media screen and (max-width: 767px) {
+    .shopify-section-header-hidden {
+      transform: translateY(0);
+    } 
+    div#shopify-section-es-header.fixed-not {
+        z-index: -1;
+    }    
+  }
+
+
+/* Header Styles Overiding  */
+  
+  
+/* Custom Classes Overriding  */
+  .spaced-section{
+  	margin-top: 0rem !important;
+  }  
+  
+  @media screen and (min-width: 750px) {
+  	  .spaced-section{
+  		margin-top: 0rem !important;
+  	  }
+  }
+  
+/*   @media only screen and (min-width: 768px){ */
+	.product-form__buttons .es-mobile-text{
+        font-size: 1.2rem;
+        padding: 0 0;
+        text-align: center;
+    }
+/*   } */
+/* Custom Classes Overriding  */
+
+
+/* Swiper Section Dots Styling  */
+  
+  .swiper-wrapper{
+  	padding-bottom: 2rem;
+  }
+  
+  /* Swiper Section Dots Styling  */
+  
+/*   Custom Bat Product Page Starts Here */
+  
+  	.pplrlabel {
+    	line-height: 1.2;
+      	color: #212a2f;
+      	font-weight: 700;
+      	letter-spacing: .1px;
+	}
+  	
+	.ptbr {
+    	display: none;
+	}
+  
+	.instruction {
+      font-size: 1.2rem;
+      color: #212a2f;
+      font-weight: 400;
+	}
+  	
+  .pplr-choose-a-hero .pplr-swatch-main, 
+  .pplr-choose-a-theme .pplr-swatch-main {
+  		display: flex!important;
+    	flex-direction: row!important;
+    	justify-content: space-around;
+  }
+  
+  .pplr-choose-a-hero .pplr-swatch-main span, 
+  .pplr-choose-a-theme .pplr-swatch-main span{
+  		width: 64px!important;
+    	height: 64px!important;
+  }
+  
+  .product-personalizer div[class*=pplr-choose-a-family-] .img_thumb_small span.pplrimage{
+  	    width: 45px;
+    	height: 200px;
+  }
+  
+  .product-personalizer div[class*=pplr-choose-a-family-] .pplrgcolor, 
+  .product-personalizer div[class*=pplr-choose-a-family-] .pplrgimage{
+  	display: flex;
+    justify-content: center;
+  }
+  
+  
+  .product-personalizer div[class*=pplr-choose-a-logo-] .pplr-swatch-element{
+  	width: 50px!important;
+    height: 185px!important;
+  }
+  
+  .pplr-wrapper input[type=text]{
+  	background-color: #f5f5f5;
+    color: #808080;
+    font-size: 1.2rem;
+    border: 1px solid #f5f5f5;
+    font-weight: 400;
+    margin: 5px 0;
+    padding: 12px 20px 11px;
+    box-shadow: none;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    -webkit-border-radius: 25px;
+    height: 45px;
+    border-color: #dddddd !important;
+    outline: none;
+	}
+  
+  .product-personalizer div[class*=pplr-choose-an-identity-] .pplr-swatch-element, 
+  .product-personalizer div[class*=pplr-font-design-] .pplr-swatch-element{
+  	height: 55px!important;
+    width: 55px!important;
+  }
+  
+  
+
+
+  }
+/*   Custom Bat Product Page Styles Ends here */
+
+/* Out Of Stock Message  */
+
+.out-of-stock{
+	text-align: left;
+    width: 100%;
+    padding: 10px 10px;
+    background-color: #D4EDDA;
+    border-color: #C3E6CB;
+    color: #155724;
+    border-radius: 5px;
+    font-size: 1.3rem;
+}
+
+.m_sticky_price_outer{
+    display: none !important;
+}
+/* Out Of Stock Message Ends Here  */
+
+
+/* Filter on Collction Page  */
+/* .mobile-facets__wrapper{
+    display: none !important;
+}
+
+.facets-container{
+    display: none !important;
+} */
+/* Filter on Collction Page  */
+
+/* Colored Background classes  */
+.bg-black{
+    background-color: #000 !important;
+}
+
+    #shopify-section-template--14487854186581__1655629048b5dbc9a9 .rich-text .rich-text__blocks h2 {
+        font-size: 3.6rem !important;
+    }
+
+    #shopify-section-template--14487854186581__1655629048b5dbc9a9 .rich-text .rich-text__blocks .rich-text__text p{
+        font-size: 2rem !important;
+    }
+
+    #shopify-section-template--14487854186581__16551084630a14f049 .hero-basic__desktop-links{
+        margin-right: 0 !important;
+    }
+
+    #shopify-section-template--14595700621397__164245411057c8e9a6 .es-in-section-info-accordion{
+      padding-bottom: 2rem !important;
+    }
+
+    @media screen and (min-width: 992px){
+        #shopify-section-template--14487854186581__16400068088ed7bbcf  .hero-basic__desktop-links{
+            margin-left: 10rem;
+            padding-bottom: 6rem;
+        }
+    }
+
+    #shopify-section-template--14487854186581__165597255799cca199 .rich-text .button {
+        background-color: var(--color-white);
+        border: 0.2rem solid var(--color-white);
+        color: var(--color-primary-dark);
+    }
+
+    @media screen and (max-width: 768px){
+        #shopify-section-template--14487854186581__1655735981afe3833c .rich-text{
+            padding-bottom: 1rem !important;
+        }
+
+        #shopify-section-template--14487854186581__1655629845f105d592 .hero-basic__background-box{
+            height: 85px !important;
+        }
+    }
+
+    #shopify-section-template--14487854186581__1655629048b5dbc9a9 .rich-text .rich-text__image-box{
+        margin-top: 0;
+    }
+
+/* Colored Background classes  */
+
+
+/* Preorder Button Fixed Bottom  */
+.fixed-bottom{
+    position: fixed;
+    bottom: 0px;
+    height: 10rem;
+    width: 100%;
+    background-color: #fff;
+    padding: 1.3rem 1.3rem 1.8rem 1.3rem;
+    /* box-shadow: 0px 6px 10px rgb(255 255 255 / 60%); */
+    z-index: 999;
+    left: 0;
+
+    /* background-color: rgb(61 61 61 / 95%); */
+    box-shadow: 0px -6px 20px rgb(92 92 92 / 70%);
+    /* padding: 1.3rem; */
+
+}
+
+.bottom_sticky_btn{
+    /* display: none; */
+}
+
+.bottom_sticky_btn.fixed-bottom{
+    /* display: none; */
+}
+
+.bottom_sticky_btn.fixed-bottom .button{
+    border-radius: 1rem !important;
+}
+
+.bottom_sticky_btn .bottom_sticky_text{
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: .03em;
+    margin-top: 0.3rem;
+    color: #fff;
+}
+
+#lense_icon{
+    display: none;
+}
+
+#shopify-section-template--14512930750549__1655629048b5dbc9a9 .rich-text .rich-text__image-box{
+        margin-top: 0;
+    }
+#shopify-section-template--14598898319445__164245411057c8e9a6 .es-in-section-info-accordion{
+    padding-bottom: 2rem !important;
+}
+
+    @media screen and (min-width: 768px){
+        #shopify-section-template--14531903946837__1657625721b28c1bb7{
+            display: none;
+        }
+        #shopify-section-template--14531903946837__1655735981afe3833c{
+            display: none;
+        }
+        #shopify-section-template--14531903946837__16576266279d7783d5{
+            display: none;
+        }
+
+        #shopify-section-template--14531903782997__1657625721b28c1bb7{
+            display: none;
+        }
+        #shopify-section-template--14531903782997__16576266279d7783d5{
+            display: none;
+        }
+
+        /* Logo Image in V2 */
+        #shopify-section-template--14531903782997__1639051727122c5e41 .rich-text__image-box img{
+            width: 40rem;
+        }
+
+        #shopify-section-template--14531903782997__1639051727122c5e41 .rich-text__image-box a{
+            pointer-events: none;
+        }
+
+        /* Landing v2 Hyperflo  */
+        #shopify-section-template--14531903946837__1655287507ab4df54e{   /* Dev */
+            display: block;
+        }
+
+        /* Landing V3 Hyperflo  */
+        #shopify-section-template--14619495661653__1655735981afe3833c,
+        #shopify-section-template--14619495661653__1657625721b28c1bb7,
+        #shopify-section-template--14619495661653__16576266279d7783d5{
+            display: none;
+        }
+
+
+    }
+
+    @media screen and (max-width: 768px){
+
+        /* Landing v2 Hyperflo  */
+        #shopify-section-template--14531903946837__1655287507ab4df54e{     /* Dev */
+            display: none;
+        }
+
+        #shopify-section-template--14531903782997__1655287507ab4df54e,
+        #shopify-section-template--14619495661653__1655287507ab4df54e{
+            display: none;
+        }
+
+    }
+/* Preorder Button Fixed Bottom  */
+
+/* Collection Page  */
+#shopify-section-template--14515745292373__1656494886492c501e .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-wrapper,
+#shopify-section-template--14515745292373__165813716013d0f47a .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-wrapper,
+#shopify-section-template--14515745292373__165649431663a9ec40 .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-wrapper{
+    background-color: #000;
+} 
+
+#shopify-section-template--14515745292373__1656494886492c501e .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper,
+#shopify-section-template--14515745292373__165813716013d0f47a .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper,
+#shopify-section-template--14515745292373__165649431663a9ec40 .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper{
+    margin-top: 2rem;
+}
+
+#shopify-section-template--14515745292373__1656494886492c501e .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper .button--1,
+#shopify-section-template--14515745292373__165813716013d0f47a .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper .button--1,
+#shopify-section-template--14515745292373__165649431663a9ec40 .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper .button--1{
+    background-color: #fff;
+    color: #000;
+}
+
+#shopify-section-template--14515745357909__165649431663a9ec40 .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-wrapper,
+#shopify-section-template--14515745357909__165813716013d0f47a .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-wrapper,
+#shopify-section-template--14515745357909__1656494886492c501e .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-wrapper{
+    background-color: #000;
+}
+
+#shopify-section-template--14515745357909__165649762970837096 .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-wrapper{
+    background-color: #55baee;
+}
+
+#shopify-section-template--14515745357909__165649762970837096 .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-wrapper .button{
+    border: none;
+}
+
+#shopify-section-template--14515745357909__165649431663a9ec40 .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper,
+#shopify-section-template--14515745357909__165813716013d0f47a .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper,
+#shopify-section-template--14515745357909__1656494886492c501e .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper{
+    margin-top: 2rem;
+}
+
+#shopify-section-template--14515745357909__165649431663a9ec40 .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper .button--1,
+#shopify-section-template--14515745357909__165813716013d0f47a .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper .button--1,
+#shopify-section-template--14515745357909__1656494886492c501e .swiper .swiper-wrapper 
+.swiper-slide:first-child .card-information__wrapper .button--1{
+    background-color: #fff;
+    color: #000;
+}
+
+
+/* Collection Page  */
+
+
+/* Hyperflo RTG  */
+#shopify-section-template--14541360234581__16587417826daa8aef #product-card .selected_tab,
+#shopify-section-template--14541360201813__16587417826daa8aef #product-card .selected_tab,
+#shopify-section-template--14595700621397__166255456506bf3cfe #product-card .selected_tab{
+    border-bottom: 2px solid #c7c7c7 !important;
+}
+
+#shopify-section-template--14541360234581__16587417826daa8aef .preorder-card .discount-text,
+#shopify-section-template--14541360201813__16587417826daa8aef .preorder-card .discount-text{
+    padding-left: 0rem;
+}
+
+@media screen and (max-width: 768px) {
+    
+    #shopify-section-template--14541360234581__16587417826daa8aef .preorder-container .right-part .col-info,
+    #shopify-section-template--14541360201813__16587417826daa8aef .preorder-container .right-part .col-info,
+    #shopify-section-template--14598898319445__16587417826daa8aef .preorder-container .right-part .col-info,
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-container .right-part .col-info,
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-container .right-part,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .right-part,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-container .right-part .col-info,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .right-part, 
+    .preorder-container.es-slider-multipurpose-outer.slider--white .right-part .col-info{
+        background-color: #fff !important;
+    }
+
+    #shopify-section-template--14541360234581__16587417826daa8aef .preorder-card .Colorway__price,
+    #shopify-section-template--14541360201813__16587417826daa8aef .preorder-card .Colorway__price,
+    #shopify-section-template--14598898319445__16587417826daa8aef .preorder-card .Colorway__price,
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-card .Colorway__price,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-card .Colorway__price,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .Colorway__price{
+        border: 1px solid #212a2f;
+    }
+
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-card .Colorway__price span,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-card .Colorway__price span,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .Colorway__price span{
+        font-size: 1.5rem;    
+    }
+
+    #shopify-section-template--14541360234581__16587417826daa8aef .preorder-card .desk-color,
+    #shopify-section-template--14541360201813__16587417826daa8aef .preorder-card .desk-color,
+    #shopify-section-template--14598898319445__16587417826daa8aef .preorder-card .desk-color,
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-card .desk-color,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-card .desk-color,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .desk-color{
+        color: #212a2f !important;
+    }
+
+    #shopify-section-template--14541360234581__16587417826daa8aef .preorder-card .Colorway__price .ppriec,
+    #shopify-section-template--14541360201813__16587417826daa8aef .preorder-card .Colorway__price .ppriec,
+    #shopify-section-template--14598898319445__16587417826daa8aef .preorder-card .Colorway__price .ppriec,
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-card .Colorway__price .ppriec,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-card .Colorway__price .ppriec,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .Colorway__price .ppriec{
+        color: #212a2f;
+        font-weight: bold;
+    }
+
+    #shopify-section-template--14541360234581__16587417826daa8aef .preorder-card .option-head.desk-color,
+    #shopify-section-template--14541360201813__16587417826daa8aef .preorder-card .option-head.desk-color,
+    #shopify-section-template--14598898319445__16587417826daa8aef .preorder-card .option-head.desk-color,
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-card .option-head.desk-color,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-card .option-head.desk-color,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .option-head.desk-color{
+        color: #212a2f !important;
+    }
+
+    #shopify-section-template--14541360234581__16587417826daa8aef .preorder-container .right-part .col-footer,
+    #shopify-section-template--14541360201813__16587417826daa8aef .preorder-container .right-part .col-footer,
+    #shopify-section-template--14598898319445__16587417826daa8aef .preorder-container .right-part .col-footer,
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-container .right-part .col-footer,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-container .right-part .col-footer,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-container .right-part .col-footer{
+        background-color: #fff;
+    }
+
+    #shopify-section-template--14541360234581__16587417826daa8aef .preorder-card .shop-now__button,
+    #shopify-section-template--14541360201813__16587417826daa8aef .preorder-card .shop-now__button,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .shop-now__button{
+        background-image: none;
+        background-color: #212a2f;
+        border-color: #fff;
+    }
+
+}
+
+#shopify-section-template--14598898319445__166255456506bf3cfe .tab-main-border,
+#shopify-section-template--14595700621397__166255456506bf3cfe .tab-main-border,
+.preorder-container.es-slider-multipurpose-outer.slider--white .tab-main-border{
+    border-bottom: 2px solid #e1e2e5 !important;
+}
+
+#shopify-section-template--14598898319445__166255456506bf3cfe .tab-main-border .selected_tab,
+#shopify-section-template--14595700621397__166255456506bf3cfe .tab-main-border .selected_tab,
+.preorder-container.es-slider-multipurpose-outer.slider--white .tab-main-border .selected_tab{
+    border-bottom: 2px solid #000 !important;
+}
+
+
+@media screen and (min-width: 768px) {
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-container .right-part,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-container .right-part,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-container .right-part{
+        background-color: #fff !important;
+    }
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-card .Colorway__price,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-card .Colorway__price,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .Colorway__price{
+        border: 1px solid #212a2f;
+        display: table-cell;
+        padding: 1rem !important;
+    }
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-card .desk-color,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-card .desk-color,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .desk-color{
+        color: #212a2f !important;
+        padding-bottom: .5rem;
+    }
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-card .product_description,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-card .product_description,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .product_description{
+        color: #212a2f !important;
+        margin: 0;
+        padding-bottom: .6rem;
+    }
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-card .Colorway__price .ppriec,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-card .Colorway__price .ppriec,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .Colorway__price .ppriec{
+        color: #212a2f;
+    }
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-card .option-head.desk-color,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-card .option-head.desk-color,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .preorder-card .Colorway__price .ppriec{
+        color: #212a2f !important;
+    }
+    #shopify-section-template--14598898319445__166255456506bf3cfe .preorder-container .right-part .col-footer,
+    #shopify-section-template--14595700621397__166255456506bf3cfe .preorder-container .right-part .col-footer,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .right-part .col-footer,
+    .preorder-container.es-slider-multipurpose-outer.slider--white .right-part{
+        background-color: #fff !important;
+    }
+}
+
+
+
+/* Hyperflo RTG */

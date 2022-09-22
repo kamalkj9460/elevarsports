@@ -1,0 +1,359 @@
+{{ 'es-component-basic-slider.css' | asset_url | stylesheet_tag }}
+{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+
+<style>
+
+</style>
+
+<div class="es-component-basic-slider slider-basic u-padding-bottom-lg-2">
+    
+    {% if section.settings.enable-desktop %}
+        <div class="slider-basic__desktop--container">
+
+            <!-- Desktop Content  -->
+            {% if section.settings.main-heading != blank %}
+                <div class="slider-basic__desktop-text-box u-margin-bottom-sm-1">
+                    {% if section.settings.main-heading != blank %}
+                    <h2 class="slider-basic__heading u-margin-bottom-small">
+                        {{ section.settings.main-heading }}
+                    </h2>
+                    {% endif %}
+                    {% if section.settings.body != blank %}
+                        <div class="slider-basic__body u-margin-bottom-small">
+                            {{ section.settings.body }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="slider-basic__slider-box slider-desktop slider-basic__desktop-swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide slider-basic__slide">
+                        <div class="slider-basic__image-box">
+                            <img src="https://cdn.shopify.com/s/files/1/0017/4227/4613/files/media_gallery.jpg?v=1642507634" 
+                            alt="" class="slider-basic__image">
+                        </div>
+                        <div class="slider-basic__title">
+                            <h4>
+    
+                            </h4>
+                        </div>
+                        <div class="slider-basic__description">
+    
+                        </div>
+                    </div>
+                    <div class="swiper-slide slider-basic__slide">
+                        <div class="slider-basic__image-box">
+                            <img src="https://cdn.shopify.com/s/files/1/0017/4227/4613/files/media_gallery.jpg?v=1642507634" 
+                            alt="" class="slider-basic__image">
+                        </div>
+                        <div class="slider-basic__title">
+                            <h4>
+    
+                            </h4>
+                        </div>
+                        <div class="slider-basic__description">
+    
+                        </div>
+                    </div>
+                    <div class="swiper-slide slider-basic__slide">
+                        <div class="slider-basic__image-box">
+                            <img src="https://cdn.shopify.com/s/files/1/0017/4227/4613/files/media_gallery.jpg?v=1642507634" 
+                            alt="" class="slider-basic__image">
+                        </div>
+                        <div class="slider-basic__title">
+                            <h4>
+    
+                            </h4>
+                        </div>
+                        <div class="slider-basic__description">
+    
+                        </div>
+                    </div>
+                    <div class="swiper-slide slider-basic__slide">
+                        <div class="slider-basic__image-box">
+                            <img src="https://cdn.shopify.com/s/files/1/0017/4227/4613/files/media_gallery.jpg?v=1642507634" 
+                            alt="" class="slider-basic__image">
+                        </div>
+                        <div class="slider-basic__title">
+                            <h4>
+    
+                            </h4>
+                        </div>
+                        <div class="slider-basic__description">
+    
+                        </div>
+                    </div>
+                    <div class="swiper-slide slider-basic__slide">
+                        <div class="slider-basic__image-box">
+                            <img src="https://cdn.shopify.com/s/files/1/0017/4227/4613/files/media_gallery.jpg?v=1642507634" 
+                            alt="" class="slider-basic__image">
+                        </div>
+                        <div class="slider-basic__title">
+                            <h4>
+    
+                            </h4>
+                        </div>
+                        <div class="slider-basic__description">
+    
+                        </div>
+                    </div>
+                    <div class="swiper-slide slider-basic__slide">
+                        <div class="slider-basic__image-box">
+                            <img src="https://cdn.shopify.com/s/files/1/0017/4227/4613/files/media_gallery.jpg?v=1642507634" 
+                            alt="" class="slider-basic__image">
+                        </div>
+                        <div class="slider-basic__title">
+                            <h4>
+    
+                            </h4>
+                        </div>
+                        <div class="slider-basic__description">
+    
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    {% endif %}
+
+</div>
+
+<script type="text/javascript" defer="defer">
+    // Swiper: Slider
+    new Swiper('.slider-basic__desktop-swiper-container', {
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        spaceBetween: 20,
+        breakpoints: {
+            1028: {
+                slidesPerView: 3,
+                spaceBetween: 30
+            },
+            768: {
+                slidesPerView: 2,
+                spaceBetween: 20
+            }
+        }
+    });
+</script>
+
+{% schema %}
+{
+  "name": "slider-basic",
+  "class": "spaced-section spaced-section--full-width",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable-mobile",
+      "default": true,
+      "label": "Enable Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-desktop",
+      "default": true,
+      "label": "Enable Desktop"
+    },
+    {
+      "type": "text",
+      "id": "classes",
+      "label": "Padding/Margin Classes",
+      "info": "Add utilities classes separated by space"
+    },
+    {
+        "type": "text",
+        "id": "main-heading",
+        "label": "Heading",
+        "info": "Section Heading"
+    },
+    {
+        "type":"richtext",
+        "id":"body",
+        "label":"Body",
+        "info": "Section Body"
+    },
+    {
+        "type":"radio",
+        "id":"text-alignment",
+        "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "right" },
+            { "value": "center", "label": "Center" }
+        ],
+        "label":"Heading Text Alignment",
+        "info":"Positioning of text content",
+        "default": "left"
+    },
+    {
+        "type":"color",
+        "id":"font-color",
+        "label":"Font Color",
+        "default": "#fff"
+    },
+    {
+      "type":"header",
+      "content":"Slider Config "
+    },
+    {
+      "type":"range",
+      "id":"image-count",
+      "min":3,
+      "max":15,
+      "step":1,
+      "unit":"px",
+      "label":"No. Of Slides",
+      "default":3
+    },
+    {
+        "type":"radio",
+        "id":"slider-text-alignment",
+        "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "right" },
+            { "value": "center", "label": "Center" }
+        ],
+        "label":"Slider Text Alignment",
+        "info":"Positioning of text content inside slider",
+        "default": "left"
+    },
+    {
+        "type":"color",
+        "id":"slider-font-color",
+        "label":"Slider Font Color",
+        "default": "#fff"
+    },
+    {
+        "type":"header",
+        "content":"First  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-1",
+        "label":"Heading 1"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-1",
+        "label":"Body"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_1",
+        "label": "Slider Image 1"
+    },
+    {
+        "type":"header",
+        "content":"Second  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-2",
+        "label":"Heading 2"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-2",
+        "label":"Body 2"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_2",
+        "label": "Slider Image 2"
+    },
+    {
+        "type":"header",
+        "content":"Third  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-3",
+        "label":"Heading 3"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-3",
+        "label":"Body 3"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_3",
+        "label": "Slider Image 3"
+    },
+    {
+        "type":"header",
+        "content":"Fourth  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-4",
+        "label":"Heading 4"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-4",
+        "label":"Body 4"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_4",
+        "label": "Slider Image 4"
+    },
+    {
+        "type":"header",
+        "content":"Fifth  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-5",
+        "label":"Heading 5"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-5",
+        "label":"Body 5"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_5",
+        "label": "Slider Image 5"
+    },
+    {
+        "type":"header",
+        "content":"Sixth  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-6",
+        "label":"Heading 6"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-6",
+        "label":"Body 6"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_6",
+        "label": "Slider Image 6"
+    },
+    {
+      "type":"header",
+      "content":"Button Settings"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+  ],
+  "presets": [
+    {
+      "name": "Slider Basic"
+    }
+  ]
+}
+{% endschema %}

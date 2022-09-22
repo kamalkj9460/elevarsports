@@ -1,0 +1,319 @@
+
+{{ 'es-component-video-tech.css' | asset_url | stylesheet_tag }}
+{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+<style>
+        {% for slide in (1..section.settings.video-count) %}
+            .video-tech__popup.video_popup_{{slide}}{
+                transform: scale(0);
+            }
+        {% endfor %}
+</style>
+
+    <div class="video-tech" >
+        <div class="video-tech__desktop-container desktop">
+
+            {% if section.settings.enable-desktop %}
+                <!-- Desktop  -->
+                <div class="video-tech__desktop hidden-xs hidden-sm u-padding-bottom-lg-2">
+
+                    <div class="video-tech__desktop-wrapper ">
+
+                        <!-- <div class="swiper-wrapper"> -->
+                            {% for slide in (1..section.settings.video-count) %}
+
+                                {% capture video-image %}video-image-{{ slide }}{% endcapture %}
+
+                                <div class="video-tech__desktop-video-card" >
+                                    <div class="video-tech__desktop-video-card-box">
+                                        
+                                        <a href="#" class="popup-1" onclick="showVideo('video_popup_{{slide}}')">
+                                            <i class="fas fa-play"></i>
+                                        </a>
+                                        <div class="video-tech__desktop-video-card-image" 
+                                            style="background-image: url('https://cdn.shopify.com/s/files/1/0017/4227/4613/files/cloud_2-video1_t.jpg?v=1639551438'); 
+                                                background-position:center;
+                                                background-repeat: no-repeat;
+                                                background-size: cover;
+                                                height: 80vh;">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            {% endfor %}
+
+                        <!-- </div> -->
+                                            
+                    </div>
+
+                    {% for slide in (1..section.settings.video-count) %}
+
+                        {% capture video-title %}video-title-{{ slide }}{% endcapture %}
+                        <div class="video-tech__popup video_popup_{{slide}}">
+                            <button class="button" style="position: absolute;top:5%;right:2%;
+                            background: #e8e3e3;border-radius: 0;width: 3rem;height: 3rem;padding: 0;min-width: 3rem;min-height:3rem;"
+                            onclick="closeVideoDesktop('video_popup_{{slide}}')">
+                                <i class="fa fa-times" style="font-size: 24px;color: black;">
+                                </i>
+                                
+                            </button>
+                            <div class="hytPlayerWrap">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/{{ section.settings[video-title] }}?rel=0&enablejsapi=1&modestbranding=1&control=0&loop=1"
+                                    frameborder="0"
+                                    allowfullscreen
+                                ></iframe>
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+                    
+                </div>
+                <!-- Desktop  -->
+            {% endif %}
+    
+        </div>
+
+        <div class="video-tech__mobile-container mobile">
+
+            {% if section.settings.enable-mobile %}
+                <!-- Mobile  -->
+                <div class="video-tech__mobile hidden-md hidden-lg u-padding-bottom-lg-2">
+                    
+                    <div class="video-tech__mobile-wrapper ">
+
+                        <div class="swiper-wrapper">
+
+                            {% for slide in (1..section.settings.video-count) %}
+
+                                {% capture video-image %}video-image-{{ slide }}{% endcapture %}
+
+                                <div class="video-tech__mobile-video-card" >
+                                    <div class="video-tech__mobile-video-card-box">
+                                        
+                                        <a href="#" class="popup-1" onclick="showVideo('video_popup_{{slide}}')">
+                                            <i class="fas fa-play"></i>
+                                        </a>
+                                        <div class="video-tech__mobile-video-card-image" 
+                                            style="background-image: url('https://cdn.shopify.com/s/files/1/0017/4227/4613/files/cloud_2-video1_t.jpg?v=1639551438'); 
+                                                background-position:center;
+                                                background-repeat: no-repeat;
+                                                background-size: cover;
+                                                height: 100vh;">
+                                        </div>
+
+                                    </div>
+                                </div>
+                                
+                            {% endfor %}
+
+                        </div>
+                        
+                    </div>
+
+                    {% for slide in (1..section.settings.video-count) %}
+
+                            {% capture video-title %}video-title-{{ slide }}{% endcapture %}
+                            <div class="video-tech__popup video_popup_{{slide}}">
+                                <button class="button" style="position: absolute;top:5%;right:2%;
+                                background: #e8e3e3;border-radius: 0;width: 3rem;height: 3rem;padding: 0;min-width: 3rem;min-height:3rem;"
+                                onclick="closeVideo('video_popup_{{slide}}')">
+                                    <i class="fa fa-times" style="font-size: 24px;color: black;">
+                                    </i>
+                                    
+                                </button>
+                                <div class="hytPlayerWrap">
+                                    <iframe 
+                                        src="https://www.youtube.com/embed/{{ section.settings[video-title] }}?rel=0&enablejsapi=1&modestbranding=1&control=0&loop=1"
+                                        frameborder="0"
+                                        allowfullscreen
+                                    ></iframe>
+                                </div>
+
+                            </div>
+
+                    {% endfor %}
+
+                </div>
+                <!-- Mobile  -->
+            {% endif %}
+
+        </div>
+
+    </div>
+    <script src="{{ 'es-third-party-scripts.js' | asset_url }}" defer="defer"></script>
+    <script type="text/javascript" defer="defer">
+        $(document).ready(function() {
+            //Desktop Slider
+            var swiperDesktop = new Swiper(".es-video-slider-desktop", {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                effect: "fade",
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
+
+            //Mobile Slider
+            var swiperDesktop = new Swiper(".es-video-slider-mobile", {
+                slidesPerView: 1,
+                spaceBetween: 30,
+                effect: "fade",
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
+
+        });
+
+        function showVideo(id){
+            event.preventDefault();
+            document.querySelector(".video-tech__mobile .video-tech__popup."+id).style.opacity = 1;
+            document.querySelector(".video-tech__mobile .video-tech__popup."+id).style.transform = "scale(1)";
+            if(document.querySelector(".video-tech__mobile .video-tech__popup."+id+" .hytPlayerWrap").classList.contains("ended")){
+                document.querySelector(".video-tech__mobile .video-tech__popup."+id+" .hytPlayerWrap iframe").contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            }
+        }
+        function closeVideo(id){
+            event.preventDefault();
+            document.querySelector(".video-tech__mobile .video-tech__popup."+id).style.opacity = 0;
+            document.querySelector(".video-tech__mobile .video-tech__popup."+id).style.transform = "scale(0)";
+            document.querySelector(".video-tech__mobile .video-tech__popup."+id+" .hytPlayerWrap iframe").contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+        }
+        function showVideoDesktop(id){
+            event.preventDefault();
+            document.querySelector(".video-tech__desktop .video-tech__popup."+id).style.opacity = 1;
+            document.querySelector(".video-tech__desktop .video-tech__popup."+id).style.transform = "scale(1)";
+            if(document.querySelector(".video-tech__desktop .video-tech__popup."+id+" .hytPlayerWrap").classList.contains("ended")){
+                document.querySelector(".video-tech__desktop .video-tech__popup."+id+" .hytPlayerWrap iframe").contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+            }
+        }
+        function closeVideoDesktop(id){
+            event.preventDefault();
+            document.querySelector(".video-tech__desktop .video-tech__popup."+id).style.opacity = 0;
+            document.querySelector(".video-tech__desktop .video-tech__popup."+id).style.transform = "scale(0)";
+            document.querySelector(".video-tech__desktop .video-tech__popup."+id+" .hytPlayerWrap iframe").contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
+        }
+    </script>
+{% schema %}
+{
+  "name": "Video Tech",
+  "class": "spaced-section spaced-section--full-width",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable-mobile",
+      "default": true,
+      "label": "Enable Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-desktop",
+      "default": true,
+      "label": "Enable Desktop"
+    },
+    {
+        "type": "header",
+        "content": "Video Slider Settings"
+    },
+    {
+        "type": "range",
+        "id": "video-count",
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "unit": "no.",
+        "label": "No. of videos to be shown",
+        "default": 1
+    },
+    {
+        "type": "header",
+        "content": "Enter First Video Details"
+    },
+    {
+        "type": "text",
+        "id": "video-title-1",
+        "label": "First Video Title"
+    },
+    {
+        "type"  : "image_picker",
+        "id"    : "video-image-1",
+        "label" : "First Video Image"
+    },
+    {
+        "type": "header",
+        "content": "Enter Second Video Details"
+    },
+    {
+        "type": "text",
+        "id": "video-title-2",
+        "label": "Second Video Title"
+    },
+    {
+        "type"  : "image_picker",
+        "id"    : "video-image-2",
+        "label" : "Second Video Image"
+    },
+    {
+        "type": "header",
+        "content": "Enter Third Video Details"
+    },
+    {
+        "type": "text",
+        "id": "video-title-3",
+        "label": "Third Video Title"
+    },
+    {
+        "type"  : "image_picker",
+        "id"    : "video-image-3",
+        "label" : "Third Video Image"
+    },
+    {
+        "type": "header",
+        "content": "Enter Fourth Video Details"
+    },
+    {
+        "type": "text",
+        "id": "video-title-4",
+        "label": "Fourth Video Title"
+    },
+    {
+        "type"  : "image_picker",
+        "id"    : "video-image-4",
+        "label" : "Fourth Video Image"
+    },
+    {
+        "type": "header",
+        "content": "Enter Fifth Video Details"
+    },
+    {
+        "type": "text",
+        "id": "video-title-5",
+        "label": "Fifth Video Title"
+    },
+    {
+        "type"  : "image_picker",
+        "id"    : "video-image-5",
+        "label" : "Fifth Video Image"
+    }
+  ],
+  "blocks": [
+  ],
+  "presets": [
+    {
+      "name": "video-tech"
+    }
+  ]
+}
+{% endschema %}

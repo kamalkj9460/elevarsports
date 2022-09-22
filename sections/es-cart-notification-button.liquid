@@ -1,0 +1,248 @@
+{%comment%}{{ 'general.cart.view' | t: count: cart.item_count }} {%endcomment%}
+ {%- if cart != empty -%}
+     <!--/ Drawer__footer /-->
+
+
+    <div class="Drawer__footer cart_section">
+        {%- if section.settings.show_cart_note -%}
+      <!--/  Gifting /-->  
+      
+          <div class="gifting-line" style="display:none;">        
+            <!--/ incon /-->
+              
+
+             {%if cart.note == blank %}
+            <div class="icon-gift">
+              <svg width="22" height="24" viewBox="0 0 22 24" xmlns="http://www.w3.org/2000/svg" class="jsx-3997607891"><g fill="none" class="jsx-3997607891"><g id="Gift-Messaging" transform="translate(-873 -711)" class="jsx-3997607891"><g transform="translate(874 712)" class="jsx-3997607891"><polygon id="Stroke-1" stroke="#1F2A30" points="1 22 19 22 19 7 1 7" class="jsx-3997607891"></polygon><polygon id="Fill-3" fill="#FFF" points="0 11 19 11 19 7 0 7" class="jsx-3997607891"></polygon><g stroke="#1F2A30" class="jsx-3997607891"><polygon id="Stroke-4" points="0.428571429 10.4206667 19.6009524 10.4206667 19.6009524 6.22691667 0.428571429 6.22691667" class="jsx-3997607891"></polygon><path d="M13.9539048,0.645058333 C10.8891429,-1.284525 9.36247619,6.137725 10.3748571,6.22480833 C11.3862857,6.31280833 16.7577143,2.41055833 13.9539048,0.645058333 Z" id="Stroke-6" class="jsx-3997607891"></path><path d="M6.07533333,0.645058333 C9.14009524,-1.284525 10.6667619,6.137725 9.65438095,6.22480833 C8.64295238,6.31280833 3.27152381,2.41055833 6.07533333,0.645058333 Z" id="Stroke-7" class="jsx-3997607891"></path></g></g></g></g></svg>
+              Gifting? 
+              <a href="#" class="add-a-note">Add a note and more.</a>
+            </div>   
+             {%else%}
+            <div class="icon-gift_outer">
+             Your gift note is set to go.
+            <div class="icon-gift edit_gift">  <a href="#" class="add-a-note">Edit</a></div>
+            </div>
+             {%endif%}
+<div class="loader_spin">&nbsp;</div> 
+          </div>
+      
+      {%- endif -%}
+      
+      {%assign free_shipping_amount = section.settings.shipping_amount |times:1.0%}
+      {%assign cart_total =  cart.total_price | money_without_currency | replace: ",",""%}
+      {%assign cart_total =  cart.total_price | plus: 0.0 | divided_by:100%}
+      {%if cart_total >= free_shipping_amount%}
+        <!--/ Shipping /-->
+        <div class="Shipping">
+          
+          <div class="label-text">Shipping</div>
+          <div class="price">Free</div>
+          
+        </div>
+      {%endif%}
+
+      <!--/ Subtotal /-->
+      <div class="Subtotal">
+        <div class="label-text">Subtotal</div>
+        <div class="price">{{ cart.total_price | money_with_currency }}</div>        
+      </div>
+      
+      	{%assign last_product_type = '' %}
+       	{%- for item in cart.items -%}
+          {% assign last_product_type =  item.product.type %}
+          {% assign product_name      =  item.product.title %} 
+      	  {% assign product_url      =  item.product.url %} 
+          {% assign product_final     =  product_final | append: item.product.type  | append: " - " | append: item.product.title  %} 
+        {%endfor%}
+      <!---/ Proceed to Checkout /-->
+        <a href="/checkout" 
+          onclick="ga('send', 'event', '{{last_product_type}}', 'Checkout Button', '{{ product_url }}' )" 
+          class="track-checkout Proceed-to-Checkout">
+          Checkout
+        </a>
+
+        {%assign product_type_show = false %}
+        {%assign product_type_show_array = '' %}
+
+        {%- for item in cart.items -%}
+          {% assign product_type_show_array =  product_type_show_array | append: item.product.type | append: ',' %} 
+        {%endfor%}
+
+        {%if product_type_show_array contains 'Bat' and product_type_show_array contains 'Shoe' %}   
+        {%elsif product_type_show_array contains 'Bat'%}
+          {%assign product_like = section.settings.product_1%}
+          {%assign product_type_show = true %}
+        {%elsif product_type_show_array contains 'Shoe'%}
+          {%assign product_like = section.settings.product_2%}
+          {%assign product_type_show = true %}
+        {%endif%}
+      
+        {%- for item in cart.items -%}
+          {%if item.product.handle == product_like.handle %}
+            {%assign product_type_show = false %}
+          {%endif%}
+        {%endfor%} 
+
+      {%if product_type_show and product_like != blank %}
+     
+        <!--/ You Might Also Like /-->
+        {%if section.settings.you_may_also%}
+        <div class="You-Might-Also-Like" style="display:none;">
+          <h3>You Might Also Like</h3>
+        
+        {% assign file_extension = 'png' %}
+          <div class="Shlid-also-like">
+          <!--/ img /-->
+            <div class="img-box">
+              <a href="{{product_like.url}}">  <img class="upsell_img_pro" src="{{product_like.featured_media | img_url: "200x"}}">  </a>
+            </div>
+
+          <!-- Swiper --> 
+          
+          <div class="cart-drawer-slide">
+            
+            <div class="boxy">
+            
+              <!--/ product title /-->
+              <div class="pro-tt"><a href="{{product_like.url}}">{{product_like.title}}</a></div>
+            
+            <!--/ price /-->
+            <span class="price-right upsell_prc_pro">{{product_like.price | money_with_currency}}</span>
+              
+              <span class="price-right upsell_com_prc_pro {%unless product_like.compare_at_price != product_like.price and product_like.compare_at_price > 0 %} hide{%endunless%}">{{product_like.compare_at_price | money_with_currency}}</span> 
+              
+            </div> 
+            
+            
+            <div class="boxy">
+              {%- unless product_like.has_only_default_variant -%}
+              {%- for option in product_like.options_with_values-%}
+              {%if option.name == 'Colour'%}
+              <div class="slider-outer">
+                <div class="swiper mySwiper_bottom">
+                  <div class="swiper-wrapper outer_option option-{{ forloop.index0 }} outer_{{option.name |handle}}">
+                    {%- for value in option.values -%}
+                    <div class="swiper-slide">
+                      <input  class="hide" type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
+                              name="{{ option.name }}"
+                              value="{{ value | escape }}"
+                              form="product-form-{{ section.id }}"
+                              {%if forloop.index0 == 0%}checked{%endif%}
+                              >
+                      <label class="upsell_option_label cart_label_upsell  value-{{ forloop.index0 }} {%if forloop.index0 == 0%}is-active{%endif%}" data-val="outer_{{option.name |handle}}" for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"  style="background-image: url({{ value | handle | prepend:'-' | prepend:product_like.handle  | append: '.' | append: file_extension | file_url }})">
+                        
+                      </label>
+                    </div>
+                    {%- endfor -%}
+                  </div>
+                  <div class="swiper-button-next">&nbsp;</div>
+                  <div class="swiper-button-prev">&nbsp;</div>
+                </div>
+              </div>
+              {%endif%}
+              {%- endfor -%}
+              {%endunless%}
+              
+            </div>
+          </div>
+            {%- unless product_like.has_only_default_variant -%}
+            {%- for option in product_like.options_with_values-%}
+            {%unless option.name == 'Colour'%}
+
+            <legend class="form__label accordion" data-id="outer_{{option.name |handle}}"> Select {{ option.name }}</legend>
+            <div class="panel outer_option option-{{ forloop.index0 }} outer_{{option.name |handle}}">
+            {%- for value in option.values -%}
+            <input class="hide" type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
+                  name="{{ option.name }}"
+                  value="{{ value | escape }}"
+                  form="product-form-{{ section.id }}"
+                  {%if forloop.index0 == 0%}checked{%endif%}
+                  >
+            <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}" class=" upsell_option_label not_color value-{{ forloop.index0 }} {%if forloop.index0 == 0%}is-active{%endif%}" data-val="outer_{{option.name |handle}}">
+              {{ value }}
+            </label>
+            {%- endfor -%}
+            </div>
+            {%endunless%}
+            {%- endfor -%}
+            
+            <select class="hide variant_cart_notification">
+              {%for variant in product_like.variants%}
+              <option value="{{variant.id}}" data-img="{{variant.image |img_url:"master"}}" data-price="{{variant.price |money_with_currency}}" data-co_price="{{variant.compare_at_price |money_with_currency}}">{{variant.title}}</option>
+              {%endfor%}
+            </select>
+            {%endunless%}
+            <button type="button" class="btn you_may_submit_pro" data-id="{{product_like.selected_or_first_available_variant.id}}">ADD TO CART</button>
+          </div>
+          <div class="loader_spin">&nbsp;</div> 
+          </div>
+        {%endif%}
+
+      {%endif%}
+      </div> 
+
+    {%- if section.settings.show_cart_note -%}
+      <cart-note id="card_note" class="cart__note  hide">
+        <!--/ cart header /-->
+        <div class="cart__note-head">
+          <label class="heading" for="Cart-note">{{ 'sections.cart.note' | t }}</label>
+          <span class="trash cart__note_cancel crox_cart_note"> </span>
+        </div>
+        
+        <!--/ card note body /-->
+        <div class="cart-note-body" style="background-image:url({{'jgyj6edr.jpg'  | asset_url }})"> 
+          <textarea maxlength="200" class="text-area text-area--resize-vertical field__input" name="note" id="Cart-note" placeholder="{{ 'sections.cart.note' | t }}">{{ cart.note }}</textarea>
+        </div>      
+      
+        <div class="cart_node_btn_outer">
+          <button type="button" class="btn cart_node_btn">Save</button>
+          <button type="button" class="btn cart__note_cancel">Cancel</button>
+        </div>
+        
+      </cart-note>
+    {%- endif -%}
+
+   {%- endif -%}
+<script>
+//   function submitGA(type){
+//     let url = window.location.href;
+//     ga('send', 'event', type, 'Checkout Button', url);
+// //     console.log(url, type);
+//   }
+</script>
+{% schema %}
+{
+  "name": "cart notification button",
+  "settings": [
+    {
+      "type": "text",
+      "id": "shipping_amount",
+      "label": "Free Shipping Amount",
+      "info": "Please enter number value without currency symbol ex. 500",
+      "default":"500.00"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Bat product"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Shoe product"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_note",
+      "default": true,
+      "label": "t:sections.main-cart-footer.settings.show_cart_note.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "you_may_also",
+      "default": true,
+      "label": "upselling/crossselling"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,97 @@
+ 
+{{ 'video-slider.css' | asset_url | stylesheet_tag }}
+     
+ <script src="{{ 'video-app.js' | asset_url }}" defer="defer"></script> 
+
+<div id="videos-slider">
+   	  <div class="video-fluid">
+   	  	<div class="container">
+   	  		<div class="video-slider" >
+   	  			<div class="slider-box">
+ {% for block in section.blocks %}
+   	  			<div class="video-slide">
+                  <div class="glider-slide" data-fancybox="gallery"  data-options='{"touch" : false}' data-src="#video-one{{forloop.index}}" >
+                  <div class="video-h">
+                    <img src="{{ block.settings.image | img_url: 'master'}}">
+<!--                    <video loading="lazy" preload="none" poster="{{ block.settings.image | img_url: 'master'}}"    class="video" src="{{block.settings.videourl}}" type="video/mp4" loop muted data-vid="{{block.settings.videourl}}"></video>-->
+                    <a href="javascript:;"><span class="icon-play play-btn"></span></a> 
+                  </div>
+                  
+                  </div>
+               </div>
+   	  		
+   	  		 {% endfor %}
+
+   	  		</div>
+   	  	</div>
+   	  </div>
+        
+         {% for block in section.blocks %}
+         <div id="video-one{{forloop.index}}" class="v-pop" style="display:none">
+           <div class="control">
+             
+                <div class="buttons">
+                    <span class="icon-volume_off volume"></span>                  
+<!--                     <span class="icon-pause play"></span> -->
+                </div>
+            </div>
+<!--              <video preload="none" loading="lazy" poster="{{ block.settings.image | img_url: 'master'}}"  src="{{block.settings.videourl}}" type="video/mp4" loop muted  autoplay class="common-video video" data-vid="{{block.settings.videourl}}"></video> -->
+           <video loading="lazy" poster="{{ block.settings.image | img_url: 'master'}}"  autoplay muted loop playsinline class="common-video lazy video" >
+            <source data-src="{{block.settings.videourl}}" type="video/mp4">
+           
+           </video>
+            
+         </div>
+     {% endfor %}
+ 
+       
+
+
+   </div>
+</div>
+
+<style>
+ a:empty, ul:empty, dl:empty, div:empty, section:empty, article:empty, p:empty, h1:empty, h2:empty, h3:empty, h4:empty, h5:empty, h6:empty {
+    display: block !important;
+}
+  .buttons span{width:55px; cursor:pointer;}
+ /*..i-amphtml-story-progress-bar .i-amphtml-story-page-progress-bar{display: none !important;} */
+</style>
+{% schema %}
+{
+  "name": "Video Slider",
+ 
+  "blocks": [
+ 
+    {
+      "type": "Slide",
+      "name": "Slide",
+      "settings": [
+ 
+   {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Poster Image"
+    },
+ 
+{
+          "type": "url",
+          "id": "videourl",
+          "label": "Video Url"
+        } 
+ 
+         
+      ]
+    }
+  
+    
+     
+  ],
+  
+  "presets": [
+    {
+      "name": "Video Slider"
+    }
+  ]
+}
+{% endschema %}

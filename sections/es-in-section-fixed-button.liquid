@@ -1,0 +1,73 @@
+{{ 'es-in-section-fixed-button.css' | asset_url | stylesheet_tag }}
+{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+
+    <div class="bottom_sticky_btn_gen fixed-bottom-general">
+        <a href="#product-card" class="button button--primary-1 button--white button--width-full video-play-button">
+        SHOP NOW 
+        </a>
+        <p class="bottom_sticky_text">
+        Free Shipping | COD Available | 7 Day Returns
+        </p>
+    </div>
+
+
+{% schema %}
+    {
+    "name": "Fixed Bottom Button",
+    "class": "spaced-section spaced-section--full-width",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable-mobile",
+        "default": true,
+        "label": "t:sections.info-accordion.settings.enable-mobile.label"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable-desktop",
+        "default": true,
+        "label": "t:sections.info-accordion.settings.enable-desktop.label"
+      },
+      {
+        "type": "text",
+        "id": "classes",
+        "label": "Padding/Margin Classes",
+        "info": "Add utilities classes separated by space"
+      },
+      {
+        "type":"color",
+        "id":"section-font-color",
+        "label":"Section Font Color",
+        "default": "#212a2f"
+      },
+      {
+        "type":"color",
+        "id":"section-color",
+        "label":"Section Bg Color",
+        "default": "#fff"
+      }
+    ],
+    "presets": [
+        {
+        "name": "Progress Bar",
+        "blocks": []
+        }
+    ]
+    }
+{% endschema %}
+
+<script>
+  
+    $('.bottom_sticky_btn_gen').hide();  
+    
+    window.addEventListener("scroll", function() {
+      var elementTarget = document.getElementById("product-card");
+      if (window.scrollY > (elementTarget.offsetTop + elementTarget.offsetHeight)) {
+        
+        $('.bottom_sticky_btn_gen').show();
+      }else{
+        $('.bottom_sticky_btn_gen').hide();  
+      }
+    });
+      
+</script>

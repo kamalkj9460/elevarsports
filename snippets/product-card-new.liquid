@@ -1,0 +1,130 @@
+
+<div class="collection-card">
+  <div class="col-head">
+    <h3>{{ product_card_product.title }}</h3>
+    <p>{{product_card_product.metafields.my_fields.collection_description}}</p>
+  </div>
+  <div class="col-box">
+    <div class="col-img">
+      <a  href="{{ product_card_product.url | default: '#' }}">
+      <img
+           src="{{ product_card_product.featured_image.src | img_url: 'large' }}"
+           loading="lazy"
+           class="motion-reduce"
+            
+           >
+        {% for tag in product_card_product.tags %}
+        {% if tag contains 'badge-'%}
+        <span class="bagd">
+          {{tag | remove:'badge-'}}
+        </span>
+        {% endif %}
+        {% endfor %}
+          
+      </a>
+    </div>
+  
+    <div class="col-info">
+      <h4><a  href="{{ product_card_product.url | default: '#' }}">{{ product_card_product.title }}</a></h4>
+      <p class="colmname">{{product_card_product.selected_or_first_available_variant.title | remove:'/ 6' | remove:'/ 3'}}</p>
+      <p class="Colorway__price"><span class="ppriec">{{ product_card_product.selected_or_first_available_variant.price | money_with_currency }} </span>
+        {% if  product_card_product.selected_or_first_available_variant.compare_at_price >  product_card_product.selected_or_first_available_variant.price %}
+
+        <span class="compare-price">{{ product_card_product.selected_or_first_available_variant.compare_at_price | money_with_currency }}</span>
+      {% endif %}
+      </p>
+   {% if product_card_product.type == 'Shoe' %}
+      <div class="color-slide product-colo">
+          
+{% assign found_option = false %}
+{% assign is_color = false %}
+{% assign option_index = 0 %}
+
+{% for option in product_card_product.options %}
+  {% if option == 'Colour' %}
+         
+    
+      {% assign is_color = true %}
+    {% endif %}
+          
+  
+{% endfor %}
+       
+        {% assign values = '' %}
+  {% for variant in product_card_product.variants %}
+    {% assign value = variant.options[option_index] %}
+    {% unless values contains value %}
+      {% assign values = values | join: ',' %}
+      {% assign values = values | append: ',' | append: value %} 
+      {% assign values = values | split: ',' %}
+        {% if is_color %}
+        <div class="item">
+          <div data-value="{{value}}" class="variant-dd es-swatch-element color {{value | handle}} available">
+                 <div image-src="{{ variant.featured_image | product_img_url: 'original' }}" data-url="{{ product_card_product.url}}" class="img-variant" data-cprice="{{variant.compare_at_price | money}}" data-price="{{variant.price | money}}" style="display:none">
+                  
+                </div>
+        <input data-value="{{value | handle}}" {% if forloop.index == 1%} checked{% endif %} id="es-swatch-0-{{value | handle}}{{product_card_product.handle}}" type="radio" name="option-{{product_card_product.handle}}" value="{{value}}">
+        
+        <label data-id="{{variant.id}}" class="thumb-dd {% if forloop.index == 1%} active{% endif %}" for="es-swatch-0-{{value | handle}}{{product_card_product.handle}}" style=" background-image: url({{ value | handle | prepend: '-' | prepend: product_card_product.handle | append: '.' | append: 'png' | file_url }})">
+         
+          
+        </label>
+        
+      </div>
+        </div>
+        {% endif %}
+         {% endunless %}
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+     {% if product_card_product.type == 'Shoe' %}
+    <div class="col-footer">
+      <a href="javascript:;" class="quick-link">Quick Add</a>
+      <div class="sizetoggle">
+       <div class="r-select-size">
+    
+     {% for option in product_card_product.options %}
+        {% if option contains 'Size' %}
+          {% assign index = forloop.index0 %}
+          {% assign colorlist = '' %}
+          {% assign color = '' %}
+          {% for variant in product_card_product.variants %}
+            {% capture color %}
+            	{{ variant.options[index] }}
+            {% endcapture %}
+            {% unless colorlist contains color %}
+      
+        <input {% unless variant.available %} disabled {% endunless %}data-value="{{color | handle}}" {% if forloop.index == 1%} checked {% endif %}name="size{{product_card_product.handle}}" type="radio" id="idma{{color | handle }}{{product_card_product.handle}}" class="m-radio"   value="{{variant.id}}" qty-value="{{ variant.inventory_quantity }}">
+           <label  for="idma{{color | handle}}{{product_card_product.handle}}" class="c-radio {% unless variant.available %} disabled {% endunless %}">
+        
+         {{color}}
+         </label> 
+         
+
+    		  {% capture tempList %}
+    			{{colorlist | append: color | append:''}}
+              {% endcapture %}
+              {% assign colorlist = tempList %}
+            {% endunless %}
+          {% endfor %}
+        {% endif %}
+      {% endfor %} 
+      </div>
+             <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm{{product_card_product.id }}">
+                        
+        <select  style="display:none" name="id">
+          {% for variant in product_card_product.variants %}
+          <option qty-value="{{ variant.inventory_quantity }}" value="{{variant.id}}" size-value="{{variant.title | split:"/"  | last | handle}}" color-value="{{variant.title | split:"/"  | first | handle}}">{{variant.title }}</option>
+            {% endfor %} 
+        </select>
+                <a style="display:none" href="javascript:;" class="btn add_to_cart_button"> </a>
+        </form>
+        
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+

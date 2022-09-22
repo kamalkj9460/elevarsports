@@ -1,0 +1,123 @@
+
+{{ 'es-in-component-progress-bar.css' | asset_url | stylesheet_tag }}
+{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+<!-- color-{{ section.settings.color_scheme }} -->
+<div class="es-in-section-progress-bar  
+    {% if section.settings.enable-desktop == false %}hidden-md hidden-lg{% endif %} {% if section.settings.enable-mobile == false %}hidden-xs hidden-sm{% endif %} {% if section.settings.classes %} {{ section.settings.classes }} {% endif %} u-margin-bottom-lg-0 u-margin-top-lg-0"
+    style="display: flex;{% if section.settings.section-color != blank %}background-color: {{ section.settings.section-color }};{% endif %}{% if section.settings.section-font-color != blank %}color: {{ section.settings.section-font-color }};{% endif %}">
+        <div class="progress-bar-box">
+            <div class="progress-date-box">
+                <div class="progress__date-text">
+                    <span>27 Jun</span>
+                </div>
+                <div class="progress__date-text">
+                  <span>1 Days Remaining</span>
+              </div>
+                <div class="progress__date-text">
+                    <span>12 Jul</span>
+                </div>
+            </div>
+            <div class="progress-wrapper shine">
+                <div class="progress-bar progress-bar-width" data-progress-bar-percent="100">
+                <div class="progress-bar-anim"></div>
+                </div>  
+            </div>
+
+            <div class="progress-header">
+                <p class="progress__text">
+                  <a href="#product-card" style="text-decoration: none;outline: none;">
+                    <span class="progress__text-number">5670 Orders Placed<span></span>
+                  </a>
+               </p>
+            </div>
+        </div>
+</div>
+<div class="bottom_sticky_btn fixed-bottom">
+  <a href="#product-card" class="button button--primary-1 button--white button--width-full video-play-button">
+    PRE-ORDER NOW 
+  </a>
+  <p class="bottom_sticky_text">
+    Free Shipping | COD Available | 7 Day Returns
+  </p>
+</div>
+
+{% schema %}
+{
+"name": "Progress Bar",
+"class": "spaced-section spaced-section--full-width",
+"settings": [
+  {
+    "type": "checkbox",
+    "id": "enable-mobile",
+    "default": true,
+    "label": "t:sections.info-accordion.settings.enable-mobile.label"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable-desktop",
+    "default": true,
+    "label": "t:sections.info-accordion.settings.enable-desktop.label"
+  },
+  {
+    "type": "text",
+    "id": "classes",
+    "label": "Padding/Margin Classes",
+    "info": "Add utilities classes separated by space"
+  },
+  {
+    "type":"range",
+    "id":"list_count",
+    "min":2,
+    "max":10,
+    "step":1,
+    "unit":"px",
+    "label":"No. Of Slides",
+    "default":2
+  },
+  {
+    "type":"color",
+    "id":"section-font-color",
+    "label":"Section Font Color",
+    "default": "#212a2f"
+  },
+  {
+    "type":"color",
+    "id":"section-color",
+    "label":"Section Bg Color",
+    "default": "#fff"
+  }
+],
+"presets": [
+    {
+    "name": "Progress Bar",
+    "blocks": []
+    }
+]
+}
+{% endschema %}
+
+<script>
+ 
+
+
+// $("#scrollbtn-{{section.id}}").click(function() {
+//     $('html, body').animate({
+//         scrollTop: $("#product-card").offset().top
+//     }, 2000);
+// });
+  
+  $('.bottom_sticky_btn').hide();  
+
+
+window.addEventListener("scroll", function() {
+  var elementTarget = document.getElementById("product-card");
+  if (window.scrollY > (elementTarget.offsetTop + elementTarget.offsetHeight)) {
+    
+    $('.bottom_sticky_btn').show();
+  }else{
+    $('.bottom_sticky_btn').hide();  
+  }
+});
+  
+</script>
+

@@ -1,0 +1,9 @@
+@media screen and (min-width: 750px) {
+    .multicolumn:not(.background-secondary) {
+      margin-top: 0 !important;
+    }
+  }
+
+  .multicolumn:not(.background-secondary) {
+    margin-top: 0 !important;
+  }

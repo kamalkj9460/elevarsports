@@ -1,0 +1,32 @@
+/* Preorder Button Fixed Bottom  */
+.fixed-bottom-general{
+    position: fixed;
+    bottom: 0px;
+    height: 9rem;
+    width: 100%;
+    /* background-color: #fff; */
+    /* padding: 1.3rem; */
+    /* box-shadow: 0px 6px 10px rgb(255 255 255 / 60%); */
+    z-index: 999;
+    left: 0;
+
+    background-color: rgb(61 61 61 / 95%);
+    box-shadow: 0px -6px 20px rgb(92 92 92 / 60%);
+    padding: 1.3rem;
+}
+
+.bottom_sticky_btn_gen{
+    display: none;
+}
+
+.bottom_sticky_btn_gen.fixed-bottom{
+    display: none;
+}
+
+.bottom_sticky_btn_gen .bottom_sticky_text{
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: .03em;
+    margin-top: 0.3rem;
+    color: #fff;
+}

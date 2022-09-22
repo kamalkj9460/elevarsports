@@ -1,0 +1,168 @@
+
+
+{{ 'es-component-video-basic.css' | asset_url | stylesheet_tag }}
+{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+<style>
+
+</style>
+
+    <div class="video-basic " >
+        <div class="video-basic__desktop-container desktop">
+
+            {% if section.settings.enable-desktop %}
+            <!-- Desktop  -->
+            <div class="video-basic__desktop hidden-xs hidden-sm {% if section.settings.classes %} {{ section.settings.classes }} {% endif %}">
+
+                <div class="video-basic__desktop-wrapper">
+                    <div class="video-basic__desktop-video-banner">
+                        <div class="video-basic__desktop-video">
+                            <div class="video-basic__desktop-videoplayer-box">
+                                <div class="video-basic__desktop-videoplayer">
+                                    <video src="{{section.settings.video_link_desktop}}"
+                                        style="width: 100%; height: 100%;" preload="auto" autoplay="1" loop="" 
+                                        playsinline="" webkit-playsinline="" x5-playsinline="">
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <!-- Desktop  -->
+            {% endif %}
+    
+        </div>
+
+        <div class="video-basic__mobile-container mobile">
+            {% if section.settings.enable-mobile %}
+                <!-- Mobile  -->
+                <div class="video-basic__mobile hidden-md hidden-lg {% if section.settings.classes %} {{ section.settings.classes }} {% endif %}">
+                    
+                    <div class="video-basic__mobile-wrapper">
+                        <div class="video-basic__mobile-video-banner">
+                            <div class="video-basic__mobile-video">
+                                <div class="video-basic__mobile-videoplayer-box">
+                                    <div class="video-basic__mobile-videoplayer">
+                                        <video src="{{section.settings.video_link_mobile}}"
+                                            style="width: 100%; height: 100%;" preload="auto" autoplay="1" loop="" 
+                                            playsinline="" webkit-playsinline="" x5-playsinline="">
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                </div>
+                <!-- Mobile  -->
+            {% endif %}
+
+        </div>
+
+    </div>
+
+{% schema %}
+{
+  "name": "Video Basic",
+  "class": "spaced-section spaced-section--full-width",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable-mobile",
+      "default": true,
+      "label": "Enable Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-desktop",
+      "default": true,
+      "label": "Enable Desktop"
+    },
+    {
+      "type": "text",
+      "id": "classes",
+      "label": "Padding/Margin Classes",
+      "info": "Add utilities classes separated by space"
+    },
+    {
+      "type":"header",
+      "content":"Mobile Media"
+    },
+    {
+      "type":"range",
+      "id":"hero-height-mobile",
+      "min":400,
+      "max":1000,
+      "step":10,
+      "unit":"px",
+      "label":"Hero Height Mobile",
+      "default":480
+    },
+    {
+      "type": "url",
+      "id": "video_link_mobile",
+      "label": "Video Link Mobile"
+    },
+    {
+      "type":"checkbox",
+      "id":"autoplay-video-mobile",
+      "label":"Autoplay video",
+      "default":true
+    },
+    {
+        "type":"checkbox",
+        "id":"loop-video-mobile",
+        "label":"Loop video",
+        "default":true
+    },
+    {
+      "type":"header",
+      "content":"Desktop Media"
+    },
+    {
+      "type":"range",
+      "id":"hero-height-desktop",
+      "min":400,
+      "max":1000,
+      "step":10,
+      "unit":"px",
+      "label":"Hero Height Desktop",
+      "default":480
+    },
+    {
+      "type": "url",
+      "id": "video_link_desktop",
+      "label": "Video Link Desktop"
+    },
+    {
+      "type":"checkbox",
+      "id":"autoplay-video-desktop",
+      "label":"Autoplay video",
+      "default":true
+    },
+    {
+        "type":"checkbox",
+        "id":"loop-video-desktop",
+        "label":"Loop video",
+        "default":true
+    },
+    {
+      "type":"header",
+      "content":"Button Settings"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+  ],
+  "presets": [
+    {
+      "name": "video-basic"
+    }
+  ]
+}
+{% endschema %}

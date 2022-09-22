@@ -1,0 +1,299 @@
+<!-- {%- assign enabled-handles = block.settings.enabled-handles | strip_newlines | split: ',' -%}
+{% if enabled-handles contains handle or block.settings.enabled-handles == blank %}
+
+{% endif %} -->
+
+{{ 'es-in-component-info-accordion.css' | asset_url | stylesheet_tag }}
+{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+<!-- color-{{ section.settings.color_scheme }} -->
+<div class="es-in-section-info-accordion info-accordion  
+    {% if section.settings.enable-desktop == false %}hidden-md hidden-lg{% endif %} {% if section.settings.enable-mobile == false %}hidden-xs hidden-sm{% endif %} u-padding-bottom-lg-1 u-margin-bottom-lg-0 u-margin-top-lg-0"
+    style="display: flex;{% if section.settings.section-color != blank %}background-color: {{ section.settings.section-color }};{% endif %}{% if section.settings.section-font-color != blank %}color: {{ section.settings.section-font-color }};{% endif %}">
+    <div class="info-accordion__container col" style=" flex:1;">
+        <div class="info-accordion__tabs">
+
+            {% for slide-count in (1..section.settings.list_count) %}
+                {% capture list-heading %}list_heading-{{ slide-count }}{% endcapture %}
+                {% capture list-body %}list_body-{{ slide-count }}{% endcapture %}
+
+                {% assign count = slide-count | minus: 1 %}
+
+                <div class="info-accordion-tab">
+                        <input type="checkbox" id="rd{{ slide-count }}" name="rd" class="check {{ count }}" onchange="cbChange('{{count }}')">
+                        <label class="info-accordion__tab-label" for="rd{{ slide-count }}">
+                            {{ section.settings[list-heading] }}
+                        </label>
+                    <div class="info-accordion__tab-content">
+                        {{ section.settings[list-body] }}
+                    </div>
+                </div>
+            {% endfor %}
+
+            <!-- <div class="info-accordion-tab">
+                    <input type="checkbox" id="rd2" name="rd" class="check 1" onchange="cbChange('1')">
+                    <label class="info-accordion__tab-label" for="rd2">
+                        Description
+                    </label>
+                <div class="info-accordion__tab-content">
+                    <p>
+                        Combining cozy ZQ Merino wool and a bio-based water repellent shield, 
+                        our rain-ready sneaker keeps your feet predictably dry in unpredictable weather. 
+                        Made in Busan, South Korea 
+                    </p>
+                </div>
+            </div>
+            <div class="info-accordion-tab">
+                    <input type="checkbox" id="rd3" name="rd" class="check 2" onchange="cbChange('2')">
+                    <label class="info-accordion__tab-label" for="rd3">
+                        Shipping & Returns
+                    </label>
+                <div class="info-accordion__tab-content">
+                    <p>
+                        Free shipping on orders over $50, and our 30 days, no questions asked return policy. 
+                        Lightly worn shoes get donated to Soles4Souls.
+                    </p>
+                </div>
+            </div>
+            <div class="info-accordion-tab">
+                    <input type="checkbox" id="rd4" name="rd" class="check 3" onchange="cbChange('3')">
+                    <label for="rd4" class="info-accordion__tab-label">
+                        Care Guide
+                    </label>
+                <div class="info-accordion__tab-content">
+                    <p class="u-margin-bottom-sm-1">
+                        Free shipping on orders over $50, and our 30 days, no questions asked return policy. 
+                        Lightly worn shoes get donated to Soles4Souls.
+                    </p>
+                    <p>
+                        Free shipping on orders over $50, and our 30 days, no questions asked return policy. 
+                        Lightly worn shoes get donated to Soles4Souls.
+                    </p>
+                </div>
+
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+function cbChange(val) {
+
+    var cbs = document.getElementsByClassName("check");
+    
+    if(cbs[val].checked == true){
+        for (var i = 0; i < cbs.length; i++) {
+            cbs[i].checked = false;
+        }
+        cbs[val].checked = true;
+        console.log("IF FALSE", cbs[val]);
+    }else{
+        cbs[val].checked = false;
+    }
+}
+</script>
+
+{% schema %}
+{
+"name": "t:sections.info-accordion.name",
+"class": "spaced-section spaced-section--full-width",
+"settings": [
+  {
+    "type": "checkbox",
+    "id": "enable-mobile",
+    "default": true,
+    "label": "t:sections.info-accordion.settings.enable-mobile.label"
+  },
+  {
+    "type": "checkbox",
+    "id": "enable-desktop",
+    "default": true,
+    "label": "t:sections.info-accordion.settings.enable-desktop.label"
+  },
+  {
+    "type": "select",
+    "id": "color_scheme",
+    "options": [
+      {
+        "value": "background-1",
+        "label": "t:sections.info-accordion.settings.color_scheme.options__1.label"
+      },
+      {
+        "value": "background-2",
+        "label": "t:sections.info-accordion.settings.color_scheme.options__2.label"
+      },
+      {
+        "value": "inverse",
+        "label": "t:sections.info-accordion.settings.color_scheme.options__3.label"
+      },
+      {
+        "value": "accent-1",
+        "label": "t:sections.info-accordion.settings.color_scheme.options__4.label"
+      },
+      {
+        "value": "accent-2",
+        "label": "t:sections.info-accordion.settings.color_scheme.options__5.label"
+      }
+    ],
+    "default": "background-1",
+    "label": "t:sections.info-accordion.settings.color_scheme.label"
+  },
+  {
+    "type":"range",
+    "id":"list_count",
+    "min":2,
+    "max":10,
+    "step":1,
+    "unit":"px",
+    "label":"No. Of Slides",
+    "default":2
+  },
+  {
+    "type":"color",
+    "id":"section-font-color",
+    "label":"Section Font Color",
+    "default": "#212a2f"
+  },
+  {
+    "type":"color",
+    "id":"section-color",
+    "label":"Section Bg Color",
+    "default": "#fff"
+  },
+  { 
+    "type":"text",
+    "id":"list_heading-1",
+    "label":"Heading 1"
+   },
+   {
+    "type":"textarea",
+    "id":"list_body-1",
+    "label":"Body"
+   },
+   { 
+    "type":"text",
+    "id":"list_heading-2",
+    "label":"Heading 2"
+   },
+   {
+    "type":"textarea",
+    "id":"list_body-2",
+    "label":"Body"
+   },
+   { 
+    "type":"text",
+    "id":"list_heading-3",
+    "label":"Heading 3"
+   },
+   {
+    "type":"textarea",
+    "id":"list_body-3",
+    "label":"Body"
+   },
+   { 
+    "type":"text",
+    "id":"list_heading-4",
+    "label":"Heading 4"
+   },
+   {
+    "type":"textarea",
+    "id":"list_body-4",
+    "label":"Body"
+   },
+   { 
+    "type":"text",
+    "id":"list_heading-5",
+    "label":"Heading 5"
+   },
+   {
+    "type":"textarea",
+    "id":"list_body-5",
+    "label":"Body"
+   },
+   { 
+    "type":"text",
+    "id":"list_heading-6",
+    "label":"Heading 6"
+   },
+   {
+    "type":"textarea",
+    "id":"list_body-6",
+    "label":"Body"
+   },
+   { 
+    "type":"text",
+    "id":"list_heading-7",
+    "label":"Heading 7"
+   },
+   {
+    "type":"textarea",
+    "id":"list_body-7",
+    "label":"Body"
+   },
+   { 
+    "type":"text",
+    "id":"list_heading-8",
+    "label":"Heading 8"
+   },
+   {
+    "type":"textarea",
+    "id":"list_body-8",
+    "label":"Body"
+   },
+   { 
+    "type":"text",
+    "id":"list_heading-9",
+    "label":"Heading 9"
+   },
+   {
+    "type":"textarea",
+    "id":"list_body-9",
+    "label":"Body"
+   },
+   { 
+    "type":"text",
+    "id":"list_heading-10",
+    "label":"Heading 10"
+   },
+   {
+    "type":"textarea",
+    "id":"list_body-10",
+    "label":"Body"
+   }
+],
+"blocks": 
+[
+    {
+        "type": "heading",
+        "name": "t:sections.info-accordion.blocks.heading.name",
+        "limit": 3,
+        "settings": [
+            {
+            "type": "text",
+            "id": "heading",
+            "default": "Image with text",
+            "label": "t:sections.info-accordion.blocks.heading.settings.heading.label"
+            }
+        ]
+    },
+    {
+        "type": "text",
+        "name": "t:sections.info-accordion.blocks.text.name",
+        "limit": 3,
+        "settings": [
+            {
+            "type": "richtext",
+            "id": "text",
+            "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "label": "t:sections.info-accordion.blocks.text.settings.text.label"
+            }
+        ]
+    }
+],
+"presets": [
+    {
+    "name": "t:sections.info-accordion.presets.name",
+    "blocks": []
+    }
+]
+}
+{% endschema %}

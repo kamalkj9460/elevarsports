@@ -1,0 +1,115 @@
+.video-basic{
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+/* Desktop Styles  */
+
+.video-basic .video-basic__desktop-container{
+    width: 100%;
+
+}
+
+.video-basic__desktop{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+
+.video-basic__desktop-wrapper{
+    position: relative;
+    width: 100%;
+    height: 54.2rem;
+    overflow: hidden;
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px){
+    .video-basic__desktop-wrapper{
+        height: 43.2rem;
+    }
+}
+
+.video-basic__desktop-video-banner{
+    position: absolute;
+    inset: 0px;
+    background-color: var(--color-base-background-1);
+}
+
+.video-basic__desktop-video{
+    width: 100%;
+    height: 100%;
+}
+
+.video-basic__desktop-videoplayer-box{
+    position: relative;
+    padding-top: 56.25%;
+    width: 100%;
+    height: 100%;
+}
+
+.video-basic__desktop-videoplayer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-basic__desktop-videoplayer > video{
+    object-fit: cover;
+}
+
+
+
+/* Mobile Styles  */
+
+.video-basic .video-basic__mobile-container{
+    width: 100%;
+
+}
+
+.video-basic__mobile{
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+
+.video-basic__mobile-wrapper{
+    position: relative;
+    width: 100%;
+    height: 33.8rem;
+    overflow: hidden;
+}
+
+.video-basic__mobile-video-banner{
+    position: absolute;
+    inset: 0px;
+    background-color: rgb(77, 85, 89);
+}
+
+.video-basic__mobile-video{
+    width: 100%;
+    height: 100%;
+}
+
+.video-basic__mobile-videoplayer-box{
+    position: relative;
+    padding-top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-basic__mobile-videoplayer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-basic__mobile-videoplayer > video{
+    object-fit: cover;
+}

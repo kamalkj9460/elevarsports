@@ -1,0 +1,436 @@
+<!--/ section of slider multivideo start /-->
+
+{{ 'es-slider-multipurpose.css' | asset_url | stylesheet_tag }}
+ {%comment%} {{ 'component-loading-overlay.css' | asset_url | stylesheet_tag }}  {%endcomment%} 
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+
+  
+<style>
+  @media screen and (max-width: 749px){
+    {%unless section.settings.arrow_m %}
+    #{{section.id}} .color-accent-1{
+      display:none !important;
+    }
+    {%endunless%}
+  } 
+  .es-slider-multipurpose-outer.slider-dark .swiper-pagination-bullet-active{
+    background-color: #fff !important;
+  }
+  .es-slider-multipurpose-outer.slider-dark .swiper-pagination-bullet{
+    background-color: #fafafa !important;
+  }
+  .swiper-slide .media {
+    background:#FFF;
+  }
+  .swiper-slide {
+    margin-right: 20px;
+    height: {{section.settings.slideheight}}px;
+  }
+  .swiper-slide .swiper-slide-active {
+  }
+  .swiper-slide-active {
+    height: {{section.settings.slideheight}}+5px;
+  }
+  .es-slider-multipurpose-outer .Card-Layout-1 .card-wrapper.box-shadow {
+    /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
+    box-shadow: #d3d4d5 0 6px 12px;
+  }
+
+  .es-slider-multipurpose-outer.button-border .card-wrapper,
+  .es-slider-multipurpose-outer.button-border .card-wrapper .card--product{
+    border-radius: 10px !important;
+  }
+
+</style>
+<!--/ section of slider multipurpose end /-->
+
+  <div id="{{section.id}}" class="es-slider-multipurpose-outer page-width {% if section.settings.classes %} {{ section.settings.classes }} {% endif %}" style="{% if section.settings.section-color != blank %}background-color: {{ section.settings.section-color }};{% endif %}{% if section.settings.section-font-color != blank %}color: {{ section.settings.section-font-color }};{% endif %}">    
+    <div class="title-wrapper-with-link" style="{% if section.settings.section-font-color != blank %}color: {{ section.settings.section-font-color }};{% endif %}">
+      {%if section.settings.title != blank%}
+        <h2 style="text-align:{{section.settings.align}};color:inherit;">
+          {{ section.settings.title }}
+        </h2>
+      {%endif%}
+  
+      {%if section.settings.body_text != blank%}
+        <div style="color:inherit;width: 100%;">{{section.settings.body_text}}</div>
+      {%endif%}
+      
+      {% if section.settings.sub-text != blank %}
+        <div>
+          <p class="slider__sub-text">
+            {{ section.settings.sub-text }}
+          </p>
+        </div>
+      {% endif %}
+
+    </div>  
+
+   
+          <div class="tabcontent tabcontent_{{section.id}} {%if section.settings.layout == 'layout_1' %} Card-Layout-1 {%elsif section.settings.layout == 'layout_2'%} Card-Layout-2  {% endif %}">
+            <div class="swiper no-tabs-spacings mySwiper_multislider_{{section.id}}">
+              <div class="swiper-wrapper">
+                {%for block in section.blocks %}
+	                {%if block.type == 'slider'%}
+                    <div style="" class="swiper-slide swiper-slide--1 no-tabs-width">
+
+                      <div class="card-wrapper box-shadow">
+                       
+                      
+
+                        <div class="card card--product">
+                          <div class="card__inner">
+                            <div class="card__media-full-spacer ">
+                              <div style="height: 315px;" class="media media--transparent media--square media--hover-effect" >
+                                <!-- {%if block.settings.image != blank%}
+                                <img
+                                      src="  {%- if block.settings.image.width >= 940 -%}{{ block.settings.image | img_url: '940x' }} 940w,{%- endif -%}
+                                            {%- if block.settings.image.width >= 720 -%}{{ block.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+                                            {%- if block.settings.image.width >= 533 -%}{{ block.settings.image | img_url: '533x' }} 533w,{%- endif -%}
+                                            {%- if block.settings.image.width.width >= 360 -%}{{ block.settings.image | img_url: '360x' }} 360w,{%- endif -%}
+                                            {%- if block.settings.image.width >= 165 -%}{{ block.settings.image | img_url: '165x' }} 165w,{%- endif -%}
+                                            {%- if block.settings.image.width >= 1066 -%}{{ block.settings.image | img_url: '1066x' }} 1066w{%- endif -%}"
+                                    {%comment%} data-src1="{{ block.settings.image | img_url: '533x' }}" {%endcomment%}
+                                    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                                      loading="lazy" {%comment%}{%endcomment%} 
+                                    class="lazy1 motion-reduce"
+                                    width="{{ block.settings.image.width }}"
+                                    height="{{ block.settings.image.height }}"
+                                    >
+                                {%endif%} -->
+                                {%if block.settings.image != blank%}
+
+
+                      <video loading="lazy" preload="none" poster="{{ block.settings.image | img_url: 'master'}}"    class="video vid_autoplay" src="{{block.settings.url}}" type="video/mp4" loop 
+                        
+                        muted data-vid="{{block.settings.url}}"></video>
+
+                                  
+<!--                                 <img
+                                      srcset="  {%- if block.settings.image.width >= 940 -%}{{ block.settings.image | img_url: '940x' }} 940w,{%- endif -%}
+                                            {%- if block.settings.image.width >= 720 -%}{{ block.settings.image | img_url: '720x' }} 720w,{%- endif -%}
+                                            {%- if block.settings.image.width >= 533 -%}{{ block.settings.image | img_url: '533x' }} 533w,{%- endif -%}
+                                            {%- if block.settings.image.width.width >= 360 -%}{{ block.settings.image | img_url: '360x' }} 360w,{%- endif -%}
+                                            {%- if block.settings.image.width >= 165 -%}{{ block.settings.image | img_url: '165x' }} 165w,{%- endif -%}
+                                            {%- if block.settings.image.width >= 1066 -%}{{ block.settings.image | img_url: '1066x' }} 1066w{%- endif -%}"
+                                    src="{{ block.settings.image | img_url: '533x' }}"
+                                    sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 130 | divided_by: 4 }}px, (min-width: 990px) calc((100vw - 130px) / 4), (min-width: 750px) calc((100vw - 120px) / 3), calc((100vw - 35px) / 2)"
+                                    loading="lazy"
+                                    class="motion-reduce"
+                                    width="{{ block.settings.image.width }}"
+                                    height="{{ block.settings.image.height }}"
+                                    > -->
+                                {%endif%}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                                 
+                  {%endif%}
+                {%endfor%}
+              </div>
+              {%if section.settings.arrow %}
+              <div class="color-accent-1 swiper-button-next"></div>
+              <div class="color-accent-1 swiper-button-prev"></div>
+              {%endif%}
+              {%if section.settings.dots %} <div class="swiper-pagination"></div>{%endif%}
+            </div>
+          </div>
+
+                  
+  </div>
+
+
+ 
+<script type="text/javascript" defer="defer">
+  var width = $(window).width();
+  var slide_group = 1;
+  if (width > 768) {
+    slide_group = 1;
+  }
+    var swiper = new Swiper(".mySwiper_multislider_{{section.id}}", {
+        slidesPerView: 1,
+//         centeredSlides: true,
+        autoHeight: true, //enable auto height
+        grabCursor: true,
+        spaceBetween: 10,
+        initialSlide:1,
+        slidesPerGroup: slide_group,
+		watchSlidesProgress: true,
+      {%if section.settings.layout == 'layout_2' %} cssMode: false, {%endif%}
+	{%if section.settings.Infinite_scroll %}	loop: true,{%endif%}
+	{%if section.settings.arrow %}	navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		  },{%endif%}
+       {%if section.settings.dots %} pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },  {%endif%} 
+        breakpoints: {
+          767: {
+            slidesPerView: 1,
+            spaceBetween: 50,
+             centeredSlides: true,
+            {%if section.settings.arrow_m %}	navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },{%endif%}
+             {%if section.settings.dots %} pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },  {%endif%}
+            {%if section.settings.Infinite_scroll %}	loop: true,{%endif%}
+
+          },
+          768: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+              centeredSlides: true,
+              {%if section.settings.arrow_m %}	navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },{%endif%}
+            {%if section.settings.Infinite_scroll %}	loop: true,{%endif%}
+            
+          },
+          1024: {
+            slidesPerView:4,
+            spaceBetween: 10,
+            {%if section.settings.Infinite_scroll %}	loop: true,{%endif%}                
+          },
+        }
+      });
+  
+  $(".tabclick_{{section.id}}").on("click", function(e){
+           e.preventDefault();
+          $(".tabclick_{{section.id}}").removeClass("active");
+          var change = $(this).data("change");
+          $(this).addClass("active");
+          $(".tabcontent_{{section.id}}").hide();
+          $("#"+change).show();
+          var activeWidth = $(this).innerWidth();
+          var itemPos = $(this).position();
+  $(".selector_{{section.id}}").css({
+            "left":itemPos.left + "px", 
+            "width": activeWidth + "px"
+          });
+        });
+       
+  $("#defaultOpen_{{section.id}}").trigger("click");
+    var tabs = $('.tabs_{{section.id}}');
+    var selector = $('.tabs_{{section.id}}').find('a').length;
+		//var selector = $(".tabs").find(".selector");
+		var activeItem = tabs.find('.active');
+		var activeWidth = activeItem.innerWidth();
+  $(".selector_{{section.id}}").css({
+		  "left": activeItem.position.left + "px", 
+		  "width": activeWidth + "px"
+		});
+
+</script>
+
+<script>
+
+  $(document).ready(function() { 
+   $(window).on('load', function () {
+      $("video.vid_autoplay").each(function(){
+        var sourceFile = $(this).attr("data-src");
+        $(this).attr("src", sourceFile);
+        var video = this.parentElement;
+        this.load();
+        this.play();
+      });
+    });    
+  });
+
+  
+ const section_container = document.getElementById("{{section.id}}")  
+ // const section_container = document.getElementById("template--14546365841493__1661168273b45d9c56")
+  const vid_container = section_container.getElementsByClassName("swiper-slide");
+  for (let i = 0; i < vid_container.length; i++) {
+    var width_calc = vid_container[i].clientWidth;    
+      const media = vid_container[i].getElementsByClassName("media--square");
+      for (let i = 0; i < media.length; i++) {      
+        media[i].style.height = width_calc+"px"; 
+      }
+  }
+  
+
+</script>
+
+{% schema %}
+  {
+    "name": "Multi Video Slider",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "slidewidth",
+        "label": "Slide Width in px",
+        "default": "300"
+      },
+      {
+        "type": "text",
+        "id": "slideheight",
+        "label": "Slide Height in px",
+        "default": "300"
+      },
+      {
+        "type":"color",
+        "id":"section-font-color",
+        "label":"Section Font Color",
+        "default": "#212a2f"
+      },
+      {
+        "type":"color",
+        "id":"section-color",
+        "label":"Section Bg Color",
+        "default": "#fff"
+      },
+      {
+        "type": "select",
+        "id": "layout",
+        "options": [
+          {
+            "value": "layout_1",
+            "label": "Card Layout 1"
+          },
+          {
+            "value": "layout_2",
+            "label": "Card Layout 2"
+          } 
+        ],
+        "default": "layout_1",
+        "label": "Card Layout"
+      },
+      {
+        "type": "richtext",
+        "id": "body_text",
+        "label": "Body text"
+      },
+      {
+        "type": "range",
+        "id": "height",
+        "min": 100,
+        "max": 1000,
+        "step": 10,
+        "default": 100,
+        "label": "Height"
+      },
+      {
+        "type": "checkbox",
+        "id": "dots",
+        "default": false,
+        "label": "Dots/Dash"
+      },
+      {
+        "type": "checkbox",
+        "id": "arrow",
+        "default": false,
+        "label": "Arrow"
+      },
+      {
+        "type": "checkbox",
+        "id": "arrow_m",
+        "default": false,
+        "label": "Mobile Arrow"
+      },
+      {
+        "type": "checkbox",
+        "id": "Infinite_scroll",
+        "default": false,
+        "label": "Infinite scroll"
+      },          
+      {
+        "type": "color",
+        "id": "color_link",
+        "label": "Color",
+        "default": "#212a2f"
+      },
+      {
+      	"type": "text",
+      	"id": "classes",
+      	"label": "Overlay Overriding Classes",
+      	"info": "Add utilities classes separated by space"
+      },
+      {
+        "type": "text",
+        "id": "sub-text",
+        "label": "Sub-Text Below Body Text"
+      }
+      
+    ],
+   "blocks": [
+  
+    {
+      "type": "slider",
+      "name": "slider image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Poster Image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Video Url"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "body_text",
+          "label": "Body text"
+        },
+        {
+          "type": "select",
+          "id": "align",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            }  
+          ],
+          "default":"center",
+          "label": "Alignment"
+        }
+      ]
+    }
+  ],
+    "presets": [
+      {
+        "name": "Multi Video Slider",
+        "blocks": [
+              
+        {
+          "type": "slider"
+        }
+       ]
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+

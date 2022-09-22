@@ -1,0 +1,65 @@
+.image-with-text.page-width{
+    padding: 0;
+}
+
+.image-with-text .image-with-text__container{
+    width: 100%;
+    margin: 0 auto;
+    max-width: 138rem;
+    padding: 0 2.4rem;
+}
+
+@media only screen and (min-width:0px) and (max-width:767px) {
+    .image-with-text .image-with-text__mobile-image-view{
+        margin: 0 -2.4rem 4.2rem;
+    }
+}
+
+.image-with-text {
+    margin-top: 0 !important;
+}
+
+.image-with-text .image-with-text__content{
+    padding: 0;
+}
+
+.image-with-text .image-with-text__text{
+    margin: 0 0 1.8rem;
+}
+
+@media screen and (min-width: 990px){
+    .image-with-text__desktop-image-view--right{
+        padding: 7rem 2rem 7rem 10rem;
+    }
+    .image-with-text__desktop-image-view--left{
+        padding: 7rem 10rem 7rem 2rem;
+    }
+}
+
+
+@media screen and (min-width: 990px) {
+    .image-with-text .image-with-text__container .image-with-text__content--left {
+      padding: 0 10.8rem 0 2.4rem !important;
+    }
+    
+}
+
+@media screen and (min-width: 990px) {
+    .image-with-text .image-with-text__container .image-with-text__content--right {
+      padding: 0 2.4rem 0 10.8rem !important;
+    }
+}
+
+.image-with-text .image-with-text__button-box{
+    width: 100%;
+    padding-bottom: .5rem;
+}
+
+
+
+
+
+
+
+
+

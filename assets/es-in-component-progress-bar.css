@@ -1,0 +1,178 @@
+
+.progress-wrapper {
+    background: #000;
+    border-radius: 30px;
+    border: 1px solid #ffff;
+    height: 11px;
+    width: 100%;
+    box-shadow: 0 0 10px #53ccf9;
+  }
+
+  .progress-bar{
+    /* box-shadow: 0 0 10px #53ccf9; */
+    height: inherit;
+    background: #53ccf9;
+  }
+
+  /* Shine style */
+.progress-wrapper.shine .progress-bar {
+	background-color: #53ccf9;
+  background-image: linear-gradient(to right, #53ccf9 0%, #53ccf9 75%, #fff 80%, #53ccf9 85%, #53ccf9 100%);
+  background-size: 800px 20px;
+	box-shadow: inset 0 -2px 2px rgba(0,0,0,0.5), inset 0 2px 2px rgba(255,255,255,0.8);
+	-webkit-animation: shine 1s linear infinite;
+	-moz-animation: shine 2s ease-in infinite;
+	animation: shine 2s ease-in infinite;
+}
+
+@-webkit-keyframes shine {
+to {background-position: 800px 0;}
+}
+@-moz-keyframes shine {
+to {background-position: 800px 0;}
+}
+@keyframes shine {
+to {background-position: 800px 0;}
+}
+  
+  .progress-bar {
+    background: #fff;
+    box-shadow: 0 0 40px #fff;
+    height: 100%;
+  }
+  
+  .progress-bar-width{
+    border-radius: 30px;
+    width: 80%;
+  }
+  
+  .progress-bar-anim {
+    animation: progress 2s linear infinite;
+    /* Don't touch this anim bar color*/
+  /*   background: linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.25) 25%,
+      transparent 25%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.25) 75%,
+      transparent 75%,
+      transparent); */
+    /* Don't touch this */
+    background-repeat: repeat-x;
+    /* The size of the bars must match the background-position in the @keyframes */
+    background-size: 1.5em 1.5em;
+    border-radius: 10px;
+    height: inherit;
+    width: 100%;
+  }
+  
+  @keyframes progress {
+    to { background-position: 1.5em 0; }
+  }
+
+  .progress-bar-box{
+    width: 55%;
+    padding: 0 2.4rem;
+    margin: 0 auto;
+  }
+
+  @media screen and (max-width: 768px) {
+    .progress-bar-box{
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .progress-date-box{
+      width: 75%;
+      margin: 0 auto;
+    }
+    .progress-wrapper{
+      width: 75%;
+      margin: 0 auto;
+    }
+  }
+
+  .progress-date-box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 1.5rem;
+  }
+
+  .progress__date-text{
+    font-size: 1rem;
+  }
+
+  .progress__date-text span{
+    font-size: 1.3rem;
+    font-weight: 300;
+  }
+
+  .progress-header{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 2rem;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+  }
+
+  .progress-header .right-border{
+    border-right: .9px solid rgb(223, 220, 220);
+  }
+
+  .progress__text-number{
+    font-size: 1.8rem!important;
+    font-weight: 600;
+    text-shadow: none;
+    letter-spacing: .03em;
+    padding: 1rem 0;
+    color: #fff;
+    display: block;
+    background-color: #171616;
+    text-transform: uppercase;
+    box-shadow: inset 0px 0px 10px rgb(0 0 0 / 90%);
+    border: 1px solid #06F1FF;
+  }
+
+  .progress__text-content{
+    font-size: 1.4rem !important;
+    color: #fff;
+    text-shadow: 0 0 2px #fff;
+    display: block;
+  }
+  .progress__text {
+    letter-spacing: .03em;
+    padding-bottom: 0;
+    width: 75%;
+    margin: 0 auto;
+    /* border: 2px solid #53ccf9; */
+    border-radius: 5px;    
+  } 
+
+  /* Shine style */
+/* .progress.shine .progress-bar {
+	background-color: #00BA0C;
+	background-image: -moz-linear-gradient(left, #00BA0C 0%, #00BA0C 75%, #D7FFD1 80%, #00BA0C 85%, #00BA0C 100%);
+	background-image: -webkit-linear-gradient(left, #00BA0C 0%,#00BA0C 75%,#D7FFD1 80%,#00BA0C 85%,#00BA0C 100%);
+	background-image: -o-linear-gradient(left, #00BA0C 0%,#00BA0C 75%,#D7FFD1 80%,#00BA0C 85%,#00BA0C 100%);
+	background-image: -ms-linear-gradient(left, #00BA0C 0%,#00BA0C 75%,#D7FFD1 80%,#00BA0C 85%,#00BA0C 100%);
+	background-image: linear-gradient(to right, #00BA0C 0%,#00BA0C 75%,#D7FFD1 80%,#00BA0C 85%,#00BA0C 100%);
+    background-size: 800px 20px;
+	box-shadow: inset 0 -2px 2px rgba(0,0,0,0.5), inset 0 2px 2px rgba(255,255,255,0.8);
+	-webkit-animation: shine 2s linear infinite;
+	-moz-animation: shine 2s linear infinite;
+	animation: shine 2s linear infinite;
+}
+@-webkit-keyframes shine {
+to {background-position: 800px 0;}
+}
+@-moz-keyframes shine {
+to {background-position: 800px 0;}
+}
+@keyframes shine {
+to {background-position: 800px 0;}
+} */

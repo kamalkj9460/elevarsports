@@ -1,0 +1,390 @@
+{{ 'product-info-slider.css' | asset_url | stylesheet_tag }}
+{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+
+
+<style>
+
+    .flx-row {
+        flex-direction: row !important;
+    }
+    .flx-clmn {
+        flex-direction: column !important;
+    }
+    .shipping-slider .shipping-slider__image-box{
+        padding-bottom: 1rem;
+    }
+    @media screen and (min-width: 768px){ 
+        .es-component-shipping-slider .shipping-slider__desktop--container{
+            width: 60%;
+            margin: 0 auto;
+        }
+    }
+@media screen and (max-width: 768px){ 
+    .shipping-slider__image-box {
+        width: 8rem !important;
+    }
+    .shipping-slider__desktop--container {
+        padding: 0px 1rem;
+    }
+    .shipping-slider__title h4 {
+        font-size: 1rem!important;
+        line-height: 1.2;
+    }
+    .shipping-slider__description p {
+        font-size: 1rem !important;
+    }
+}
+
+</style>
+
+<div class="es-component-shipping-slider shipping-slider {% if section.settings.classes != blank %} {{ section.settings.classes }} {% endif %}"
+{% if section.settings.section-color != blank %}style="background-color: {{ section.settings.section-color }};"{% endif %}>
+    
+    {% if section.settings.enable-desktop %}
+        <div class="shipping-slider__desktop--container ">
+
+            <!-- Desktop Content  -->
+            {% if section.settings.main-heading != blank %}
+                <div class="shipping-slider__desktop-text-box" 
+                    style="
+                        {% if section.settings.text-alignment != blank %}
+                            text-align:{{ section.settings.text-alignment }};
+                            {% else %}text-align:left;
+                        {% endif %}
+                        {% if section.settings.font-color != blank %}
+                            color:{{ section.settings.font-color }};
+                            {% else %}color:rgb(33, 42, 47);
+                        {% endif %}
+
+                    ">
+                    {% if section.settings.main-heading != blank %}
+                    <h2 class="shipping-slider__heading u-margin-bottom-small">
+                        {{ section.settings.main-heading }}
+                    </h2>
+                    {% endif %}
+                    {% if section.settings.body != blank %}
+                        <div class="shipping-slider__body u-margin-bottom-small">
+                            {{ section.settings.body }}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+            <div class="shipping-slider__slider-box" 
+                style="
+                    {% if section.settings.text-alignment != blank %}
+                        text-align:{{ section.settings.text-alignment }};
+                        {% else %}text-align:left;
+                    {% endif %}
+                    {% if section.settings.font-color != blank %}
+                        color:{{ section.settings.font-color }};
+                        {% else %}color:rgb(33, 42, 47);
+                    {% endif %}
+                ">
+                <div class="shipping-slider__slide">
+                    <div class="shipping-slider__image-box" 
+                        style="
+                            {% if section.settings.text-alignment == 'center' %}
+                                margin: 0 auto;
+                            {% else %}text-align:left;
+                            {% endif %}
+                        ">
+                        <img src="{{ section.settings.slider_image_1 | img_url: '300x', format: 'pjpg' }}" 
+                        alt="" class="shipping-slider__image">
+                    </div>
+                    <div class="shipping-slider__title" >
+                        <h4>
+                            {{ section.settings.slider_heading-1 }}
+                        </h4>
+                    </div>
+                    <div class="shipping-slider__description" >
+                        {{ section.settings.slider_body-1 }}
+                    </div>
+                </div>
+                <div class="shipping-slider__slide">
+                    <div class="shipping-slider__image-box"
+                        style="
+                            {% if section.settings.text-alignment == 'center' %}
+                                margin: 0 auto;
+                            {% else %}text-align:left;
+                            {% endif %}
+                        ">
+                        <img src="{{ section.settings.slider_image_2 | img_url: '300x', format: 'pjpg' }}" 
+                        alt="" class="shipping-slider__image">
+                    </div>
+                    <div class="shipping-slider__title">
+                        <h4>
+                            {{ section.settings.slider_heading-2 }}
+                        </h4>
+                    </div>
+                    <div class="shipping-slider__description">
+                        {{ section.settings.slider_body-2 }}
+                    </div>
+                </div>
+                <div class="shipping-slider__slide">
+                    <div class="shipping-slider__image-box" 
+                        style="
+                        {% if section.settings.text-alignment == 'center' %}
+                            margin: 0 auto;
+                        {% else %}text-align:left;
+                        {% endif %}
+                        ">
+                        <img src="{{ section.settings.slider_image_3 | img_url: '300x', format: 'pjpg' }}" 
+                        alt="" class="shipping-slider__image">
+                    </div>
+                    <div class="shipping-slider__title">
+                        <h4>
+                            {{ section.settings.slider_heading-3 }}
+                        </h4>
+                    </div>
+                    <div class="shipping-slider__description">
+                        {{ section.settings.slider_body-3 }}
+                    </div>
+                </div>
+            </div>
+            <!-- Desktop Content  -->
+        </div>
+    {% endif %}
+
+    
+    
+</div>
+
+<!-- <script type="text/javascript" defer="defer">
+    // Swiper: Slider
+    new Swiper('.shipping-slider__mobile-swiper-container', {
+        loop: true,
+        dots: true,
+        slidesPerView: 2,
+        paginationClickable: true,
+        centeredSlides: true,
+        spaceBetween: 5,
+        pagination: {
+          el: ".swiper-pagination",
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 1,
+                spaceBetween: 10
+            }
+        }
+    });
+</script> -->
+
+{% schema %}
+{
+  "name": "product-info-slider",
+  "class": "spaced-section spaced-section--full-width",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable-desktop",
+      "default": true,
+      "label": "Enable Desktop"
+    },
+    {
+      "type": "text",
+      "id": "classes",
+      "label": "Padding/Margin Classes",
+      "info": "Add utilities classes separated by space"
+    },
+    {
+        "type":"color",
+        "id":"section-color",
+        "label":"Section Bg Color",
+        "default": "#fff"
+    },
+    {
+        "type": "text",
+        "id": "main-heading",
+        "label": "Heading",
+        "info": "Section Heading"
+    },
+    {
+        "type":"richtext",
+        "id":"body",
+        "label":"Body",
+        "info": "Section Body"
+    },
+    {
+        "type":"radio",
+        "id":"text-alignment",
+        "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "right" },
+            { "value": "center", "label": "Center" }
+        ],
+        "label":"Heading Text Alignment",
+        "info":"Positioning of text content",
+        "default": "left"
+    },
+    {
+        "type":"color",
+        "id":"font-color",
+        "label":"Font Color",
+        "default": "#fff"
+    },
+    {
+      "type":"header",
+      "content":"Slider Config "
+    },
+    {
+      "type":"range",
+      "id":"image-count",
+      "min":3,
+      "max":15,
+      "step":1,
+      "unit":"px",
+      "label":"No. Of Slides",
+      "default":3
+    },
+    {
+        "type":"radio",
+        "id":"slider-text-alignment",
+        "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "right", "label": "right" },
+            { "value": "center", "label": "Center" }
+        ],
+        "label":"Slider Text Alignment",
+        "info":"Positioning of text content inside slider",
+        "default": "left"
+    },
+    {
+        "type":"color",
+        "id":"slider-font-color",
+        "label":"Slider Font Color",
+        "default": "#fff"
+    },
+    {
+        "type":"header",
+        "content":"First  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-1",
+        "label":"Heading 1"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-1",
+        "label":"Body"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_1",
+        "label": "Slider Image 1"
+    },
+    {
+        "type":"header",
+        "content":"Second  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-2",
+        "label":"Heading 2"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-2",
+        "label":"Body 2"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_2",
+        "label": "Slider Image 2"
+    },
+    {
+        "type":"header",
+        "content":"Third  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-3",
+        "label":"Heading 3"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-3",
+        "label":"Body 3"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_3",
+        "label": "Slider Image 3"
+    },
+    {
+        "type":"header",
+        "content":"Fourth  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-4",
+        "label":"Heading 4"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-4",
+        "label":"Body 4"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_4",
+        "label": "Slider Image 4"
+    },
+    {
+        "type":"header",
+        "content":"Fifth  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-5",
+        "label":"Heading 5"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-5",
+        "label":"Body 5"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_5",
+        "label": "Slider Image 5"
+    },
+    {
+        "type":"header",
+        "content":"Sixth  Slide"
+    },
+    { 
+        "type":"text",
+        "id":"slider_heading-6",
+        "label":"Heading 6"
+    },
+    {
+        "type":"richtext",
+        "id":"slider_body-6",
+        "label":"Body 6"
+    },
+    {
+        "type": "image_picker",
+        "id": "slider_image_6",
+        "label": "Slider Image 6"
+    },
+    {
+      "type":"header",
+      "content":"Button Settings"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+  ],
+  "presets": [
+    {
+      "name": "Product info slider"
+    }
+  ]
+}
+{% endschema %}

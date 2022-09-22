@@ -1,0 +1,56 @@
+{{ 'es-contact.css' | asset_url | stylesheet_tag }}
+<div class="support-banner">
+  <div class="desk-img">
+  {{ section.settings.image_1 | img_url: 'master' | img_tag  }}
+  </div>
+   <div class="mob-img">
+  {{ section.settings.mob_image_1 | img_url: 'master' | img_tag }}
+  </div>
+  <div class="banner-text">
+    <div class="page-width">
+      <div class="text-wrapper">
+        <h2>{{ section.settings.heading_1 }}</h2>
+        <h5>{{ section.settings.heading_2 }}</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Contact Banner",
+    "settings": [
+		  {
+    "type": "image_picker",
+    "id": "image_1",
+    "label": "Banner Image Desktop"
+  },
+  {
+    "type": "image_picker",
+    "id": "mob_image_1",
+    "label": "Banner Image Mobile"
+  },
+ {
+    "type": "text",
+    "id": "heading_1",
+    "label": "Heading 1"
+  },
+ {
+    "type": "text",
+    "id": "heading_2",
+    "label": "Heading 2"
+  }
+],
+ "presets": [
+    {
+      "name": "Contact Banner"
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

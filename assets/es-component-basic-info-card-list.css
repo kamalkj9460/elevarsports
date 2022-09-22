@@ -1,0 +1,10 @@
+.basic-info-card-grid {
+    margin-left: 0px;
+}
+
+.basic-info-card-wrapper {
+    background-color: #fff;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 24px 0px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 24px 0px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 8px 24px 0px;
+}

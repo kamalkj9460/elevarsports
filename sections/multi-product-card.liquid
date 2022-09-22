@@ -1,0 +1,813 @@
+{{ 'swatch-color.css' | asset_url | stylesheet_tag }}
+    <script src="{{ 'multi-product-card.js' | asset_url }}" defer="defer"></script> 
+   <style>
+      label.thumb-dd {
+    cursor: pointer;
+}
+    </style>
+
+
+
+{{ 'es-section-main-product.css' | asset_url | stylesheet_tag }}
+{{ 'es-slider-multipurpose.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .preorder-atc,.card-btn-styled {
+
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    text-align: center;
+    width: 100%;
+    transition: background 0.2s ease-in-out;
+
+	min-height: 4.6rem;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    letter-spacing: .07rem;
+    background-color: rgba(var(--color-button),var(--alpha-button-background));
+    box-shadow: 0 0 0 .1rem rgba(var(--color-button),var(--alpha-button-border));
+    color: rgb(var(--color-button-text));
+      
+  }
+  
+  .shopify-payment-button__button {
+    display: block;
+    font-size:0;
+  }
+  #{{section.id}} .shopify-payment-button__button::after {
+    content: "{{section.settings.bnb-text}}";
+    padding-top: 2rem !important;
+    font-size: 1.5rem;
+    padding-right: 20px;
+  }
+
+  .col-box{
+    display:flex;
+  }
+  .left-part,.right-part{
+    width:50%;
+
+  }
+  .desktop-only,.sizetoggle{
+      display:block;    
+  }
+  .mobile-only,.quick-link::before,.quick-link::after{
+    display:none;   
+    opacity:0;
+  }
+  
+  .quick-link{
+    display: flex;
+    align-items: baseline;   
+  }
+  
+  .qlink1{
+    width: 50%;
+  }
+  .qlink2{
+    width: 50%;
+    text-align: end;
+  }
+
+  .col-info p {
+    font-size:1.6rem !important;
+  }
+
+
+  @media screen and (max-width: 750px) {
+    .col-box{
+      display:block;
+
+    }
+
+    .mobile-only{
+      display:block;   
+      opacity:1;
+    }
+    .left-part,.right-part{
+      width:100%;
+
+    }
+    .desktop-only{
+      display:none;    
+    }
+    .col-info p {
+        font-size:1.4rem !important;
+    }
+    .discount-text{
+      font-size:1.3rem !important;
+      color: inherit;
+      display: inline-block;
+    }
+
+  }
+  
+  .col-info {
+    padding-bottom:0;
+  }
+  .shopify-payment-button__button::after{
+    
+  }
+
+  .col-info p span.compare-price {
+    margin-left: 0px;
+  }
+  .ppriec {
+	  margin-left: 6px;
+  }
+
+  .Colorway__price {
+  	padding-top:0  !important;
+    padding-bottom:1rem  !important;
+    font-size:1.6rem !important;
+  }
+  
+  #prod-img{
+    cursor: zoom-in;
+  }
+
+  /* The Modal (background) */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: #f6f6f6; 
+  }
+
+  /* Modal Content (Image) */
+  .modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+  }
+
+  /* Caption of Modal Image (Image Text) - Same Width as the Image */
+  #caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+  }
+
+  /* Add Animation - Zoom in the Modal */
+  .modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+
+  @keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+  }
+
+  /* The Close Button */
+  .close {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    color: #867f7f;
+    font-size: 23px;
+    transition: 0.3s;
+    background: #fff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: unset;    
+  }
+
+  .close:hover,
+  .close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .swatch-container {
+    width: 4rem;
+    height: 4rem;
+    background:#f2f2f2;
+  }
+
+  label.thumb-dd {
+    width: 4rem;
+    height: 4rem;
+    cursor: pointer;
+    border-radius: unset;
+    border: 1px solid #C8C8C8;
+  }
+
+
+  label.active{
+    border: 1.5px solid #212a2f;
+  }
+
+  label.thumb-dd:hover {
+    border: 1.5px solid #212a2f;
+  }
+
+  label.thumb-dd::after {
+    border-radius: unset;
+    border:1px solid rgb(245, 245, 245);
+  } 
+
+  .color-slide label {
+    margin: 0;  
+  }
+
+  .product-popup-modal__button {
+    font-size:1.2rem;
+    text-transform: capitalize;
+  }
+
+  /* 100% Image Width on Smaller Screens */
+  @media only screen and (max-width: 700px){
+    .modal-content {
+      width: 100%;
+    }
+  }
+
+  .preorder-card {
+    padding: 0 2.4rem;
+  }
+   @media only screen and (min-width: 900px){
+    .preorder-card {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+
+  label.c-radio{
+    max-width:3.6rem;
+    height:3.6rem;
+  }
+  .notify_btn {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    height: 4.4rem;   
+    text-decoration: underline;
+    cursor: pointer;
+    text-underline-offset: .3rem;
+    text-align: center;
+	width: 100%;
+    font-size: 1.2rem;
+    padding-top: 2rem !important;
+    letter-spacing: .03em;
+    margin-bottom: 2rem;
+  }
+  
+  .sizetoggle {
+    margin-bottom: 2rem;
+  }
+
+  .col-footer {
+    border-top:0;
+  }
+
+  .preorder-container {
+    background:{{section.settings.bg-color}};
+/*     padding: 0 4rem; */
+  }
+  .tabheads {
+    color:{{section.settings.txt-color}} !important;
+  }
+  .discount-text{
+    font-size:1.6rem;
+    padding-left:.5rem;
+    font-weight:700;
+    color:#996023;
+  }
+  .col-head h3 {
+	font-size: 2.5rem !important;
+  }
+  
+  
+  .product-popup-modal__button {
+    height: auto;
+  }
+
+  .preorder-container .tab-main-border {
+    margin-bottom: 20px !important;
+  }
+    
+  .preorder-container .es-slider-multipurpose-outer .tabs-outer {
+    border-bottom: 2px solid #e3e3e3;
+  }
+
+  .es-slider-multipurpose-outer .tabs .selector {
+    border-bottom: 2px solid #1a73ff;
+  }
+
+  .selected_tab{
+	border-bottom: 2px solid #fff !important;   
+  }
+  .tab-main-border {
+    border-bottom: 2px solid #2f3235 !important;
+  }
+  .option-head {
+    margin: 0 0 .7rem;
+    letter-spacing: 1px;
+    font-size: .8em;
+    font-weight: 500;
+    font-family: var(--font-body-family);          
+    line-height: 1.43;
+    padding: 0;
+    color: #212a2f;
+  }
+  .option-head .colmname {
+    font-weight: bold;   
+  }
+  
+  .r-select-size {
+	padding-top: 0px;
+  }
+  
+  .lense_icon {
+    background-color: rgb(var(--color-background));
+    border-radius: 50%;
+    border: .1rem solid rgba(var(--color-foreground),.1);
+    color: rgb(var(--color-foreground));
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    height: 3rem;
+    width: 3rem;
+    position: absolute;
+    left: 1.5rem;
+    top: 1.5rem;
+    z-index: 1;
+    transition: color var(--duration-short) ease,opacity var(--duration-short) ease;
+  }
+
+  .lense_icon .icon {
+    width: 1.2rem;
+    height: 1.4rem;
+  }
+  .lense_text {
+    color: #6a6a6a;
+    z-index: 1;
+    position: absolute;
+    left: 5rem;
+    top: 2.3rem;
+    font-size: 1rem;
+  }
+  
+  @media screen and (max-width: 749px){
+    .preorder-container.es-slider-multipurpose-outer .tabs a{
+      padding: 20px 8px 10px 8px;
+      margin: 0 1rem;
+    }
+    .preorder-container.es-slider-multipurpose-outer .tabs{
+      justify-content: center;
+    }
+  }
+    .preorder-container .right-part{
+      background:{{section.settings.card-bg-color}} !important;
+    }
+
+  @media screen and (min-width: 768px){
+
+    .preorder-container .desk-color{
+      color: #212a2f !important;
+    }
+    .preorder-card .left-part{
+      background: #f2f2f2;
+    }
+    .preorder-card .col-img {
+      width: 80%;
+      margin: 0 auto;
+    }
+  }
+  .col-info p, .preorder-container .desk-color{
+      color:{{section.settings.card-text-color}} !important;
+  }
+  @media screen and (max-width: 768px){
+    .preorder-container .right-part{
+      padding: .2rem;
+    }
+    .preorder-container .right-part .col-footer {
+      padding: 13px 18px 30px 18px;
+    }
+
+    .preorder-card .r-select-size [type=radio]:checked+label{
+      border: 1px solid #fff;
+      color: #fff;
+    }
+
+    .preorder-card label.c-radio{
+      border: 1px solid #838383;
+      color: #838383;
+    }
+
+    label.c-radio.disabled {
+      color: #4d5559!important;
+      cursor: initial!important;
+      border-color: #838383!important;
+      overflow: hidden!important;
+      background: 
+      url(data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' version='1.1' preserveAspectRatio='none' viewBox='0 0 100 100'><path d='M100 0 L0 100 ' stroke='%23212a2f' stroke-width='1' /></svg>) center center no-repeat!important;
+    
+    }
+    .preorder-card .preorder-atc:hover{
+      background-color: #a57f40; 
+    }
+    .preorder-card .shop-now__button:hover{
+      background-color: #a57f40; 
+    }
+    .preorder-container.es-slider-multipurpose-outer .tabs .selector{
+      margin: 0 1.1rem;
+    }
+
+    .preorder-card .Colorway__price{
+      width: auto;
+      display: inline-block;
+      border: 1px solid {{section.settings.card-text-color}};
+      padding: 0.5rem 1rem 0.5rem 1rem !important;
+      margin-top: 0.5rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .preorder-card .Colorway__price .ppriec{
+      color: {{section.settings.card-text-color}};
+    }
+
+    .no-product-heading .preorder-card .product_heading{
+      display: none;
+    }
+
+}
+
+  .preorder-card .preorder-atc,
+  .preorder-card .shop-now__button{
+/*     border-color: #a57f40; */
+    font-family: 'Poppins', sans-serif; 
+    letter-spacing: 2px;
+  }
+
+  .es-slider-multipurpose-outer.button-border .preorder-card .preorder-atc,
+  .es-slider-multipurpose-outer.button-border .preorder-card .shop-now__button{
+    border-radius: 1rem !important;
+    box-shadow: none;
+    background-color: #c0ff00;
+    border-color: #c0ff00;
+    color: #000 !important;
+  }
+
+  .es-slider-multipurpose-outer.button-border .preorder-card .preorder-atc:hover,
+  .es-slider-multipurpose-outer.button-border .preorder-card .shop-now__button:hover{
+    background-color: #c0ff00;
+    border-color: #c0ff00;
+    color: #000 !important;
+  }
+
+</style>
+
+
+{% assign section_blocks = section.blocks  %}
+{% assign products = section_blocks | where: "type", "product" %}
+
+  
+<div class="preorder-container es-slider-multipurpose-outer {% if section.settings.classes != blank %} {{ section.settings.classes }} {% endif %} " id="{{section.id}}">
+  
+   
+  <!--  Suhail added  Tabs here  -->
+        
+      <div class="tabs-outer tab-main-border">
+        <nav class="tabs tabs_{{section.id}}">
+          <div class="selector selected_tab selector_{{section.id}}"></div>
+          {%assign tab_count = 0%}
+          
+          {%- for block in products -%}
+          {%assign tab_count = tab_count | plus:1%}
+          <a href="#" class="tabheads tablinks tabclick tabclick_{{section.id}} active"  data-change="{{ block.id }}" {%if forloop.index == 1%}id="defaultOpen_{{section.id}}"{%endif%} ><i class="fab fa-superpowers"></i>{{ block.settings.tab_head }}</a>
+
+          {%- endfor -%}
+
+        </nav>
+      </div>
+        
+  <!-- End of  Tabs here  -->
+  
+  
+  <!-- The Modal -->
+  <div id="preorderModal" class="modal">
+
+    <!-- The Close Button -->
+    <span class="close">&times;</span>
+
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="img01">
+
+    <!-- Modal Caption (Image Text) -->
+    <div id="caption"></div>
+
+  </div>
+
+    {%- for block in products -%}
+
+      <div id="{{ block.id }}" class="tabcontent tabcontent_{{section.id}}">
+          {% render 'multi-product-card',
+                  product_card_product: block.settings.tab_product,
+                  section_blocks: section_blocks,
+                  selected_block: block,
+                  klavio: block.settings.klavio,
+                  show_atc: block.settings.show_atc,
+                  show_shop_now: block.settings.show_shop_now,    
+                  show_swatch: block.settings.show_swatch,    
+                  atc-text: section.settings.atc-text,  
+                  shop-text: section.settings.shop-text,     
+                  show_notify: block.settings.show_notify,    
+                  show_size_chart: block.settings.show_size_chart,    
+                  show_size_section: block.settings.show_size_section,      
+                  show_secondary_image: section.settings.show_secondary_image,
+                  add_image_padding: section.settings.add_image_padding,
+                  show_rating: section.settings.show_rating,                  
+                  popup_urls: block.settings.popup_urls
+            
+          %}
+      </div>
+
+    {%- endfor -%}
+
+  
+    {%- for block in products -%}
+      <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal" {{ block.shopify_attributes }}>
+        <div role="dialog" aria-label="{{ block.settings.text }}" aria-modal="true" class="product-popup-modal__content" tabindex="-1">
+          <button id="ModalClose-{{ block.id }}" type="button" class="product-popup-modal__toggle" aria-label="{{ 'accessibility.close' | t }}">{% render 'icon-close' %}</button>
+          <div class="product-popup-modal__content-info">
+            <h1 class="h2">{{ block.settings.page.title }}</h1>
+            {{ block.settings.page.content }}
+          </div>
+        </div>
+      </modal-dialog>
+    {%- endfor -%}
+
+  
+  
+</div>
+  
+{% schema %}
+{
+  "name": "Multi Product Card",
+  "class": "multi-product-card",
+  "settings": [
+    {
+        "type":"color",
+        "id":"bg-color",
+        "label":"Background Color",
+        "default": "#fff"
+    },
+    {
+        "type":"color",
+        "id":"txt-color",
+        "label":"Text Color",
+        "default": "#000"
+    },
+    {
+      "type":"color",
+      "id":"card-bg-color",
+      "label":"Card Bg Color",
+      "default": "#000"
+    },
+    {
+        "type":"color",
+        "id":"card-text-color",
+        "label":"Card Text Color",
+        "default": "#fff"
+    },
+    {
+        "type":"text",
+        "id":"discount-text",
+        "label":"Discount Text",
+        "default": "Limited time offer"
+    },
+    {
+        "type":"text",
+        "id":"bnb-text",
+        "label":"Buy now button text",
+        "default": "Pre order"
+    },
+    {
+      "type":"text",
+      "id":"atc-text",
+      "label":"ATC button text",
+      "default": "PRE-ORDER NOW"
+    },
+    {
+        "type":"text",
+        "id":"shop-text",
+        "label":"SHOP NOW button text",
+        "default": "SHOP NOW"
+    },
+    {
+      "type": "text",
+      "id": "classes",
+      "label": "Padding/Margin Classes",
+      "info": "Add utilities classes separated by space"
+    }
+  ],  
+  "blocks": [ 
+    {
+      "type": "product",
+      "limit": 4,		
+      "name": "Product to Show",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_head",
+          "default": "Heading",
+          "label": "Tab Heading"
+        },
+        {
+          "type": "product",
+          "id": "tab_product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Pop-up link text",
+          "label": "POPUP TEXT"
+        },
+        {
+          "id": "page",
+          "type": "page",
+          "label": "Popup page"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_atc",
+          "default": false,
+          "label": "Show ATC Button"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_shop_now",
+          "default": false,
+          "label": "Show SHOP NOW Button"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_swatch",
+          "default": false,
+          "label": "Show Swatch Color"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_notify",
+          "default": true,
+          "label": "Show Notify Me Button"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_size_section",
+          "default": false,
+          "label": "Show Size Selection"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_size_chart",
+          "default": true,
+          "label": "Show Size CHart"
+        },
+        {
+          "type": "text",
+          "id": "klavio",
+          "label": "Klavio form link for NOTIFY ME"
+        },
+        {
+          "type": "text",
+          "id": "popup_urls",
+          "label": "Popup URLs",
+          "default": "Carbon Black://cdn.shopify.com/s/files/1/0017/4227/4613/files/AR-NEW-HERO-1080x1500_progressive_png_650x.progressive.jpg?v=1649149267, blue:link2",
+          "info": "Comma seperated (red:link1, blue:link2)"
+        }
+      ]
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Multi Product Card"      
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  
+  
+ 
+// Get the modal
+var preorderModal = document.getElementById("preorderModal");
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById("prod-img");
+var lense = document.getElementById("lense_icon");
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+$(".lense_icon").on("click", function(e){
+  event.preventDefault();
+  preorderModal.style.display = "block";
+  modalImg.src = $(this).data("src");
+  $('body').css('overflow', 'hidden');
+});
+
+$(".prod-img").on("click", function(e){
+  event.preventDefault();
+  preorderModal.style.display = "block";
+  // modalImg.src = this.src;
+  modalImg.src = $(this).attr('popup-src');
+  captionText.innerHTML = this.alt;    
+  $('body').css('overflow', 'hidden');
+});
+
+  $(".close").on("click", function(e){
+    preorderModal.style.display = "none";
+    $('body').css('overflow', 'auto');
+  });
+
+  $(document).ready(function() { 
+
+    
+  $(".tabclick_{{section.id}}").on("click", function(e){
+    e.preventDefault();
+    $(".tabclick_{{section.id}}").removeClass("active");
+    var change = $(this).data("change");
+    $(this).addClass("active");
+    $(".tabcontent_{{section.id}}").hide();
+    $("#"+change).show();
+    var activeWidth = $(this).innerWidth();
+    var itemPos = $(this).position();
+    $(".selector_{{section.id}}").css({
+      "left":itemPos.left + "px", 
+      "width": activeWidth + "px"
+      });
+
+    $('#'+change+' .color-slide').slick('unslick'); 
+    $('#'+change+' .color-slide').slick({
+      dots: false,
+      infinite: false,
+      speed: 300,
+      slidesToShow: 9,
+      slidesToScroll: 9,
+           centerMode: false,
+           prevArrow: '<span class="icon-chevron-left prev"></span>',
+         nextArrow: '<span class="icon-chevron-right next"></span>',
+      responsive: [
+        {
+          breakpoint: 1050,
+          settings: {
+            slidesToShow: 6,
+            slidesToScroll: 6
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 7,
+            slidesToScroll: 7
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 6,
+            slidesToScroll:6
+          }
+        }
+        
+      ]
+    });
+
+   
+  
+    });
+
+    $("#defaultOpen_{{section.id}}").trigger("click");
+      var tabs = $('.tabs_{{section.id}}');
+      var selector = $('.tabs_{{section.id}}').find('a').length;
+  		//var selector = $(".tabs").find(".selector");
+  		var activeItem = tabs.find('.active');
+  		var activeWidth = activeItem.innerWidth();
+    $(".selector_{{section.id}}").css({
+  		  "left": activeItem.position.left + "px", 
+  		  "width": activeWidth + "px"
+  		});
+      
+  });
+       
+
+                   
+  </script>

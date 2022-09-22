@@ -1,0 +1,111 @@
+.video-section.page-width {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+@media screen and (max-width: 768px) {
+  .video-section.hide-mobile{
+    display: none !important;
+  }
+}
+
+
+.mobile{
+  display: none;
+}
+.desktop{
+  display: block;
+}
+@media screen and (max-width: 768px) {
+  .mobile{
+    display: block;
+  }
+  .desktop{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .video-section.page-width {
+    margin-top: calc(5rem + var(--page-width-margin));
+    margin-bottom: calc(5rem + var(--page-width-margin));
+  }
+}
+
+.video-section__media {
+  position: relative;
+  padding-bottom: 56.25%;
+}
+
+.video-section__media.deferred-media {
+  overflow: visible;
+}
+
+.video-section__poster.deferred-media__poster:focus {
+  outline-offset: 0.3rem;
+}
+
+.video-section__media iframe {
+  background-color: rgba(var(--color-foreground), 0.03);
+  border: 0;
+}
+
+.video-section__poster,
+.video-section__media iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.u-padding-bottom-sm-2 .deferred-media__poster-button{
+  background-color: #c0ff00;
+}
+
+.video-button-animate:before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 70px;
+  height: 70px;
+  background: #c0ff00;
+  border-radius: 50%;
+  animation: pulse-border 1500ms ease-out infinite;
+}
+
+.video-button-animate:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  display: block;
+  width: 60px;
+  height: 60px;
+  background: #c0ff00;
+  border-radius: 50%;
+  transition: all 200ms;
+}
+
+.video-button-animate:hover:after {
+  background-color: darken(#fff, 10%);
+}
+
+.video-button-animate svg{
+  z-index: 10 !important;
+}
+
+@keyframes pulse-border {
+  0% {
+    transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-50%) translateY(-50%) translateZ(0) scale(1.5);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,568 @@
+{%- liquid assign products_to_display = section.settings.collection.all_products_count
+if section.settings.collection.all_products_count > section.settings.products_count
+assign products_to_display = section.settings.products_count
+endif
+
+
+  assign columnCount = section.settings.column_count
+    assign width1 = "50%"
+    assign width2 = "25%"
+
+  if columnCount == 2 
+      assign width1 = "75%"
+      assign width2 = "25%"
+  elsif columnCount == 3 
+    assign width1 = "50%"
+    assign width2 = "25%"
+  elsif columnCount == 4 
+    assign width1 = "55%"
+    assign width2 = "15%"
+  endif 
+
+-%}
+
+<style>
+
+  .exp-box {  
+    display:block;
+  }  
+  .exp-flex {  
+    display:flex;
+  }  
+  .exp-hidden {  
+    display:none;
+  }  
+
+  .fadeInBottom {
+    animation-delay: .2s;
+    animation-duration: .1s;
+    animation-fill-mode: both;
+    animation-name: fadeInBottom 
+  }
+  @keyframes fadeInBottom {
+    from {
+      opacity: 0;
+      transform: translateY(2%);
+    }
+    to { opacity: 1 }
+  }  
+  .expanding-colummn-st {
+    background-size: cover;
+    background-position: center;
+  }
+  .columnContainer {
+    width: 100%;
+    height: 650px;
+    overflow: hidden;
+    /*     white-space: nowrap; */
+    /* font-family: Times,sans-serif; */
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color:{{section.settings.text_color}};
+  }
+  .column-element-heading, .content-block , .content-block p {
+    color:{{section.settings.text_color}} !important;
+  }
+  .content-block {
+    width: 35vw;
+  }
+  .column-elements {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+  }
+
+  .mainColumn {
+
+    width: {{width2}};;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    z-index: 13;
+    background-position: center;
+    background-size: cover;
+    -webkit-transition: width .1s ease-in-out;
+    -moz-transition: width .1s ease-in-out;
+    -o-transition: width .1s ease-in-out;
+    transition: width .1s ease-in-out;
+  }
+  .mainColumnLarge {
+    width: {{width1}};
+
+  }
+
+  .columnOne {
+/*     background-color: rgba(250, 200, 200, 0.1); */
+  }
+  .columnTwo {
+    background-color: hsla(0,0%,100%,.1);
+  }
+  .columnThree {
+    background-color: hsla(0,0%,100%,.2);
+  }
+  
+  .expanding-element-heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    justify-content: space-between;
+    text-transform: uppercase;
+      
+  }
+  .expanding-element-heading2 {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    text-transform: uppercase;
+  }
+
+  .column-element-heading {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    justify-content: space-between;
+    font-weight: 700;
+    line-height: 1.4;
+
+  }
+  .plus-text {
+    display:none;
+  }
+  .minus-text {
+    display:none;
+  }
+  .column-body {
+    /* font-family: "HelveticaNow", Arial, sans-serif; */
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Responsive layout - makes a one column layout instead of a two-column layout */
+  @media (max-width: 749px) {
+    .plus-text {
+      font-size: 18px;
+      line-height:12px;
+      display:block;
+    }
+    .minus-text {
+      display:block;
+      font-size: 20px;
+      line-height:12px;
+    }
+    .expanding-element-heading2 {
+      font-size: 12px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+    }
+      .fadeInBottom {
+	    animation-delay: .3s;
+      }
+    .column-element-heading {
+      font-size: 3rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .expanding-element-heading {
+      font-size: 1.2rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      -ms-flex-align: center;
+      align-items: center;
+      -ms-flex-pack: center;
+
+    }
+    .content-block {
+      width: 100%;
+    }
+    .column-elements {
+      width: 80%;
+    }
+    .columnContainer {
+      flex-direction: column;
+      height:80vh;
+    }
+    .mainColumn {
+    transition: height 0.25s ease-in;
+      width: 100%;
+      height:100px;
+    }
+    .mainColumnLarge {
+      width: 100%;
+      height:calc(100vh - 200px);    
+    transition: height 0.15s ease-out;
+    }
+    @keyframes fadeInd {
+      from {
+        height: 100px;
+/*         transform: translateY(2%); */
+      }
+      to { height: calc(100vh - 200px); }
+    }  
+    
+  }
+</style>
+
+<div id="{{ section.id }}" class="expanding-colummn-st">
+
+    <div class="columnContainer">
+        <section class="mainColumn columnOne" data-column="1" class="">
+          <div class="column-elements">
+          <div class="expanding-element-heading exp-hidden"><div>{{section.settings.title1}} </div> <div class="plus-text"> &nbsp&nbsp+ </div></div>          
+            <div class="content-block exp-box">
+              <div class="expanding-element-heading2"><div> {{section.settings.title1}} </div> <div class="minus-text"> &nbsp&nbsp- </div> </div>          
+              <div class="column-element-heading ">{{section.settings.heading1}}</div>
+              <p class="column-body">{{section.settings.body1}}</p>
+              {% if section.settings.link_1 != blank %}
+                <div class="es-accordion-cta-container">
+                  <a href="{{section.settings.link_1}}" class="button button--primary-1  button--white es-arrow-right-link">
+                    <span class="es-arrow-right-text"> 
+                      {{section.settings.link_title_1}} </span>                                        
+                  </a>
+                </div>
+              {% endif %}
+            </div>          
+          </div>
+      	</section>
+        <section class="mainColumn columnTwo" data-column="2" class="">
+          <div class="column-elements">
+          <div class="expanding-element-heading exp-flex"><div>{{section.settings.title2}} </div> <div class="plus-text"> &nbsp&nbsp+ </div></div>          
+          <div class="content-block exp-hidden">
+              <div class="expanding-element-heading2"><div> {{section.settings.title2}} </div> <div class="minus-text"> &nbsp&nbsp- </div> </div>          
+                    <div class="column-element-heading ">{{section.settings.heading2}}</div>
+                        <p class="column-body">{{section.settings.body2}}</p>
+                        {% if section.settings.link_2 != blank %}
+                          <div class="es-accordion-cta-container">
+                              <a href="{{section.settings.link_2}}" class="button button--primary-1  button--white es-arrow-right-link">
+                                  <span class="es-arrow-right-text"> 
+                                      {{section.settings.link_title_2}} </span>                                        
+                              </a>
+                          </div>
+                        {% endif %}
+                    </div>          
+          </div>      	
+      	</section>
+              {% if columnCount > 2 %} 
+
+      
+
+        <section class="mainColumn columnThree" data-column="3" class="">
+          <div class="column-elements">
+          <div class="expanding-element-heading exp-flex"><div>{{section.settings.title3}} </div> <div class="plus-text"> &nbsp&nbsp+ </div></div>          
+            <div class="content-block exp-hidden">
+              <div class="expanding-element-heading2"><div> {{section.settings.title3}} </div> <div class="minus-text"> &nbsp&nbsp- </div> </div>          
+              <div class="column-element-heading ">{{section.settings.heading3}}</div>
+              <p class="column-body">{{section.settings.body3}}</p>
+              {% if section.settings.link_3 != blank %}
+                <div class="es-accordion-cta-container">
+                  <a href="{{section.settings.link_3}}" class="button button--primary-1  button--white es-arrow-right-link">
+                    <span class="es-arrow-right-text"> 
+                      {{section.settings.link_title_3}}</span>                                        
+                  </a>
+                </div>
+              {% endif %}
+            </div>          
+          </div>
+      </section>
+              {% endif %}
+              {% if columnCount > 3 %} 
+      <section class="mainColumn columnFour" data-column="4" class="">
+        <div class="column-elements">
+          <div class="expanding-element-heading exp-flex"><div>{{section.settings.title4}} </div> <div class="plus-text"> &nbsp&nbsp+ </div></div>          
+          <div class="content-block exp-hidden">
+              <div class="expanding-element-heading2"><div> {{section.settings.title4}} </div> <div class="minus-text"> &nbsp&nbsp- </div> </div>          
+            <div class="column-element-heading ">{{section.settings.heading4}}</div>
+            <p class="column-body">{{section.settings.body3}}</p>
+            {% if section.settings.link_4 != blank %}
+              <div class="es-accordion-cta-container">
+                  <a href="{{section.settings.link_4}}" class="button button--primary-1  button--white es-arrow-right-link">
+                  <span class="es-arrow-right-text"> 
+                      {{section.settings.link_title_4}}</span>                                        
+                </a>
+              </div>
+            {% endif %}
+          </div>          
+        </div>
+      </section>
+              {% endif %}
+
+    </div>
+
+
+  
+</div>
+
+
+{% schema %}
+{
+"name": "Expanding column ST",
+"settings": [
+    {
+      "type": "range",
+      "id": "column_count",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Column count",
+      "default": 3
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "header",
+      "content": " --- First Column ---"
+    },
+    {
+      "type": "text",
+      "id": "title1",
+      "label": "Title 1",
+      "default": "Title 1"
+    },
+    {
+      "type": "text",
+      "id": "heading1",
+      "label": "Headiing 1",
+      "default": "Heading 1"
+    },
+    {
+      "type": "textarea",
+      "id": "body1",
+      "label": "Body text 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_img_1",
+      "label": "Image 1"
+    },
+    {
+      "type": "text",
+      "id": "link_title_1",
+      "label": "Button Title 1"
+    },
+    {
+      "type": "url",
+      "id": "link_1",
+      "label": "Button url 1"
+    },
+    {
+      "type": "header",
+      "content": " --- Second Column ---"
+    },
+    {
+      "type": "text",
+      "id": "title2",
+      "label": "Title 2",
+      "default": "Title 2"
+    },
+    {
+      "type": "text",
+      "id": "heading2",
+      "label": "Headiing 2",
+      "default": "Heading 2"
+    },
+    {
+      "type": "textarea",
+      "id": "body2",
+      "label": "Body text 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_img_2",
+      "label": "Image 2"
+    },
+    {
+      "type": "text",
+      "id": "link_title_2",
+      "label": "Button Title 2"
+    },
+    {
+      "type": "url",
+      "id": "link_2",
+      "label": "Button url 2"
+    },
+    {
+      "type": "header",
+      "content": " --- Third Column ---"
+    },
+    {
+      "type": "text",
+      "id": "title3",
+      "label": "Title 3",
+      "default": "Title 3"
+    },
+    {
+      "type": "text",
+      "id": "heading3",
+      "label": "Headiing 3",
+      "default": "Heading 3"
+    },
+    {
+      "type": "textarea",
+      "id": "body3",
+      "label": "Body text 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_img_3",
+      "label": "Image 3"
+    },
+    {
+      "type": "text",
+      "id": "link_title_3",
+      "label": "Button Title 3"
+    },
+    {
+      "type": "url",
+      "id": "link_3",
+      "label": "Button url 3"
+    },
+    {
+      "type": "header",
+      "content": " --- Fourth Column ---"
+    },
+    {
+      "type": "text",
+      "id": "title4",
+      "label": "Title 4",
+      "default": "Title 4"
+    },
+    {
+      "type": "text",
+      "id": "heading4",
+      "label": "Headiing 4",
+      "default": "Heading 4"
+    },
+    {
+      "type": "textarea",
+      "id": "body4",
+      "label": "Body text 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "column_img_4",
+      "label": "Image 4"
+    },
+    {
+      "type": "text",
+      "id": "link_title_4",
+      "label": "Button Title 4"
+    },
+    {
+      "type": "url",
+      "id": "link_4",
+      "label": "Button url 4"
+    }
+],
+"presets": [
+{
+"name": "Expanding column st"
+}
+]
+}
+{% endschema %}
+
+
+  {% assign img_url_1 = section.settings.column_img_1 %}
+  {% assign img_url_2 = section.settings.column_img_2 %}
+  {% assign img_url_3 = section.settings.column_img_3 %}
+  {% assign img_url_4 = section.settings.column_img_4 %}
+
+<script>
+  
+// 	slider_id.querySelector(".mainColumn").first().width('50%');
+                                           
+const nodeList = document.querySelectorAll(".mainColumn");
+  for (let i = 0; i < nodeList.length; i++) {
+    if(i==0){	  
+      nodeList[i].classList.add("mainColumnLarge");    
+      document.querySelector(".expanding-colummn-st").style.backgroundImage = 'url({{img_url_1 | img_url: '2000x'}})';                
+
+      nodeList[i].querySelector(".content-block").classList.remove('exp-hidden');
+      nodeList[i].querySelector(".content-block").classList.add('exp-box','fadeInBottom');    
+//       nodeList[i].querySelector(".content-block").style.display = "block";
+    }else{
+      nodeList[i].classList.remove("mainColumnLarge");
+//       nodeList[i].querySelector(".content-block").style.display = "hidden";
+      nodeList[i].querySelector(".content-block").classList.add('exp-hidden','fadeInBottom');
+      nodeList[i].querySelector(".content-block").classList.remove("exp-box");    
+
+    }
+    
+    let hoverTaskRunnig = false;
+
+    nodeList[i].addEventListener("mouseenter", function (e) {
+      
+      if (!hoverTaskRunnig){
+               
+//       hoverTaskRunnig = true;
+      var targetElement = event.target || event.srcElement;
+
+      if(targetElement.dataset.column == 1){
+        document.querySelector(".expanding-colummn-st").style.backgroundImage = 'url({{img_url_1 | img_url: '2000x'}})';                
+      }
+      else if(targetElement.dataset.column == 2){
+        document.querySelector(".expanding-colummn-st").style.backgroundImage = 'url({{img_url_2 | img_url: '2000x'}})';                
+      }
+      else if(targetElement.dataset.column == 3){
+        document.querySelector(".expanding-colummn-st").style.backgroundImage = 'url({{img_url_3 | img_url: '2000x'}})';                
+      }
+      else if(targetElement.dataset.column == 4){
+        document.querySelector(".expanding-colummn-st").style.backgroundImage = 'url({{img_url_4 | img_url: '2000x'}})';                
+      }
+
+
+
+      for (let i = 0; i < nodeList.length; i++) {
+        if(i+1==targetElement.dataset.column){
+          
+          nodeList[i].classList.add("mainColumnLarge");    
+          nodeList[i].querySelector(".content-block").classList.remove('exp-hidden');
+          nodeList[i].querySelector(".content-block").classList.add('exp-box','fadeInBottom');   
+          
+          nodeList[i].querySelector(".expanding-element-heading").classList.add('exp-hidden');
+          nodeList[i].querySelector(".expanding-element-heading").classList.remove("exp-flex");    
+          
+          
+//           const myTimeout = setTimeout(scrollFun, 300);
+
+          function scrollFun() {
+            nodeList[i].scrollIntoView({behavior: "smooth"});
+		      hoverTaskRunnig = false;
+          }
+
+          
+//           nodeList[i].querySelector(".content-block").style.display = "block";
+        }else{
+          nodeList[i].classList.remove("mainColumnLarge");
+          nodeList[i].querySelector(".content-block").classList.add('exp-hidden','fadeInBottom');
+          nodeList[i].querySelector(".content-block").classList.remove("exp-box");    
+//           nodeList[i].querySelector(".content-block").style.display = "none";
+
+          nodeList[i].querySelector(".expanding-element-heading").classList.remove('exp-hidden');
+          nodeList[i].querySelector(".expanding-element-heading").classList.add('exp-flex');   
+          
+        }
+
+      }   
+        
+      }
+      
+      
+      
+    });
+
+  }
+
+</script>

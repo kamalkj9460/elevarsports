@@ -1,0 +1,234 @@
+
+<style>
+
+  #{{section.id}} {
+      font-family: 'Poppins', sans-serif; 
+  }
+
+  .timer_container {
+    text-align: center;
+    background: {{section.settings.bg-color}};
+    font-family: poppins;
+    font-weight: lighter;
+    padding: 20px 0;
+    display: none;
+}
+
+  .timer_head{
+    font-family: poppins;
+    font-size: 135%;
+    font-weight: 400;
+    color: {{section.settings.txt-color}};
+  }
+ .timer{
+    font-size: 3em;
+    font-weight: bold;
+    color: {{section.settings.txt-color}};
+    width: 100%;
+    display:flex;
+    justify-content:center;
+  }
+  
+  .cd_timer_blocks {
+      display: inline-block;
+      margin: 0 15px 15px;
+      line-height: 1.2;
+      color: #000;
+  }
+  .cd_timer_divider {
+      display: inline-block;  
+      line-height: 1;
+  }
+  #{{section.id}} div span {
+      color: rgba(0,0,0,.7);
+      display: block;
+      font-size: .35em;
+      font-weight: 400;
+  }
+  .timer_sub_text {
+      font-size: 11px !important;
+  }
+  
+  @media screen and (max-width: 400px){ 
+    .timer {
+      font-size: 2em;
+    } 
+    .timer_head{
+      font-size: 1em;
+      font-weight: bold;
+    }
+
+  }
+
+    @media screen and (max-width: 320px){ 
+    .timer {
+      font-size: 1.5em;
+    } 
+    .timer_head{
+      font-size: 90%;
+    }
+
+  }
+  .bottom_sticky_btn.fixed-bottom {
+/*    height: 18rem; */
+ }                  
+ .bottom_sticky_btn.fixed-bottom .cd_timer_blocks{
+   display: flex;
+   text-align: center;
+   margin:0;
+   font-size: 13px;
+   color:#000;
+   margin-top: 7px;
+ }                  
+ .bottom_sticky_btn. .cd_timer_blocks {
+ }
+    
+</style>
+
+
+  <div class="timer_container">
+    <div class="timer_head">
+         {{section.settings.head-txt}}
+    </div>
+    <div class="timer" id="{{section.id}}">05:00 m</div>
+  </div>
+  <div class="bottom_sticky_btn fixed-bottom">
+    <a href="#product-card" 
+    onclick="ga('send', 'event', 'shoe_pre-ld_day-men', 'cta_hero_top', 'prod-shoe-day-men')"
+    class="button button--primary-1 button--yellow button--width-full video-play-button">
+      PRE-ORDER NOW 
+    </a>
+<!--     <p class="bottom_sticky_text">
+      Free Shipping | COD Available | 7 Day Returns
+    </p> -->
+    <div class="timer" id="sticky-{{section.id}}">05:00 m</div>
+
+  </div>
+
+
+    
+
+{% schema %}
+{
+  "name": "Count Down Timer",
+  "settings": [
+    {
+        "type":"text",
+        "id":"head-txt",
+        "label":"Head Text",
+        "default": "PRE-ORDER TO GET Rs. 1500 OFF"
+    },
+    {
+        "type":"text",
+        "id":"end-time",
+        "label":"End Time",
+        "default": "sep 20, 2022 01:30:00"
+    },
+    {
+        "type":"color",
+        "id":"bg-color",
+        "label":"Background Color",
+        "default": "#90cbf3"
+    },
+    {
+        "type":"color",
+        "id":"txt-color",
+        "label":"Text Color",
+        "default": "#000"
+    }
+
+  ],
+  "presets": [
+    {
+      "name": "Count Down Timer"      
+    }
+  ]
+ 
+}
+{% endschema %}
+  
+<script>
+function updateTimer() {
+    future = Date.parse("{{section.settings.end-time}}");
+ now = new Date();
+ diff = future - now;
+
+ days = Math.floor(diff / (1000 * 60 * 60 * 24));
+ hours = Math.floor(diff / (1000 * 60 * 60));
+ mins = Math.floor(diff / (1000 * 60));
+ secs = Math.floor(diff / 1000);
+
+ d = days;
+ h = hours - days * 24;
+ m = mins - hours * 60;
+ s = secs - mins * 60;
+
+ document.getElementById("{{section.id}}")
+  .innerHTML =
+  '<div class="cd_timer_blocks">' + String(d).padStart(2, '0') + '<span class="timer_sub_text">Days</span></div>' +
+  '<div class="cd_timer_divider">' + ":" + '<span></span></div>' +
+  '<div class="cd_timer_blocks">' + String(h).padStart(2, '0') + '<span class="timer_sub_text">Hrs</span></div>' +
+  '<div class="cd_timer_divider">' + ":" + '<span></span></div>' +
+  '<div class="cd_timer_blocks">' + String(m).padStart(2, '0') + '<span class="timer_sub_text">Mins</span></div>' +
+  '<div class="cd_timer_divider">' + ":" + '<span></span></div>' +
+  '<div class="cd_timer_blocks">' + String(s).padStart(2, '0') + '<span class="timer_sub_text">Secs</span></div>';
+
+   document.getElementById("sticky-{{section.id}}")
+  .innerHTML =
+  '<div class="cd_timer_blocks">' + 'Offer Ends In | '+ String(d).padStart(2, '0') + " d "+ 
+  '<div class="cd_timer_divider">' + "&nbsp:&nbsp" + '<span></span></div>' +
+  '<div class="cd_timer_block">' + String(h).padStart(2, '0') + " h </div>"+ 
+  '<div class="cd_timer_divider">' + "&nbsp:&nbsp" + '<span></span></div>' +
+  '<div class="cd_timer_block">' + String(m).padStart(2, '0') + " m </div>"+ 
+  '<div class="cd_timer_divider">' + "&nbsp:&nbsp" + '<span></span></div>' +
+  '<div class="cd_timer_block">' + String(s).padStart(2, '0')+ " s </div></div>" ;
+}
+  
+ setInterval('updateTimer()', 1000);
+ //updateTimer();
+
+$('.bottom_sticky_btn').hide();  
+
+
+// window.addEventListener("scroll", function() {
+//   var elementTarget = document.getElementsByClassName("tabcontent")[1];
+//   // var elementTarget = document.getElementsByClassName('shipping-slider')[0]
+//   var elementLink = "#"+document.getElementsByClassName("multi-product-card")[0].id;
+//   $('.bottom_sticky_btn').find('a').attr('href',elementLink);
+
+//   if (window.scrollY > (elementTarget.offsetTop + elementTarget.offsetHeight)) {
+    
+//     $('.bottom_sticky_btn').show();
+//   }else{
+//     $('.bottom_sticky_btn').hide();  
+//   }
+// });
+
+window.addEventListener("scroll", function() {
+  var elementTarget = document.getElementsByClassName("preorder-container")[0];
+  // var elementTarget = document.getElementsByClassName('shipping-slider')[0]
+  var elementLink = "#"+document.getElementsByClassName("multi-product-card")[0].id;
+  var productCard = document.getElementsByClassName("multi-product-card")[0];
+  $('.bottom_sticky_btn').find('a').attr('href',elementLink);
+
+
+  const firstSection = document.querySelectorAll(`[id^="shopify-section-template--"]`)[0];
+  if (window.scrollY > (firstSection.offsetTop + firstSection.offsetHeight)) {
+    
+    if (window.scrollY > (productCard.offsetTop - screen.height )) {
+        if (window.scrollY > (elementTarget.offsetTop + elementTarget.offsetHeight)) {
+          $('.bottom_sticky_btn').show();
+        }else{
+          $('.bottom_sticky_btn').hide();  
+        }      
+    }else{
+      $('.bottom_sticky_btn').show();      
+    }
+  }else{
+    $('.bottom_sticky_btn').hide();  
+  }
+
+  
+});
+  
+</script>

@@ -1,0 +1,177 @@
+
+{{ 'es-component-gallery-basic.css' | asset_url | stylesheet_tag }}
+{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+
+<style>
+
+</style>
+
+<div class="gallery-basic">
+    <div class="gallery-basic__container u-padding-bottom-lg-2">
+        <div class="gallery-basic__text-box">
+
+        </div>
+        <div class="masonry-wrapper">
+            <div class="masonry">
+
+                {% for slide-count in (1..section.settings.image-count) %}
+                    {% capture gallery-image %}gallery-image-{{ slide-count }}{% endcapture %}
+                    <div class="masonry-item">
+        
+                        {% assign imgURL = section.settings[gallery-image] | split: '/' %}
+                        {% assign altTag = imgURL | last %}
+                        <img class="masonry-content b-lazy" src=data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== data-src="{{ section.settings[gallery-image] | img_url: '250x' }}" alt="{{altTag}}">
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gallery Basic",
+  "class": "spaced-section spaced-section--full-width",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable-mobile",
+      "default": true,
+      "label": "Enable Mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable-desktop",
+      "default": true,
+      "label": "Enable Desktop"
+    },
+    {
+        "type":"color",
+        "id":"section-font-color",
+        "label":"Section Font Color",
+        "default":"#000"
+    },
+    {
+        "type":"color",
+        "id":"section-bg-color",
+        "label":"Section Background Color",
+        "default":"#fff"
+    },
+    {
+        "type": "range",
+        "id": "image-count",
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "unit": "no.",
+        "label": "Total images to display",
+        "default":10
+    },
+    {
+        "type":"url",
+        "id":"cta-button-link",
+        "label":"CTA Button URL"
+    },
+    {
+        "type":"text",
+        "id":"cta-button-text",
+        "label":"CTA Button Text",
+        "default":"VIEW MORE"
+    },
+    {
+        "type":"url",
+        "id":"cta-button-link-2",
+        "label":"CTA Button URL 2"
+    },
+    {
+        "type":"text",
+        "id":"cta-button-text-2",
+        "label":"CTA Button Text 2",
+        "default":"VIEW MORE"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-1",
+        "label": "Gallery Image 1"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-2",
+        "label": "Gallery Image 2"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-3",
+        "label": "Gallery Image 3"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-4",
+        "label": "Gallery Image 4"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-5",
+        "label": "Gallery Image 5"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-6",
+        "label": "Gallery Image 6"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-7",
+        "label": "Gallery Image 7"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-8",
+        "label": "Gallery Image 8"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-9",
+        "label": "Gallery Image 9"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-10",
+        "label": "Gallery Image 10"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-11",
+        "label": "Gallery Image 11"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-12",
+        "label": "Gallery Image 12"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-13",
+        "label": "Gallery Image 13"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-14",
+        "label": "Gallery Image 14"
+    },
+    {
+        "type": "image_picker",
+        "id": "gallery-image-15",
+        "label": "Gallery Image 15"
+    }
+  ],
+  "blocks": [
+  ],
+  "presets": [
+    {
+      "name": "Gallery Basic"
+    }
+  ]
+}
+{% endschema %}

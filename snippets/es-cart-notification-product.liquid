@@ -1,0 +1,149 @@
+   {%- if cart != empty -%}
+        {%- for item in cart.items -%}
+        
+        <div class="Drawer__box" id="es-cart-notification-product-{{ item.id }}" data-id="{{item.id }}">        
+          <div class="img-box">            
+           {% if item.image %}
+            <a href="{{ item.url }}">
+          <img class="cart-notification-product__image"
+               src="{{ item.image | img_url: '140x' }}"
+               alt="{{ item.image.alt | escape }}"
+               width="70"
+               height="{{ 70 | divided_by: item.image.aspect_ratio | ceil }}"
+               loading="lazy"
+               >
+            </a>
+          {% endif %}
+          </div>
+          <div class="cart-info">
+            <div class="content-here">
+              <div class="crt-left">
+                <a href="{{ item.url }}">
+              <h4 class="cart-tt">{{ item.product.title | escape }}</h4>   
+                {%- for property in item.properties -%}
+                {%- assign property_first_char = property.first | slice: 0 -%}
+                  {%- if property.last != blank and property_first_char != '_' -%}
+                    {%- if property.first contains 'Willow' or property.first contains 'Size' or property.first contains 'Type' or property.first contains 'Grip' -%}
+                      <p class="cart-line" style="text-align: left;">
+                        {{ property.first }}: 
+                          {{ property.last }}
+                      </p>
+                    {%- endif -%}
+                  {%- endif -%}
+                {%- endfor -%}   
+                
+                {%- unless item.product.has_only_default_variant -%}
+                {%- for option in item.options_with_values -%}
+                  <p class="product-size">{{ option.name }}:{{ option.value }}</p>
+                {%- endfor -%}
+                {%- endunless -%}
+                </a>
+              </div>
+              
+              <div class="crt-trash">
+                <span class="trash"></span>
+              </div>
+              
+            </div>
+            
+            <div class="quantity-outer">
+              
+              <quantity-input class="quantity">
+                <button class="quantity__button no-js-hidden sub" name="minus" type="button"  id="sub" >
+                  <span class="visually-hidden">{{ 'products.product.quantity.decrease' | t: product: item.product.title | escape }}</span>
+                  {% render 'icon-minus' %}
+                </button>
+                <input class="quantity__input"
+                       type="number"
+                       name="updates[]"
+                       value="{{ item.quantity }}"
+                       min="0"
+                       max="{{item.inventory_quantity}}"
+                       aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                       id="Quantity-{{ item.index | plus: 1 }}"
+                       data-index="{{ item.index | plus: 1 }}"
+                       >
+                <button id="add" class="add quantity__button no-js-hidden" name="plus" type="button">
+                  <span class="visually-hidden">{{ 'products.product.quantity.increase' | t: product: item.product.title | escape }}</span>
+                  {% render 'icon-plus' %}
+                </button>
+              </quantity-input>
+              
+              <!--/ price /-->
+              <span class="price-right">
+                {%- if item.original_line_price != item.final_line_price -%}
+                <dl class="cart-item__discounted-prices">
+                  <dt class="visually-hidden">
+                    {{ 'products.product.price.regular_price' | t }}
+                  </dt>
+                  <dd>
+                    <s class="cart-item__old-price price price--end">
+                      {{ item.original_line_price | money }}
+                    </s>
+                  </dd>
+                  <dt class="visually-hidden">
+                    {{ 'products.product.price.sale_price' | t }}
+                  </dt>
+                  <dd class="price price--end">
+                    {{ item.final_line_price | money }}
+                  </dd>
+                </dl>
+                {%- else -%}
+                <span class="price price--end">
+                  {{ item.original_line_price | money }}
+                </span>
+                {%- endif -%}
+              </span>
+              {% if item.compare_at_price > item.price %}
+              <s id="ComparePrice" class="product-single__sale-price">
+                {{ item.compare_at_price_max | money }}
+              </s>
+              {% endif %}
+            </div>
+            
+          </div>
+          
+        </div>
+        {%- endfor -%}
+
+
+
+
+        {%- for block in section.blocks -%}
+          {%- case block.type -%}
+          {%- when 'slide' -%}
+
+        
+        
+               <div class="demo-solution demo-solution--flexbox" style="display: flex;align-items: center;margin:auto;">
+                        {%- for item in cart.items -%}
+
+<!--           {{ item.product.title | escape }}<br/> -->
+              {%- endfor -%}
+          
+   <img style="margin-right: 10px;" width="30" height="30" src="{{ block.settings.cart_msg_icon | img_url: 'master' }}" alt="" />
+   <span>{{ block.settings.text }}</span>
+</div>
+ 
+        
+        
+        {%- endcase -%}
+        {%- endfor -%}
+
+
+
+
+        {%else%}
+        <p>Your Cart is Empty</p>
+        <div class="cart_nav_outer">
+          <ul>
+            {%assign cart_menu = 'header-desktop-mega-menu'%}
+            {%- for link in linklists.cart_menu.links -%}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {%- endfor -%}
+          </ul>
+        </div>
+        {%- endif -%}
+<script>
+  swiper=new Swiper(".mySwiper_bottom",{slidesPerView:4,spaceBetween:10,allowTouchMove:!0,navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}});
+</script>

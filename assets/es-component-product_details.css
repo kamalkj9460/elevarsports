@@ -1,0 +1,96 @@
+/* infographic way */
+  
+  .es-in-section-infographic-way{
+    background-color: rgb(var(--color-foreground));
+    /* padding:20px 0; */
+  }
+
+@media only screen and (min-width: 768px){
+	.es-page-width-400{
+        width: 60%;
+        margin: 0 auto;
+    }
+}
+
+  .es-in-section-infographic-way .infographic-text-box{
+    width: 100%;
+    text-align: center;
+    padding: 2.4rem 0;
+  }
+
+  .es-in-section-infographic-way .infographic-text-box h1{
+    font-size: 2.5rem;
+    line-height: 1.32;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #fff;
+    margin: 0px;
+    padding: 0px;
+
+  }
+
+  @media screen and (min-width: 768px){
+    .es-in-section-infographic-way .infographic-text-box h1{
+      font-size: 3.2rem;
+      line-height: 1.31;
+    }
+  }
+
+
+  
+  .es-in-section-infographic-way .pro-related-img{
+    text-align: center;
+  }
+  .es-in-section-infographic-way .pro-related-img img{
+    width:100px;
+    margin:0 auto; 
+  }
+  .es-in-section-infographic-way .heading h4{
+    color: rgb(var(--color-background));
+    font-size:1.6rem;
+  }
+  .es-in-section-infographic-way .h-inline{
+    padding:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display:-webkit-flex;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+  }
+  .es-in-section-infographic-way .h-inline li{
+    padding: 0px 0px;
+    list-style: none;
+    margin: 0 10px;
+    position: relative;
+    border-top: 3px solid #ccc;
+    width: 25%;
+  }
+  .es-in-section-infographic-way .h-inline li.is-active{
+     border-top: 3px solid #4ceaf2;
+  }
+  
+  .es-in-section-infographic-way .h-inline li.is-active span{
+    color:#fff;
+  }
+  .es-in-section-infographic-way .h-inline li span{
+    color:#666;
+    font-size: 1.2rem;
+  }
+  .es-in-section-infographic-way .h-inline span p{
+    color:#fff;
+  }
+  .es-in-section-infographic-way .numerical-content h1.bigger-text{
+    color: rgb(var(--color-background));
+  }
+  .es-in-section-infographic-way .numerical-content h1.bigger-text sup{
+     font-size: 1.2rem;
+  }
+  .es-in-section-infographic-way .numerical-content h5.small-text{
+    color: rgb(var(--color-background));
+    opacity: 0.5;
+  }
+  
+  .es-in-section-infographic-way .boxy{
+    margin-bottom:3rem;
+  }

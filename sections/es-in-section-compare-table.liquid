@@ -1,0 +1,596 @@
+
+
+{{ 'es-component-compare-table.css' | asset_url | stylesheet_tag }}
+{{ 'es-utilities.css' | asset_url | stylesheet_tag }}
+<style>
+
+</style>
+
+<div class="section-compare">
+    <div class="section-compare__container {% if section.settings.classes %} {{ section.settings.classes }} {% endif %}">
+
+      {% if section.settings.enable-desktop %}
+        <!-- Desktop  -->
+        <div class="section-compare__desktop hidden-xs hidden-sm">
+
+            <!-- Text Box  -->
+            <div class="section-compare__desktop-text-box" 
+                style="
+                    {% if section.settings.text-alignment != blank %}
+                        text-align:{{ section.settings.text-alignment }};
+                        {% else %}text-align:left;
+                    {% endif %}
+                    {% if section.settings.font-color != blank %}
+                        color:{{ section.settings.font-color }};
+                        {% else %}color:rgb(33, 42, 47);
+                    {% endif %}
+
+                ">
+                {% if section.settings.main-heading != blank %}
+                <h2 class="section-compare__heading u-margin-bottom-small">
+                    {{ section.settings.main-heading }}
+                </h2>
+                {% endif %}
+                {% if section.settings.body != blank %}
+                    <div class="section-compare__body u-margin-bottom-small">
+                        {{ section.settings.body }}
+                    </div>
+                {% endif %}
+            </div>
+            <!-- Text Box  -->
+
+            <div class="section-compare__table-box">
+                <div class="section-compare__table">
+
+                    {% if section.settings.desktop-image-1 != blank %}
+                        <div class="section-compare__desktop-image-box">
+                            <img src="{{ section.settings.desktop-image-1 | img_url: '300x', format: 'pjpg'  }}" alt="">
+                        </div>
+                    {% endif %}
+
+                    {% if section.settings.tab_heading-1 != blank %}
+                        {% if section.settings.tab_price-1 != blank %}
+                            <span class="section-compare__table-price">
+                                {{ section.settings.tab_price-1 }}
+                            </span>
+                        {% endif %}
+                        <h3 class="section-compare__table-heading">
+                            {{ section.settings.tab_heading-1 }}
+                        </h3>
+                    {% endif %}
+                    
+
+                    {% for tabs-count in (1..section.settings.list_count) %}
+                        {% capture tab-title %}tab_title-{{ tabs-count }}{% endcapture %}
+                        {% capture tab-body %}body_{{ tabs-count}}{% endcapture %}
+
+                        <div class="section-compare__table-info">
+                            <h5 class="section-compare__table-title">
+                                {{ section.settings[tab-title] }}
+                            </h5>
+                            <p class="section-compare__table-description">
+                                {{ section.settings[tab-body] }}
+                            </p>
+                        </div>
+
+                    {% endfor %}
+
+                    {% if section.settings.button_link_1 != blank %}
+                        <div class="section-compare__button-box">
+                            <a href="{{ section.settings.button_link_1 }}" class="button {% if section.settings.button-type %} {{ section.settings.button-type }} {% endif %} {% if section.settings.button-color %} {{ section.settings.button-color }} {% endif %} button--auto" 
+                            {% if section.settings.button_link_1 == blank %} aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                                {{ section.settings.button_label_1 }}
+                            </a>
+                        </div>
+                    {% endif %}
+
+                </div>
+                <div class="section-compare__table">
+
+                    {% if section.settings.desktop-image-2 != blank %}
+                        <div class="section-compare__desktop-image-box">
+                            <img src="{{ section.settings.desktop-image-2 | img_url: '300x', format: 'pjpg'  }}" alt="">
+                        </div>
+                    {% endif %}
+                    
+                    {% if section.settings.tab_heading-2 != blank %}
+                        {% if section.settings.tab_price-2 != blank %}
+                            <span class="section-compare__table-price">
+                                {{ section.settings.tab_price-2 }}
+                            </span>
+                        {% endif %}
+                        <h3 class="section-compare__table-heading">
+                            {{ section.settings.tab_heading-2 }}
+                        </h3>
+                    {% endif %}
+
+                    {% for tabs-count in (1..section.settings.list_count) %}
+                        {% capture tab-title %}tab2_title-{{ tabs-count }}{% endcapture %}
+                        {% capture tab-body %}body2_{{ tabs-count}}{% endcapture %}
+
+                        <div class="section-compare__table-info">
+                            <h5 class="section-compare__table-title">
+                                {{ section.settings[tab-title] }}
+                            </h5>
+                            <p class="section-compare__table-description">
+                                {{ section.settings[tab-body] }}
+                            </p>
+                        </div>
+
+                    {% endfor %}
+                    
+                    {% if section.settings.button_link_2 != blank %}
+                        <div class="section-compare__button-box">
+                            <a href="{{ section.settings.button_link_2 }}" class="button {% if section.settings.button-type %} {{ section.settings.button-type }} {% endif %} {% if section.settings.button-color %} {{ section.settings.button-color }} {% endif %} button--auto"
+                            {% if section.settings.button_link_2 == blank %} aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                                {{ section.settings.button_label_2 }}
+                            </a>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+        <!-- Desktop  -->
+      {% endif %}
+
+      {% if section.settings.enable-mobile %}
+        <!-- Mobile  -->
+        <div class="section-compare__mobile hidden-md hidden-lg">
+
+            <!-- Text Box  -->
+            <div class="section-compare__mobile-text-box" 
+                style="
+                    {% if section.settings.text-alignment-mobile != blank %}
+                        text-align:{{ section.settings.text-alignment-mobile }};
+                        {% else %}text-align:left;
+                    {% endif %}
+                    {% if section.settings.font-color-mobile != blank %}
+                        color:{{ section.settings.font-color-mobile }};
+                        {% else %}color:rgb(33, 42, 47);
+                    {% endif %}
+
+                ">
+                {% if section.settings.main-heading != blank %}
+                <h2 class="section-compare__heading u-margin-bottom-small">
+                    {{ section.settings.main-heading }}
+                </h2>
+                {% endif %}
+                {% if section.settings.body != blank %}
+                    <div class="section-compare__body u-margin-bottom-small">
+                        {{ section.settings.body }}
+                    </div>
+                {% endif %}
+            </div>
+            <!-- Text Box  -->
+
+            <div class="section-compare__table-box">
+                <div class="section-compare__table">
+                    
+                    {% if section.settings.mobile-image-1 != blank %}
+                        <div class="section-compare__mobile-image-box">
+                            <img src="{{ section.settings.mobile-image-1 | img_url: '200x', format: 'pjpg'  }}" alt="">
+                        </div>
+                    {% endif %}
+
+                    {% if section.settings.tab_heading-1 != blank %}
+                        {% if section.settings.tab_price-1 != blank %}
+                            <span class="section-compare__table-price">
+                                {{ section.settings.tab_price-1 }}
+                            </span>
+                        {% endif %}
+                        <h3 class="section-compare__table-heading">
+                            {{ section.settings.tab_heading-1 }}
+                        </h3>
+                    {% endif %}
+                    
+                    {% for tabs-count in (1..section.settings.list_count) %}
+                        {% capture tab-title %}tab_title-{{ tabs-count }}{% endcapture %}
+                        {% capture tab-body %}body_{{ tabs-count}}{% endcapture %}
+
+                        <div class="section-compare__table-info">
+                            <h5 class="section-compare__table-title">
+                                {{ section.settings[tab-title] }}
+                            </h5>
+                            <p class="section-compare__table-description">
+                                {{ section.settings[tab-body] }}
+                            </p>
+                        </div>
+
+                    {% endfor %}
+
+
+                    {% if section.settings.button_link_1 != blank %}
+                        <div class="section-compare__button-box">
+                            <a href="{{ section.settings.button_link_1 }}" class="button {% if section.settings.button-type %} {{ section.settings.button-type }} {% endif %} {% if section.settings.button-color %} {{ section.settings.button-color }} {% endif %} {% if section.settings.button-width %} {{ section.settings.button-width }} {% endif %}" 
+                            {% if section.settings.button_link_1 == blank %} aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                                {{ section.settings.button_label_1 }}
+                            </a>
+                        </div>
+                    {% endif %}
+
+                </div>
+                <div class="section-compare__table">
+
+                    {% if section.settings.mobile-image-2 != blank %}
+                        <div class="section-compare__mobile-image-box">
+                            <img src="{{ section.settings.mobile-image-2 | img_url: '200x', format: 'pjpg'  }}" alt="">
+                        </div>
+                    {% endif %}
+
+                    {% if section.settings.tab_heading-2 != blank %}
+                        {% if section.settings.tab_price-2 != blank %}
+                            <span class="section-compare__table-price">
+                                {{ section.settings.tab_price-2 }}
+                            </span>
+                        {% endif %}
+                        <h3 class="section-compare__table-heading">
+                            {{ section.settings.tab_heading-2 }}
+                        </h3>
+                    {% endif %}
+                    
+                    {% for tabs-count in (1..section.settings.list_count) %}
+                        {% capture tab-title %}tab2_title-{{ tabs-count }}{% endcapture %}
+                        {% capture tab-body %}body2_{{ tabs-count}}{% endcapture %}
+
+                        <div class="section-compare__table-info">
+                            <h5 class="section-compare__table-title">
+                                {{ section.settings[tab-title] }}
+                            </h5>
+                            <p class="section-compare__table-description">
+                                {{ section.settings[tab-body] }}
+                            </p>
+                        </div>
+
+                    {% endfor %}
+
+                    {% if section.settings.button_link_2 != blank %}
+                        <div class="section-compare__button-box">
+                            <a href="{{ section.settings.button_link_2 }}" class="button {% if section.settings.button-type %} {{ section.settings.button-type }} {% endif %} {% if section.settings.button-color %} {{ section.settings.button-color }} {% endif %} {% if section.settings.button-width %} {{ section.settings.button-width }} {% endif %}" 
+                            {% if section.settings.button_link_2 == blank %} aria-disabled="true"{% endif %} {{ block.shopify_attributes }}>
+                                {{ section.settings.button_label_2 }}
+                            </a>
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+        <!-- Mobile  -->
+      {% endif %}
+
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "compare-basic",
+  "class": "spaced-section spaced-section--full-width",
+  "settings": [
+        {
+            "type": "checkbox",
+            "id": "enable-mobile",
+            "default": true,
+            "label": "Enable Mobile"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable-desktop",
+            "default": true,
+            "label": "Enable Desktop"
+        },
+        {
+            "type": "text",
+            "id": "classes",
+            "label": "Padding/Margin Classes",
+            "info": "Add utilities classes separated by space"
+        },
+        {
+            "type":"header",
+            "content":"Section Heading"
+        },
+        {
+            "type": "text",
+            "id": "main-heading",
+            "label": "Heading",
+            "info": "Section Heading"
+        },
+        {
+            "type":"richtext",
+            "id":"body",
+            "label":"Body",
+            "info": "Section Body"
+        },
+        {
+            "type":"header",
+            "content":"Mobile Media"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile-image-1",
+            "label": "Mobile Image 1"
+        },
+        {
+            "type": "image_picker",
+            "id": "mobile-image-2",
+            "label": "Mobile Image 2"
+        },
+        {
+            "type":"color",
+            "id":"font-color-mobile",
+            "label":"Font Color Mobile",
+            "default": "#fff"
+        },
+        {
+            "type":"radio",
+            "id":"text-alignment-mobile",
+            "options": [
+                { "value": "left", "label": "Left" },
+                { "value": "right", "label": "right" },
+                { "value": "center", "label": "Center" }
+            ],
+            "label":"Heading Text Alignment Mobile",
+            "info":"Positioning of text content",
+            "default": "center"
+        },
+        {
+            "type":"header",
+            "content":"Desktop Media"
+        },
+        {
+            "type": "image_picker",
+            "id": "desktop-image-1",
+            "label": "Desktop Image 1"
+        },
+        {
+            "type": "image_picker",
+            "id": "desktop-image-2",
+            "label": "Desktop Image 2"
+        },
+        {
+            "type":"radio",
+            "id":"text-alignment",
+            "options": [
+                { "value": "left", "label": "Left" },
+                { "value": "right", "label": "right" },
+                { "value": "center", "label": "Center" }
+            ],
+            "label":"Heading Text Alignment Desktop",
+            "info":"Positioning of text content",
+            "default": "left"
+        },
+        {
+            "type":"color",
+            "id":"font-color",
+            "label":"Font Color Desktop",
+            "default": "#fff"
+        },
+        {
+            "type":"header",
+            "content":"Tables Settings"
+        },
+        {
+            "type":"range",
+            "id":"list_count",
+            "min":3,
+            "max":10,
+            "step":1,
+            "unit":"px",
+            "label":"No. Of Rows",
+            "default":3
+        },
+        {
+            "type":"header",
+            "content":"Tab 1 Data"
+        },
+        {
+            "type": "text",
+            "id": "tab_price-1",
+            "label": "Tab 1 Price"
+        },
+        {
+            "type": "text",
+            "id": "tab_heading-1",
+            "label": "Tab Header"
+        },
+        {
+            "type": "text",
+            "id": "tab_title-1",
+            "label": "Tab Title 1"
+        },
+        {
+            "type":"text",
+            "id":"body_1",
+            "label":"Body 1"
+        },
+        {
+            "type": "text",
+            "id": "tab_title-2",
+            "label": "Tab Title 2"
+        },
+        {
+            "type":"text",
+            "id":"body_2",
+            "label":"Body 2"
+        },
+        {
+            "type": "text",
+            "id": "tab_title-3",
+            "label": "Tab Title 3"
+        },
+        {
+            "type":"text",
+            "id":"body_3",
+            "label":"Body 3"
+        },
+        {
+            "type": "text",
+            "id": "tab_title-4",
+            "label": "Tab Title 4"
+        },
+        {
+            "type":"text",
+            "id":"body_4",
+            "label":"Body 4"
+        },
+        {
+            "type": "text",
+            "id": "tab_title-5",
+            "label": "Tab Title 5"
+        },
+        {
+            "type":"text",
+            "id":"body_5",
+            "label":"Body 5"
+        },
+        {
+            "type":"header",
+            "content":"Tab 2 Data"
+        },
+        {
+            "type": "text",
+            "id": "tab_price-2",
+            "label": "Tab 2 Price"
+        },
+        {
+            "type": "text",
+            "id": "tab_heading-2",
+            "label": "Tab Header 2"
+        },
+        {
+            "type": "text",
+            "id": "tab2_title-1",
+            "label": "Tab2 1st Title"
+        },
+        {
+            "type":"text",
+            "id":"body2_1",
+            "label":"Body2 1st Description"
+        },
+        {
+            "type": "text",
+            "id": "tab2_title-2",
+            "label": "Tab2 2nd Title"
+        },
+        {
+            "type":"text",
+            "id":"body2_2",
+            "label":"Body2 2nd Description"
+        },
+        {
+            "type": "text",
+            "id": "tab2_title-3",
+            "label": "Tab2 Title 3"
+        },
+        {
+            "type":"text",
+            "id":"body2_3",
+            "label":"Body2 3rd Description"
+        },
+        {
+            "type": "text",
+            "id": "tab2_title-4",
+            "label": "Tab2 Title 4"
+        },
+        {
+            "type":"text",
+            "id":"body2_4",
+            "label":"Body2 4th Description"
+        },
+        {
+            "type": "text",
+            "id": "tab2_title-5",
+            "label": "Tab2 Title 5"
+        },
+        {
+            "type":"text",
+            "id":"body2_5",
+            "label":"Body2 5th Description"
+        },
+        {
+            "type":"header",
+            "content":"Button Settings"
+        },
+        {
+            "type": "text",
+            "id": "button_label_1",
+            "label": "Button Label 1"
+        },
+        {
+            "type": "url",
+            "id": "button_link_1",
+            "label": "Button Link 1"
+        },
+        {
+            "type": "text",
+            "id": "button_label_2",
+            "label": "Button Label 2"
+        },
+        {
+            "type": "url",
+            "id": "button_link_2",
+            "label": "Button Link 2"
+        },
+        {
+            "type": "select",
+            "id": "button-type",
+            "options": [
+              {
+                "value": "button--primary-1",
+                "label": "Primary 1"
+              },
+              {
+                "value": "button--primary-2",
+                "label": "Primary 2"
+              }
+            ],
+            "default": "button--primary-1",
+            "label": "Button Types"
+        },
+        {
+            "type": "select",
+            "id": "button-color",
+            "options": [
+              {
+                "value": "button--white",
+                "label": "Button White"
+              },
+              {
+                "value": "button--dark",
+                "label": "Button Dark"
+              }
+            ],
+            "default": "button--dark",
+            "label": "Button Color",
+            "info": "Button color to choose"
+        },
+        {
+            "type": "select",
+            "id": "button-width",
+            "options": [
+              {
+                "value": "button--width-full",
+                "label": "Full Width Button"
+              },
+              {
+                "value": "button--width-auto",
+                "label": "Auto Width Button"
+              }
+            ],
+            "default": "button--width-auto",
+            "label": "Button Width",
+            "info": "Button Width Stylings"
+        }
+    ],
+    "blocks": [
+    ],
+    "presets": [
+      {
+        "name": "Compare Table"
+      }
+    ]
+
+}
+{% endschema %}

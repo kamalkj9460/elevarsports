@@ -1,0 +1,151 @@
+.section-compare{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.section-compare .section-compare__container{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    pointer-events: auto;
+    padding: 0px 2.4rem;
+    margin: 0px auto;
+    max-width: 138rem;
+    overflow-x: hidden;
+}
+
+.section-compare__desktop{
+
+
+}
+
+.section-compare__desktop-text-box{
+    width: 100%;
+    margin-bottom: 4rem;
+
+}
+
+.section-compare__table-box{
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+@media only screen and (max-width: 768px){
+    .section-compare__table-box{
+/*         margin: 0 -2rem 0 -2rem; */
+    }
+}
+
+.section-compare__table{
+    flex-basis: 50%;
+    border-bottom: none;
+    border-right: 1px solid rgb(33 42 47 / 16%);
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.section-compare__table:last-child{
+    border-right: none;
+}
+
+.section-compare__desktop-image-box{
+    width: 50%;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+}
+
+.section-compare__desktop-image-box img{
+    max-width: 100%;
+    width: 100%;
+}
+
+.section-compare__table-price{
+    font-size: 1.45rem;
+    font-weight: 300;
+    color: inherit;
+    line-height: auto;
+    text-align: left;
+    color: #212a2f;
+}
+
+.section-compare__table-heading{
+    text-transform: uppercase;
+    margin-bottom: 5rem;
+}
+
+
+
+.section-compare__table-info{
+    margin-bottom: 2rem;
+}
+
+.section-compare__table-title{
+    font-size: 1.8rem;
+    letter-spacing: .03em;
+}
+
+.section-compare__table-description{
+    margin: 0;
+}
+
+.section-compare__button-box{
+    width: 100%;
+    /* padding-bottom: 0.5rem; */
+    margin-top: 4rem;
+}
+
+
+@media screen only and (max-width: 768px){
+    .section-compare__button-box{
+        margin-top: 3.5rem;
+    }
+
+    .section-compare__button-box button{
+        font-size: 1.4rem;
+        letter-spacing: .1em;
+    }
+}
+
+
+/* Mobile Styles  */
+
+.section-compare__mobile{
+
+}
+
+.section-compare__mobile-text-box{
+    width: 100%;
+    margin-bottom: 4rem;
+
+}
+
+.section-compare__mobile-image-box{
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+}
+
+.section-compare__mobile-image-box img{
+    max-width: 100%;
+    width: 100%;
+}
+
+@media only screen and (max-width: 768px){
+    .section-compare__table{
+        text-align: left;
+    }
+
+    .section-compare__table-heading{
+        margin-bottom: 3rem;
+    }
+
+    .section-compare__table-description{
+        font-size: 1.4rem !important;
+    }
+}

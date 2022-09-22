@@ -1,0 +1,150 @@
+{{ 'es-contact.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+<script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+<div class="tabs">
+  <div class="bg-grey">
+  <ul id="tabs-nav" class="tabs-nav page-width">
+    {% for block in section.blocks %}
+    <li class="li{{forloop.index}}">
+      <a href="#tab{{forloop.index}}">
+        <div class="inner-text">
+          <div class="image">
+            {{ block.settings.image_1 | img_url: 'master' | img_tag  }}
+          </div>
+          <h5 class="tab-heading">
+            {{block.settings.tab_heading}}
+          </h5>
+        </div>
+      </a>
+      <hr class="hr">
+    </li>
+    {% endfor %}
+  </ul> 
+  </div>
+  <!-- END tabs-nav -->
+  <div id="tabs-content" class="page-width">
+     {% for block in section.blocks %}
+    {% assign page_content = block.settings.page_content %}
+    <div id="tab{{forloop.index}}" class="tab-content">
+      {{ pages[page_content].content }}
+    </div>
+    {% endfor %}
+  </div> <!-- END tabs-content -->
+</div> <!-- END tabs -->
+{% schema %}
+  {
+    "name": "Contact Tabs",
+    "settings": [
+
+],
+"blocks": [
+			{
+				"type": "block",
+				"name": "Tab",
+				"settings": [
+					{
+						"type": "image_picker",
+						"id": "image_1",
+						"label": "Tab Image"
+					},
+					{
+						"type": "text",
+						"id": "tab_heading",
+						"label": "Tab Heading"
+					},
+{
+						"type": "page",
+						"id": "page_content",
+						"label": "Select Page Content to Show on tab"
+					}
+				]
+			}
+		],
+ "presets": [
+    {
+      "name": "Tabs"
+    }
+  ]
+  }
+{% endschema %}
+
+<script>
+  $(document).ready(function() {
+    if (window.location.href.indexOf("#track-your-order") > -1) {
+      $(".li2").addClass("active");
+       $(".li1").removeClass("active");
+      $("div#tab1").hide();
+      $("div#tab2").show();
+    }
+  });
+    $(document).ready(function() {
+    if (window.location.href.indexOf("#faq") > -1) {
+      $(".li3").addClass("active");
+       $(".li1").removeClass("active");
+      $("div#tab1").hide();
+      $("div#tab3").show();
+    }
+  });
+      $(document).ready(function() {
+    if (window.location.href.indexOf("#warranty") > -1) {
+      $("button.flickity-button.flickity-prev-next-button.next").click();
+      $("button.flickity-button.flickity-prev-next-button.next").click();
+      $("button.flickity-button.flickity-prev-next-button.next").click();
+      $(".li4").addClass("active");
+       $(".li1").removeClass("active");
+      $("div#tab1").hide();
+      $("div#tab4").show();
+    }
+  });
+      $(document).ready(function() {
+    if (window.location.href.indexOf("#shipping") > -1) {
+            $("button.flickity-button.flickity-prev-next-button.next").click();
+      $("button.flickity-button.flickity-prev-next-button.next").click();
+      $("button.flickity-button.flickity-prev-next-button.next").click();
+      $(".li5").addClass("active");
+       $(".li1").removeClass("active");
+      $("div#tab1").hide();
+      $("div#tab5").show();
+    }
+  });
+     $(document).ready(function() {
+    if (window.location.href.indexOf("#terms") > -1) {
+            $("button.flickity-button.flickity-prev-next-button.next").click();
+      $("button.flickity-button.flickity-prev-next-button.next").click();
+      $("button.flickity-button.flickity-prev-next-button.next").click();
+      $(".li6").addClass("active");
+       $(".li1").removeClass("active");
+      $("div#tab1").hide();
+      $("div#tab6").show();
+    }
+  });
+  // Show the first tab and hide the rest
+$('#tabs-nav li:first-child').addClass('active');
+$('.tab-content').hide();
+$('.tab-content:first').show();
+
+// Click function
+$('#tabs-nav li').click(function(){
+  $('#tabs-nav li').removeClass('active');
+  $(this).addClass('active');
+  $('.tab-content').hide();
+  
+  var activeTab = $(this).find('a').attr('href');
+  $(activeTab).fadeIn();
+  return false;
+});
+
+$("#tabs-nav").flickity({
+  wrapAround: true,
+  pageDots: false,
+  contain:true,
+  groupCells: true,
+  groupCells: 1,
+  cellAlign: 'left',
+  accessibility: true, //true by default
+  autoPlay: false // advance cells every 3 seconds
+});
+
+
+   
+</script>

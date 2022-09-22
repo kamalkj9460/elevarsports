@@ -1,0 +1,27 @@
+test 
+{% schema %}
+{
+  "name": "out-of-stock-message",
+  "tag": "section",
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_message",
+      "default": false,
+      "label": "Show out-of-stock message ?"
+    },
+    {
+      "type": "html",
+      "id": "custom_message",
+      "label": "Your custom Message",
+      "info": "Add your HTML text here for displaying when product is out of stock"
+    }
+  ],
+  "presets": [
+    {
+      "name": "out-of-stock-message"
+    }
+  ]
+}
+{% endschema %}

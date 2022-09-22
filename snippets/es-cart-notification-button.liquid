@@ -1,0 +1,146 @@
+{%comment%}{{ 'general.cart.view' | t: count: cart.item_count }} {%endcomment%}
+ {%- if cart != empty -%}
+     <!--/ Drawer__footer /-->
+    <div class="Drawer__footer">
+      
+      <!--/  Gifting /-->
+      
+      <div class="gifting-line" style="display:none;">
+        
+        <!--/ incon /-->
+        {%if cart.note == blank %}
+        <div class="icon-gift">
+          <svg width="22" height="24" viewBox="0 0 22 24" xmlns="http://www.w3.org/2000/svg" class="jsx-3997607891"><g fill="none" class="jsx-3997607891"><g id="Gift-Messaging" transform="translate(-873 -711)" class="jsx-3997607891"><g transform="translate(874 712)" class="jsx-3997607891"><polygon id="Stroke-1" stroke="#1F2A30" points="1 22 19 22 19 7 1 7" class="jsx-3997607891"></polygon><polygon id="Fill-3" fill="#FFF" points="0 11 19 11 19 7 0 7" class="jsx-3997607891"></polygon><g stroke="#1F2A30" class="jsx-3997607891"><polygon id="Stroke-4" points="0.428571429 10.4206667 19.6009524 10.4206667 19.6009524 6.22691667 0.428571429 6.22691667" class="jsx-3997607891"></polygon><path d="M13.9539048,0.645058333 C10.8891429,-1.284525 9.36247619,6.137725 10.3748571,6.22480833 C11.3862857,6.31280833 16.7577143,2.41055833 13.9539048,0.645058333 Z" id="Stroke-6" class="jsx-3997607891"></path><path d="M6.07533333,0.645058333 C9.14009524,-1.284525 10.6667619,6.137725 9.65438095,6.22480833 C8.64295238,6.31280833 3.27152381,2.41055833 6.07533333,0.645058333 Z" id="Stroke-7" class="jsx-3997607891"></path></g></g></g></g></svg>
+          Gifting? 
+          <a href="#" class="add-a-note">Add a note and more.</a>
+        </div>   
+        {%else%}
+        <div class="icon-gift_outer">
+          Your gift note is set to go.
+          <div class="icon-gift edit_gift">  <a href="#" class="add-a-note">Edit</a></div>
+        </div>
+        {%endif%}
+        
+        
+      </div>
+      
+      
+      
+      <!--/ Subtotal /-->
+      <div class="Subtotal">
+        
+        <div class="label-text">Subtotal</div>
+        <div class="price">{{ cart.total_price | money_with_currency }}</div>
+        
+      </div>
+      {%if cart.total_price > 20000%}
+        <!--/ Shipping /-->
+      <div class="Shipping">
+        
+        <div class="label-text">Shipping</div>
+        <div class="price">Free</div>
+        
+      </div>
+      {%endif%}
+      <!---/ Proceed to Checkout /-->
+      <a href="#" class="Proceed-to-Checkout">Proceed to Checkout</a>
+      
+      
+      <!--/ You Might Also Like /-->
+      <div class="You-Might-Also-Like" style="display:none;">
+        <h3>You Might Also Like</h3>
+        
+        <div class="Shlid-also-like">
+          
+        <!--/ img /-->
+          <div class="img-box">
+              <img src="{{all_products['elevar-arc-racer'].featured_media | img_url: "200x"}}">  
+          </div>
+
+        <!-- Swiper --> 
+          
+         <div class="cart-drawer-slide">
+           
+           <div class="boxy">
+           
+            <!--/ product title /-->
+           <div class="pro-tt">{{all_products['elevar-arc-racer'].title}}</div>
+           
+           <!--/ price /-->
+           <span class="price-right">{{all_products['elevar-arc-racer'].price | money_with_currency}}</span>
+             
+             
+           </div> 
+           
+           
+           <div class="boxy">
+             
+                {%- unless all_products['elevar-arc-racer'].has_only_default_variant -%}
+             {%- for option in all_products['elevar-arc-racer'].options_with_values-%}
+             {%if forloop.index == 1%}
+            <legend class="form__label">{{ option.name }}</legend>
+               <div class="slider-outer">
+               <div class="swiper mySwiper_bottom">
+                <div class="swiper-wrapper">
+                  Slide 1
+                  {%- for value in option.values -%}
+                 <div class="swiper-slide">
+                  <input type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
+                         name="{{ option.name }}"
+                         value="{{ value | escape }}"
+                         form="product-form-{{ section.id }}"
+                         {% if option.selected_value == value %}checked{% endif %}
+                         >
+                  <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}">
+                    {{ value }}
+                  </label>
+                   </div>
+                  {%- endfor -%}
+                </div>
+                <div class="swiper-pagination"></div>
+                 <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+
+           </div>
+           {%else%}
+          
+           {%endif%}
+        {%- endfor -%}
+       {%endunless%}
+             
+           </div>
+           
+         </div>
+          
+         {%- unless all_products['elevar-arc-racer'].has_only_default_variant -%}
+             {%- for option in all_products['elevar-arc-racer'].options_with_values-%}
+             {%if forloop.index == 1%}
+      
+           {%else%}
+           <legend class="form__label">{{ option.name }}</legend>
+           {%- for value in option.values -%}
+                  <input type="radio" id="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}"
+                         name="{{ option.name }}"
+                         value="{{ value | escape }}"
+                         form="product-form-{{ section.id }}"
+                         {% if option.selected_value == value %}checked{% endif %}
+                         >
+                  <label for="{{ section.id }}-{{ option.name }}-{{ forloop.index0 }}">
+                    {{ value }}
+                  </label>
+                  {%- endfor -%}
+           {%endif%}
+        {%- endfor -%}
+       {%endunless%}
+          
+         
+           
+         </div>
+         
+      
+        </div>  
+   
+        
+      </div> 
+   {%- endif -%} 
